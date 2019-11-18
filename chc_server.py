@@ -23,7 +23,7 @@ def contactUs():
 
         return render_template('02-contact_us.html')
 
-@serv.route("/contact", methods = ['GET'])
+@serv.route("/survey", methods = ['GET'])
 def ClientSurveyOnHealth():
     if request.method == 'GET':
 
