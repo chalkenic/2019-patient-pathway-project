@@ -23,6 +23,15 @@ def contactUs():
 
         return render_template('02-contact_us.html')
 
+@serv.route("/contact", methods = ['GET'])
+def ClientSurveyOnHealth():
+    if request.method == 'GET':
+
+        return render_template('ClientSurveyOnHealth&SocialCare.html')
+
+
+
+
 
 if __name__ == "__main__":
     serv.run(debug=True)
