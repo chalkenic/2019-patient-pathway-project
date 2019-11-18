@@ -11,11 +11,13 @@ serv = Flask(__name__)
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 
-@serv.route("/home", methods = ['GET'])
+@serv.route("/home", methods = ['POST','GET'])
 def frontPage():
     if request.method == 'GET':
 
         return render_template('01_homepage.html')
+    if request.method == 'POST':
+        return None
 
 @serv.route("/contact", methods = ['GET'])
 def contactUs():
@@ -23,14 +25,11 @@ def contactUs():
 
         return render_template('02-contact_us.html')
 
-@serv.route("/contact", methods = ['GET'])
-def ClientSurveyOnHealth():
+@serv.route("/survey", methods = ['GET'])
+def survey():
     if request.method == 'GET':
 
-        return render_template('ClientSurveyOnHealth&SocialCare.html')
-
-
-
+        return render_template('03-survey.html')
 
 
 if __name__ == "__main__":
