@@ -30,6 +30,7 @@ a {
   background-color: #7B64AB;
 }
 
+
 .title_head_container {
 
   min-height: 150px;
@@ -127,8 +128,6 @@ https://codepen.io/martinwolf/pen/eNNdme */
   background: #fff;
   transition: width 0.25s ;
   transition-timing-function: ease-in-out;
-
-
 }
 
 
