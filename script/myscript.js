@@ -1,4 +1,4 @@
-function validate(){
+function validate() {
   pass = true;
   // if (validateName() == false) pass = false
   validatename();
@@ -8,18 +8,17 @@ function validate(){
 }
 
 // First name validation
-function validatename(){
+function validatename() {
   var fail = true;
   var name = document.getElementById('name').value;
-  var string=/^[a-zA-Z]+$/;
+  var string = /^[a-zA-Z]+$/;
 
-    if (!name.match(string))
-    {
-        alert("Must input string");
-    }
+  if (!name.match(string)) {
+    alert("Must input string");
+  }
   // var lettercheck = document.getElementById('name').value;
 
-  if (name.length>10){
+  if (name.length > 10) {
     alert('The first name is too long, please shorten to below 10 characters');
   }
 
@@ -30,17 +29,16 @@ function validatename(){
 }
 
 // Second name validation
-function validatenametwo(){
+function validatenametwo() {
   var fail = true;
   var lname = document.getElementById('lname').value;
-  var string=/^[a-zA-Z]+$/;
+  var string = /^[a-zA-Z]+$/;
 
-    if (!lname.match(string))
-    {
-        alert("Must input string");
-    }
+  if (!lname.match(string)) {
+    alert("Must input string");
+  }
 
-  if (lname.length>10){
+  if (lname.length > 10) {
     alert('The last name is too long, please shorten to below 10 characters');
   }
 
@@ -60,11 +58,11 @@ function validatenametwo(){
 // }
 
 // number validation
-function validatenumber(){
+function validatenumber() {
 
   var numbervalidate = document.forms["myForm"]["number"].value;
 
-  if(!/^[0-9]+$/.test(numbervalidate)){
+  if (!/^[0-9]+$/.test(numbervalidate)) {
     alert("Please only enter numbers")
   }
 }

@@ -16,21 +16,28 @@
 
 <!-- Form code, need to figure out how to submit it, contains validation file  -->
 <form onsubmit="return validate()" name="myForm">
-    <label for="name">First name:</label><br>
-    <input id="name" type="text" name="firstname">
-    </br>
-    <label>Last name:</label><br>
-    <input id="lname" type="text" name="lastname">
-    </br>
-    <label for="Query">Query:</label><br>
-    <textarea id="query" rows="5" cols="50" name="text"> Type your query here </textarea>
-    </br>
-    <br>
-    <button id="sub_but" type="submit"">Submit</button>
-    </br>
+<label for="name">First name:</label><br>
+<input id="name" type="text" name="firstname">
+</br>
+
+<label>Last name:</label><br>
+<input id="lname" type="text" name="lastname">
+</br>
+
+<label>Telephone number:</label><br>
+<input id="number" type="text" name="telephonenumber">
+</br>
+
+<label for="comments">Comments:</label><br>
+<textarea id="comments" rows="5" cols="50" name="text"> Type your query here</textarea>
+</br>
+
+<br>
+<button id="sub_but" type="submit">Submit</button>
+</br>
 </form>
 
-<p> Test Paragraph </p>
+<p> We aim to respond to querieres as soon as possible however during peak times responses may take longer to recieve. <br><br> Thank You </p>
 
 
 {% endblock %}
