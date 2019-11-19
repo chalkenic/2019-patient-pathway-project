@@ -1,0 +1,66 @@
+{% extends "01_homepage.html" %}
+
+<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+
+{%block title %}
+
+<title> Client Survey On Health & Social Care </title>
+  <div class = "body_container">
+{%endblock %}
+
+{%block content%}
+
+
+            <h3> The following is a survey which enables us to understand how your
+              interactions with the NHS have been going so far in regards to your Health & Social Care </h3>
+
+              <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
+                <form onsubmit=action="mailto:"you@yourwebsite.com" name="myForm">
+
+                    <label for="Typeofcancer">Type of cancer:</label>
+                    <input id="Typeofcancer" type="text" Typeofcancer="Typeofcancer">
+
+                    <label for ="Duration of illness"> How long have you lived with cancer? </label>
+                    <input id="Duration of illness" type ="text">
+
+                    <label for="Duration spent receiving treatment"> How long have you been receiving treatment at your local hospital </label>
+                    <input id="Duration spent receiving treatment" type="text">
+
+                    <label for="Impact NHS has had on your recovery"> What kind of impact has the NHS had on your recovery period?
+                      <input type="checkbox" name="" value="Significant Impact"> Significant Impact
+                      <input type="checkbox" name="" value="Some impact"> Some impact
+                      <input type="checkbox" name="" value="No impact"> No impact
+                      <input type="checkbox" name="" value ="Prefer not to say"> Prefer not to say
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+        <div class = "title_navigation_container">
+          <nav class = "main_nav">
+
+          <ul>
+
+              <li class = ><a href= "HomePage.html">Home</a> </li>
+              <li class = ><a href = "03-survey.html">Survey on Health & Social Care</a></li>
+              <li class = > <a href = "SurveyOnSocial&OwnActivities.html"> Survey on social & Own activites </a> </li>
+              <li class = ""><a href = "">Profile</a> </li>
+              <li class = ""><a href = "">Contact us</a></li>
+              <li class = ""><a href = "">Login</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+    </div>
+
+
+
+{% endblock %}
