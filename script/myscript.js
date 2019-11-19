@@ -3,7 +3,6 @@ function validate() {
   // if (validateName() == false) pass = false
   validatename();
   validatenametwo();
-  validatenumber();
   return pass
 }
 
