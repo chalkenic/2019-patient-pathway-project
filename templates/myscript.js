@@ -46,45 +46,35 @@ function validatenametwo() {
 
 }
 
-// function validatenumber()
-// {
-//     var fail = true;
-//     var number=document.forms["myForm"]["number"].value;
-//     if (isNaN(telephonenumber)) // this is the code I need to change
-//     {
-//         alert("Must input numbers");
-//     }
-//     return false;
+
+
+// function validatenumber() {
+
+//   var numbervalidate = document.forms["myForm"]["number"].value;
+
+//   if (!/^[0-9]+$/.test(numbervalidate)) {
+//     alert("Please only enter numbers")
+//   }
 // }
 
-// number validation
-function validatenumber() {
-
-  var numbervalidate = document.forms["myForm"]["number"].value;
-
-  if (!/^[0-9]+$/.test(numbervalidate)) {
-    alert("Please only enter numbers")
-  }
-}
-
-function mySubmit() {
-  console.log(document.forms["myForm"]);
-  var commentadd = document.getElementById("comments").value;
-  console.log(commentadd);
-  var x = document.createElement("x");
-  x.appendChild(document.createTextNode(commentadd));
-  document.getElementById('newsArticle').appendChild(x);
-
-}
-//
-// function stdSubmit() {
-//   console.log('stdSubmit');
+// function mySubmit() {
+//   console.log(document.forms["myForm"]);
 //   var commentadd = document.getElementById("comments").value;
+//   console.log(commentadd);
 //   var x = document.createElement("x");
-//   x.appendChild(document.createTextNode(comments));
+//   x.appendChild(document.createTextNode(commentadd));
 //   document.getElementById('newsArticle').appendChild(x);
-//   alert('stdSubmit')
+
 // }
+// //
+function stdSubmit() {
+  console.log('stdSubmit');
+  var commentadd = document.getElementById("comments").value;
+  var x = document.createElement("x");
+  x.appendChild(document.createTextNode(comments));
+  document.getElementById('newsArticle').appendChild(x);
+  alert('stdSubmit')
+}
 
 
 
