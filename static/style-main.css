@@ -16,7 +16,7 @@ a {
   height: 100%;
 }
 
-.jumbotron {
+.jumbotron_bckground {
   white-space: nowrap;
   position: relative;
   min-height: 200px;
@@ -36,6 +36,7 @@ a {
   min-height: 150px;
   background-color: #7B64AB;
 }
+
 .title_head {
   text-align: center;
 }

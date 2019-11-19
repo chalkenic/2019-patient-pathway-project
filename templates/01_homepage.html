@@ -1,81 +1,102 @@
 <!DOCTYPE html>
+<html lang="en">
+  <head>
 
-<style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-</style>
+    {% block title %}<title>Cancer Patient Pathways - Home</title> {% endblock %}
 
-<head>
+    <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+      <!-- <link rel = "stylesheet" href = "{{ url_for('static', filename='bootstrap.min.css') }}" /> -->
 
-  <meta charset="utf-8">
-  {% block title %}<title>Cancer Patient Pathways - Home</title> {% endblock %}
-  <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
-</head>
+      <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  </head>
 
 
-<body>
+  <body>
 
-  <div class = "body_container">
-    <header>
-      <div class = "title_head_container">
-        <div class = "title_head">
-          <h1 id = "project_title"><a href = "/home">The Cancer Pathway Project</a></h1>
+    <div class = "body_container">
+      <header>
+        <div class = "title_head_container">
+
+          <form class="form-inline">
+            <div class="form-group">
+              <label class="sr-only" for="exampleInputEmail3">Email address</label>
+              <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="exampleInputPassword3">Password</label>
+              <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> Remember me
+              </label>
+            </div>
+            <button type="submit" class="btn btn-default">Sign in</button>
+            <a href="#" class="btn btn-default" role="button">New Account</a>
+          </form>
+
+
+          <div class = "title_head">
+            <h1 id = "project_title"><a href = "/home">The Cancer Pathway Project</a></h1>
+          </div>
+
+
+          </form>
+
         </div>
 
-        <figure id = chc_logo>
-          <img src = "/static/assets/health_counc_img_notext.png"
-          alt = "Community Health council img">
-        </figure>
 
-        <form id='login_form' onsubmit="">
-          <label for = "username">Username: </label>
-          <input type = "text" id = "username" name = "firstName"><br>
+        <div class = "jumbotron_bckground">
 
-          <label for = "pword">Password: &nbsp  </label>
-          <input type = "password" id = "pword" name = "password"><br>
+          <figure id = chc_logo>
+            <img src = "/static/assets/health_counc_img_notext.png"
+            alt = "Community Health council img">
+          </figure>
 
-          <button type = "submit" id = "button_l"> Submit </button>
-          <button type = "button" id = "button_r"> New Account </button>
-        </form>
+        </div>
 
-      </div>
+        <div class = "title_navigation_container">
+          <nav class = "main_nav">
+
+            <span><a href = "">About Us</a></span>
+            <span><a href = "/survey">survey</a></span>
+            <span><a href = "/contact">Contact</a></span>
+
+          </nav>
 
 
-      <div class = "jumbotron">
+        </div>
+        </header>
 
-      </div>
 
-      <div class = "title_navigation_container">
-        <nav class = "main_nav">
-
-          <span><a href = "">About Us</a></span>
-          <span><a href = "/survey">survey</a></span>
-          <span><a href = "/contact">Contact</a></span>
-
-        </nav>
-
+        </button>
 
       </div>
-      </header>
+      {% block content  %}
 
+      {% endblock %}
+      <main>
+      </main>
 
-      </button>
 
     </div>
-    {% block content  %}
-
-    {% endblock %}
-    <main>
-    </main>
-
-
-  </div>
-  <footer>
-    <hr>
-    <address>
-      <u>©2019: 	Cancer Pathway Project </u>| Contact: <a href="mailto:cancer-pathway@outlook.com"> cancer-pathway@outlook.com</a>
-      <u>Address</u></span>
-    </address>
-  </footer>
-
+    <footer>
+      <hr>
+      <address>
+        <u>©2019: 	Cancer Pathway Project </u>| Contact: <a href="mailto:cancer-pathway@outlook.com"> cancer-pathway@outlook.com</a>
+        <u>Address</u></span>
+      </address>
+    </footer>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src = "{{ url_for('static', filename='js.main.css') }}"></script>
-</body>
+
+  </body>
