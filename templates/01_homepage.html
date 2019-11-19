@@ -17,7 +17,14 @@
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+<<<<<<< HEAD
     <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+=======
+    <!-- Validation Script -->
+    <script src="..\script\validationScript.js"></script>
+
+
+>>>>>>> e8026caba96177be40a3698073fb5f4cf40775ce
   </head>
 
 
@@ -31,11 +38,11 @@
           <form class="form-inline">
             <div class="form-group">
               <label class="sr-only" for="exampleInputEmail3">Email address</label>
-              <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+              <input type="email" class="form-control" id="usernameInput" placeholder="Email">
             </div>
             <div class="form-group">
               <label class="sr-only" for="exampleInputPassword3">Password</label>
-              <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+              <input type="password" class="form-control" id="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" placeholder="Password">
             </div>
             <div class="checkbox">
               <label>
@@ -107,6 +114,10 @@
       </main>
 
 
+<<<<<<< HEAD
+    <script src = "{{ url_for('static', filename='js-main.js') }}"></script>
+</body>
+=======
     </div>
     <footer>
       <hr>
@@ -120,3 +131,4 @@
     <script src = "{{ url_for('static', filename='js.main.css') }}"></script>
 
   </body>
+>>>>>>> bbf85d77999eedb01b595ecef7d2f2919a45996a
