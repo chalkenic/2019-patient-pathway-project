@@ -26,16 +26,14 @@ def contactUs():
         return render_template('02-contact_us.html')
 
 @serv.route("/survey", methods = ['GET'])
+<<<<<<< HEAD
 def survey():
+=======
+def ClientSurveyOnHealth():
+>>>>>>> ac8084ee5efcd64f7a0e44de8786a68c6e1ad6bb
     if request.method == 'GET':
 
         return render_template('03-survey.html')
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> ce86d370600df8bdfdb3c017f32887e07ceb47d7
 
 
 if __name__ == "__main__":

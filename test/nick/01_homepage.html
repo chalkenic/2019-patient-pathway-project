@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 
-<style>
-
-</style>
 
 <head>
 
   <meta charset="utf-8">
   {% block title %}<title>Cancer Patient Pathways - Home</title> {% endblock %}
-  <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+  <link rel = "stylesheet" type = "text/css"href = 'style-main.css' />
 </head>
 
 
 <body>
 
+
   <div class = "body_container">
     <header>
       <div class = "title_head_container">
         <div class = "title_head">
-          <h1 id = "project_title"><a href = "/home">The Cancer Pathway Project</a></h1>
+          <h1 id = "project_title">The Cancer Pathway Project</h1>
         </div>
 
         <figure id = chc_logo>
-          <img src = "/static/assets/health_counc_img_notext.png"
+          <img src = "health_counc_img2-removebg-preview2.png"
           alt = "Community Health council img">
         </figure>
-
+        
         <form id='login_form' onsubmit="">
           <label for = "username">Username: </label>
           <input type = "text" id = "username" name = "firstName"><br>
@@ -48,8 +46,8 @@
         <nav class = "main_nav">
 
           <span><a href = "">About Us</a></span>
-          <span><a href = "/survey">survey</a></span>
-          <span><a href = "/contact">Contact</a></span>
+          <span><a href = "">Survey</a></span>
+          <span><a href = "">Contact</a></span>
 
         </nav>
 

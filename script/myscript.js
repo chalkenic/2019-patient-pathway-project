@@ -1,25 +1,23 @@
-function validate(){
+function validate() {
   pass = true;
   // if (validateName() == false) pass = false
   validatename();
   validatenametwo();
-  validatenumber();
   return pass
 }
 
 // First name validation
-function validatename(){
+function validatename() {
   var fail = true;
   var name = document.getElementById('name').value;
-  var string=/^[a-zA-Z]+$/;
+  var string = /^[a-zA-Z]+$/;
 
-    if (!name.match(string))
-    {
-        alert("Must input string");
-    }
+  if (!name.match(string)) {
+    alert("Must input string");
+  }
   // var lettercheck = document.getElementById('name').value;
 
-  if (name.length>10){
+  if (name.length > 10) {
     alert('The first name is too long, please shorten to below 10 characters');
   }
 
@@ -30,17 +28,16 @@ function validatename(){
 }
 
 // Second name validation
-function validatenametwo(){
+function validatenametwo() {
   var fail = true;
   var lname = document.getElementById('lname').value;
-  var string=/^[a-zA-Z]+$/;
+  var string = /^[a-zA-Z]+$/;
 
-    if (!lname.match(string))
-    {
-        alert("Must input string");
-    }
+  if (!lname.match(string)) {
+    alert("Must input string");
+  }
 
-  if (lname.length>10){
+  if (lname.length > 10) {
     alert('The last name is too long, please shorten to below 10 characters');
   }
 
@@ -48,45 +45,35 @@ function validatenametwo(){
 
 }
 
-// function validatenumber()
-// {
-//     var fail = true;
-//     var number=document.forms["myForm"]["number"].value;
-//     if (isNaN(telephonenumber)) // this is the code I need to change
-//     {
-//         alert("Must input numbers");
-//     }
-//     return false;
+
+
+// function validatenumber() {
+
+//   var numbervalidate = document.forms["myForm"]["number"].value;
+
+//   if (!/^[0-9]+$/.test(numbervalidate)) {
+//     alert("Please only enter numbers")
+//   }
 // }
 
-// number validation
-function validatenumber(){
-
-  var numbervalidate = document.forms["myForm"]["number"].value;
-
-  if(!/^[0-9]+$/.test(numbervalidate)){
-    alert("Please only enter numbers")
-  }
-}
-
-function mySubmit() {
-  console.log(document.forms["myForm"]);
-  var commentadd = document.getElementById("comments").value;
-  console.log(commentadd);
-  var x = document.createElement("x");
-  x.appendChild(document.createTextNode(commentadd));
-  document.getElementById('newsArticle').appendChild(x);
-
-}
-//
-// function stdSubmit() {
-//   console.log('stdSubmit');
+// function mySubmit() {
+//   console.log(document.forms["myForm"]);
 //   var commentadd = document.getElementById("comments").value;
+//   console.log(commentadd);
 //   var x = document.createElement("x");
-//   x.appendChild(document.createTextNode(comments));
+//   x.appendChild(document.createTextNode(commentadd));
 //   document.getElementById('newsArticle').appendChild(x);
-//   alert('stdSubmit')
+
 // }
+// //
+function stdSubmit() {
+  console.log('stdSubmit');
+  var commentadd = document.getElementById("comments").value;
+  var x = document.createElement("x");
+  x.appendChild(document.createTextNode(comments));
+  document.getElementById('newsArticle').appendChild(x);
+  alert('stdSubmit')
+}
 
 
 

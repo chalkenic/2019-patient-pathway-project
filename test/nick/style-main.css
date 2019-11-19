@@ -5,31 +5,12 @@
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-}
-
 .body_container {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
   height: 100%;
 }
-
-.jumbotron {
-  white-space: nowrap;
-  position: relative;
-  min-height: 200px;
-  background-image: url('assets/hand_shake.png');
-
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  height: 100%;
-  width: 100%;
-  background-color: #7B64AB;
-}
-
 
 .title_head_container {
 
@@ -74,14 +55,20 @@ input{
 
   bottom: 50%;
   left: 50%;
-
-}
-#project_title a {
   color: #fff;
 }
 
-#project_title a:hover {
-  opacity: 0.5;
+.jumbotron {
+  white-space: nowrap;
+  position: relative;
+  min-height: 200px;
+  background-image: url('pngfind.com-shaking-hands-png-756304.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  height: 100%;
+  width: 100%;
+  background-color: #7B64AB;
 }
 
 #chc_logo img{
@@ -115,6 +102,7 @@ input{
   padding-bottom: 5px;
   font-weight: 900;
   font-size: 25px;
+  text-decoration: none;
   color: #fff;
 }
 
@@ -128,6 +116,8 @@ https://codepen.io/martinwolf/pen/eNNdme */
   background: #fff;
   transition: width 0.25s ;
   transition-timing-function: ease-in-out;
+
+
 }
 
 
