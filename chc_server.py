@@ -31,8 +31,5 @@ def survey():
 
         return render_template('03-survey.html')
 
-
-
-
 if __name__ == "__main__":
     serv.run(debug=True)

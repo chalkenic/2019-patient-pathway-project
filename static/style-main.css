@@ -5,9 +5,6 @@
   box-sizing: border-box;
 }
 
-a {
-  text-decoration: none;
-}
 
 .body_container {
   display: flex;
@@ -15,6 +12,7 @@ a {
   overflow-x: hidden;
   height: 100%;
 }
+
 
 .jumbotron_bckground {
   white-space: nowrap;
@@ -41,34 +39,10 @@ a {
   text-align: center;
 }
 
-#login_form {
-  height: inherit ;
-  width: 15%;
-  float: right;
-  margin-top: -35px;
-
-  color: #fff;
-}
-
 input{
   display: inline;
 }
-#username {
-  width: 51%;
-  margin: 5px 0;
-}
-#pword {
-  width: 50%;
-  margin: 5px 0;
-}
 
-#button_l {
-  float: left:
-}
-#button_r {
-  margin-left: 15%;
-  width: 50%
-}
 
 #project_title {
   display: inline-block;
@@ -117,6 +91,7 @@ input{
   font-weight: 900;
   font-size: 25px;
   color: #fff;
+  text-decoration: none;
 }
 
 /* Adapted from Martin Wolf code snippet, available at:
@@ -145,4 +120,18 @@ footer {
   bottom: 0;
   width: 100%;
   text-align: center;
+}
+
+#burgerD {
+  visibility: hidden;
+}
+
+@media only screen and (max-width: 776px) {
+
+  #exampleInputEmail3, #exampleInputPassword3 {
+    width: 100px;
+    display: inline;
+  }
+
+
 }

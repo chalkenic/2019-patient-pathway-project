@@ -8,7 +8,7 @@
 
     {% block title %}<title>Cancer Patient Pathways - Home</title> {% endblock %}
 
-    <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+
       <!-- <link rel = "stylesheet" href = "{{ url_for('static', filename='bootstrap.min.css') }}" /> -->
 
       <!-- Latest compiled and minified CSS -->
@@ -16,6 +16,8 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
   </head>
 
 
@@ -24,6 +26,7 @@
     <div class = "body_container">
       <header>
         <div class = "title_head_container">
+
 
           <form class="form-inline">
             <div class="form-group">
@@ -47,11 +50,6 @@
           <div class = "title_head">
             <h1 id = "project_title"><a href = "/home">The Cancer Pathway Project</a></h1>
           </div>
-
-
-          </form>
-
-        </div>
 
 
         <div class = "jumbotron_bckground">
@@ -81,7 +79,29 @@
 
       </div>
       {% block content  %}
+        <nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+            </div>
 
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+              <ul class="nav navbar-nav">
+                <li><a href="index.php">Home</a></li>
+                <li><a href="about.php">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="contact.php">Contact</a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       {% endblock %}
       <main>
       </main>
