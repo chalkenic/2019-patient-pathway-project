@@ -30,10 +30,9 @@ def survey():
     if request.method == 'GET':
 
         return render_template('03-survey.html')
-<<<<<<< HEAD
 
-=======
->>>>>>> 2fe2a131a4e8fa349eecc4de907f5aa88074b5a1
+
+
 
 if __name__ == "__main__":
     serv.run(debug=True)
