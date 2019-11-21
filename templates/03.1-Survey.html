@@ -1,0 +1,30 @@
+{% extends "01_homepage.html" %}
+
+<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+
+{%block title %}
+
+<title> Client Survey On local authority & 3rd Sector activities. </title>
+  <div class = "body_container">
+{%endblock %}
+
+{%block content%}
+
+
+            <h3> The following is a survey which enables us to understand how your
+              interactions with the NHS have been going so far in regards to your local & 3rd Sector activities. </h3>
+              <br>
+
+              <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
+                <form onsubmit=action="mailto:"you@yourwebsite.com" name="myForm">
+                  <br>
+
+
+                    <label for="Date of completion"> Please enter the day you are filling in this survey:</label>
+                    <input type="Date" name="date">
+                    <br> <br>
+                  <label for="lOC"
+
+
+
+                        <button id="sub_but" type="submit"">Submit</button>
