@@ -31,6 +31,11 @@ def survey():
 
         return render_template('03-survey.html')
 
+@serv.route("/Second Survey", methods = ['GET'])
+def survey():
+    if request.method == 'GET':
+
+        return render_template('03.1-survey.html')
 
 
 
