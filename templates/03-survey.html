@@ -20,23 +20,23 @@
                   <br>
 
 
-                    <label for="Date of completion"> Please enter the day you are filling in this survey:</label>
+                    <label for="completion date"> Please enter the day you are filling in this survey:</label>
                     <input type="Date" name="date">
                     <br> <br>
-                    <label for="Typeofcancer">Type of cancer:</label>
+                    <label for="typeofcancer">Type of cancer:</label>
                     <input id="Typeofcancer" type="text" Typeofcancer="Typeofcancer">
                     <br> <br>
 
-                    <label for ="Duration of illness"> How long have you lived with cancer? </label>
+                    <label for ="duration of illness"> How long have you lived with cancer? </label>
                     <input id="Duration of illness" type ="text">
 
                     <br><br>
 
-                    <label for="Duration spent receiving treatment"> How long have you been receiving treatment at your local hospital </label>
+                    <label for="duration spent receiving treatment"> How long have you been receiving treatment at your local hospital </label>
                     <input type="Date" name="date">
                     <br> <br>
 
-                    <label for="Impact NHS has had on your recovery"> What kind of impact has the NHS had on your recovery period?
+                    <label for="impact nhs has had on your recovery"> What kind of impact has the NHS had on your recovery period? </label>
                       <br>
                       <input type="checkbox" name="" value="Significant Impact"> Significant Impact
                       <br>
@@ -48,17 +48,34 @@
                       <br> <br>
 
 
-                      <label for ="Affects on social life"> Has your cancer treatment affected your social life in any way?
-                        <input id="Affects on social life", type= "Text">
-                        <br>
+                      <label for ="affects on social life"> Has your cancer treatment affected your social life in any way? </label>
+                        <input id="affects on social life", type= "Text">
+                        <br><br>
 
-                        <button id="sub_but" type="submit"">Submit</button>
+                        <button onclick="myFunction()",<strong>Submit</strong></button>
 
-                        <script>
-                              function myFunction() {
-                                alert("The form was submitted");
-                              }
-                      </script>
+  <script>
+  function myFunction() {
+    alert("Thank you for filling in this survey");
+  }
+  </script>
+  <script type="text/javascript">
+   function validateForm(){
+     var completion date = document.getElementById('completion date').value;
+     var typeofcancer = document.getElementById('typeofcancer').value;
+     var duration spent receiving treatment = document.getElementById('duration spent receiving treatment').value;
+      var impact nhs has had on your recovery = document.getElementById('impact nhs has had on your recovery').value;
+       var affects on social life = document.getElementById('affects on social life').value;
+     if(completion date, typeofcancer, duration spent receiving treatment, impact nhs has had on your recovery=='')
+ {
+   alert('Please Fill all Required Fields');
+   return false;
+  }
+  else {
+ return true;
+   }
+ }
+ </script>
 
 
 
