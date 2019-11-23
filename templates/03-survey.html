@@ -16,7 +16,7 @@
               <br>
 
               <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
-                <form onsubmit=action="mailto:"you@yourwebsite.com" name="myForm">
+                <form action="connect.php" method="post">
                   <br>
 
 
@@ -24,11 +24,11 @@
                     <input type="Date" name="date">
                     <br> <br>
                     <label for="typeofcancer">Type of cancer:</label>
-                    <input id="Typeofcancer" type="text" Typeofcancer="Typeofcancer">
+                    <input id="Typeofcancer" type="text" name="Typeofcancer">
                     <br> <br>
 
                     <label for ="duration of illness"> How long have you lived with cancer? </label>
-                    <input id="Duration of illness" type ="text">
+                    <input id="Duration of illness" type ="text", name ="Duration">
 
                     <br><br>
 
@@ -38,18 +38,18 @@
 
                     <label for="impact nhs has had on your recovery"> What kind of impact has the NHS had on your recovery period? </label>
                       <br>
-                      <input type="checkbox" name="" value="Significant Impact"> Significant Impact
+                      <input type="checkbox" name="Significant" value="Significant Impact"> Significant Impact
                       <br>
-                      <input type="checkbox" name="" value="Some impact"> Some impact
+                      <input type="checkbox" name="Some" value="Some impact"> Some impact
                       <br>
-                      <input type="checkbox" name="" value="No impact"> No impact
+                      <input type="checkbox" name="No" value="No impact"> No impact
                       <br>
-                      <input type="checkbox" name="" value ="Prefer not to say"> Prefer not to say
+                      <input type="checkbox" name="Prefer" value ="Prefer not to say"> Prefer not to say
                       <br> <br>
 
 
                       <label for ="affects on social life"> Has your cancer treatment affected your social life in any way? </label>
-                        <input id="affects on social life", type= "Text">
+                        <input id="affects on social life", type= "Text", name="Affect">
                         <br><br>
 
                         <button onclick="myFunction()",<strong>Submit</strong></button>
