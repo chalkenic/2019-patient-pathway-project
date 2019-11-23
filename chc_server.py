@@ -49,3 +49,4 @@ def LTS_surv():
 
 if __name__ == "__main__":
     serv.run(debug=True)
+    serv
