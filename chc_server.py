@@ -19,7 +19,7 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 def frontPage():
     if request.method == 'GET':
         username = request.cookies.get('username')
-        return render_template('00_homepage.html')
+        return render_template('00_homepage.html', username = username)
     if request.method == 'POST':
 
         if 'login1' in request.form:
