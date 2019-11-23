@@ -31,14 +31,20 @@ def survey():
 
         return render_template('03-survey.html')
 
-@serv.route("/Local&ThirdSector", methods = ['GET'])
-def survey():
+@serv.route("/LTS-surv", methods = ['GET'])
+def LTS_surv():
     if request.method == 'GET':
 
         return render_template('04-Local&ThirdSector.html')
 
 
-
+# /* TEST STUFF!!! */
+# /* TEST STUFF!!! */
+# /* TEST STUFF!!! */
+# /* TEST STUFF!!! */
+# /* TEST STUFF!!! */
+# /* TEST STUFF!!! */
+# /* TEST STUFF!!! */
 
 
 if __name__ == "__main__":
