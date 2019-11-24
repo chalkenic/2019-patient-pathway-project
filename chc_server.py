@@ -15,7 +15,11 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 def frontPage():
     if request.method == 'GET':
         username = request.cookies.get('username')
-        return render_template('00_homepage.html', username = username)
+
+        if username is not None:
+            return render_template('00_homepage.html', username = username, section_name = str(f'{username}\'s '))
+        else:
+            return render_template('00_homepage.html', username = "", section_name = str(""))
     if request.method == 'POST':
 
         if 'login1' in request.form:
@@ -25,17 +29,32 @@ def frontPage():
             username = ''
             if 'username' in session:
                 username = escape(session['username'])
-            return render_template('00_homepage.html', login_message ='', username = 'None')
-
-
-
+            return render_template('00_homepage.html', login_message ='', username = '')
 
 
 @serv.route("/section", methods = ['POST','GET'])
 def section():
     if request.method == 'GET':
         username = request.cookies.get('username')
-        return render_template('01-1-user_section.html', username = username)
+        Access = "empty"
+        if 'Access' in session:
+            Access = escape(session['Access'])
+
+        if Access == "Admin":
+            if username is not None:
+                return render_template('01-2-admin_section.html', username = username, section_name = str(f'{username}\'s '))
+            else:
+                return render_template('01-2-admin_section.html', username = "", section_name = str(""))
+
+        elif Access == "User":
+            if username is not None:
+                return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '))
+            else:
+                return render_template('01-1-user_section.html', username = "", section_name = str(""))
+
+        else:
+
+            return render_template('00_homepage.html', login_message = 'Please login to access your section', username = '', section_name = str(""))
 
     if request.method == 'POST':
 
@@ -46,7 +65,7 @@ def section():
             username = ''
             if 'username' in session:
                 username = escape(session['username'])
-            return render_template('00_homepage.html', login_message ='', username = 'None')
+            return render_template('00_homepage.html', login_message ='', username = '')
 
 @serv.route("/survey", methods = ['POST','GET'])
 def survey():
@@ -64,7 +83,7 @@ def survey():
             username = ''
             if 'username' in session:
                 username = escape(session['username'])
-            return render_template('00_homepage.html', login_message ='', username = 'None')
+            return render_template('00_homepage.html', login_message ='', username = '')
 
 @serv.route("/LTS-surv", methods = ['POST','GET'])
 def LTS_surv():
@@ -80,7 +99,7 @@ def LTS_surv():
             username = ''
             if 'username' in session:
                 username = escape(session['username'])
-            return render_template('00_homepage.html', login_message ='', username = 'None')
+            return render_template('00_homepage.html', login_message ='', username = '')
 
 
 @serv.route("/contact", methods = ['POST','GET'])
@@ -97,7 +116,7 @@ def contactUs():
             username = ''
             if 'username' in session:
                 username = escape(session['username'])
-            return render_template('00_homepage.html', login_message ='', username = 'None')
+            return render_template('00_homepage.html', login_message ='', username = '')
 
 
 def login_credentials(username, password):
@@ -118,6 +137,12 @@ def user_login():
         response = make_response(render_template('00_homepage.html',username = user, login_message = 'hello ' + user))
 
         response.set_cookie('username', user )
+
+        if user == 'Nick':
+            response.set_cookie('Access', 'Admin')
+
+        else:
+            response.set_cookie('Access','User')
 
         session['user_email'] = request.form['user_email']
         session['Password'] = request.form['user_password']
