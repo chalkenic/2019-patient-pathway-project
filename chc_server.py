@@ -5,10 +5,6 @@ import sqlite3
 
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-# sess = Session()
-# sess.init_app(app)
-
-
 
 serv = Flask(__name__)
 serv.secret_key = 'alanr?jn312653'
@@ -31,38 +27,15 @@ def frontPage():
                 username = escape(session['username'])
             return render_template('00_homepage.html', login_message ='', username = 'None')
 
-def login_credentials(username, password):
-        if username != None:
-            if password != None:
-                return True
-            else:
-                return False
-        else:
-            return False
 
-def user_login():
-    username = request.form.get('user_email', default="Error")
-    tmp = username.split('@')
-    user = tmp[0]
-    password = request.form.get('user_password', default="Error")
-    if login_credentials(username, password) == True:
-        response = make_response(render_template('00_homepage.html',username = user, login_message = 'hello ' + user))
 
-        response.set_cookie('username', user )
 
-        session['user_email'] = request.form['user_email']
-        session['Password'] = request.form['user_password']
-        print("Password checks out, hello " + user + "!")
-
-    else:
-        response = make_response(render_template('00_homepage.html', login_message ='Incorrect login, please try again', username=""))
-    return response
 
 @serv.route("/section", methods = ['POST','GET'])
 def section():
     if request.method == 'GET':
         username = request.cookies.get('username')
-        return render_template('01-p_section.html', username = username)
+        return render_template('01-1-user_section.html', username = username)
 
     if request.method == 'POST':
 
@@ -127,6 +100,32 @@ def contactUs():
             return render_template('00_homepage.html', login_message ='', username = 'None')
 
 
+def login_credentials(username, password):
+        if username != None:
+            if password != None:
+                return True
+            else:
+                return False
+        else:
+            return False
+
+def user_login():
+    username = request.form.get('user_email', default="Error")
+    tmp = username.split('@')
+    user = tmp[0]
+    password = request.form.get('user_password', default="Error")
+    if login_credentials(username, password) == True:
+        response = make_response(render_template('00_homepage.html',username = user, login_message = 'hello ' + user))
+
+        response.set_cookie('username', user )
+
+        session['user_email'] = request.form['user_email']
+        session['Password'] = request.form['user_password']
+        print("Password checks out, hello " + user + "!")
+
+    else:
+        response = make_response(render_template('00_homepage.html', login_message ='Incorrect login, please try again', username=""))
+    return response
 
 # /* TEST STUFF!!! */
 # /* TEST STUFF!!! */
