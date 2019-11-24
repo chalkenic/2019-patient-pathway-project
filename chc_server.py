@@ -37,8 +37,12 @@ def section():
     if request.method == 'GET':
         username = request.cookies.get('username')
         Access = "empty"
-        if 'Access' in session:
-            Access = escape(session['Access'])
+        #TBC content:
+        # if 'Access' in session:
+        #     Access = escape(session['Access'])
+
+        #Temp:
+        Access = request.cookies.get('Access')
 
         if Access == "Admin":
             if username is not None:
@@ -146,7 +150,10 @@ def user_login():
     user = tmp[0]
     password = request.form.get('user_password', default="Error")
     if login_credentials(username, password) == True:
-        response = make_response(render_template('00_homepage.html',username = user, login_message = 'hello ' + user))
+        response = make_response(render_template('00_homepage.html',
+        username = user,
+        login_message = 'hello ' + user,
+        section_name = str(f'{user}\'s ' )))
 
         response.set_cookie('username', user )
 

@@ -1,5 +1,4 @@
-DROP TABLE IF EXISTS 'Accounts';
-DROP TABLE IF EXISTS 'surveyData';
+
 
 CREATE TABLE IF NOT EXISTS 'accounts' (
 'AccountID'		   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -9,7 +8,7 @@ CREATE TABLE IF NOT EXISTS 'accounts' (
 'Access'	        TEXT NOT NULL
 );
 
-SELECT AccountID, email_addr FROM accounts WHERE Access = 'ADMIN';
+SELECT AccountID, email_addr FROM accounts WHERE Access = 'Admin';
 
 SELECT date ('now');
 
