@@ -71,8 +71,11 @@ def section():
 def survey():
     if request.method == 'GET':
         username = request.cookies.get('username')
-        return render_template('03-survey.html', username = username)
 
+        if username is not None:
+            return render_template('03-survey.html', username = username, section_name = str(f'{username}\'s '))
+        else:
+            return render_template('03-survey.html', username = "", section_name = str(""))
 
     if request.method == 'POST':
 
@@ -89,7 +92,11 @@ def survey():
 def LTS_surv():
     if request.method == 'GET':
         username = request.cookies.get('username')
-        return render_template('04-Local&ThirdSector.html', username = username)
+
+        if username is not None:
+            return render_template('04-Local&ThirdSector.html', username = username, section_name = str(f'{username}\'s '))
+        else:
+            return render_template('04-Local&ThirdSector.html', username = "", section_name = str(""))
 
     if request.method == 'POST':
         if 'login1' in request.form:
@@ -106,7 +113,12 @@ def LTS_surv():
 def contactUs():
     if request.method == 'GET':
         username = request.cookies.get('username')
-        return render_template('02-contact_us.html', username = username)
+
+        if username is not None:
+            return render_template('02-contact_us.html', username = username, section_name = str(f'{username}\'s '))
+        else:
+            return render_template('02-contact_us.html', username = "", section_name = str(""))
+
 
     if request.method == 'POST':
         if 'login1' in request.form:
