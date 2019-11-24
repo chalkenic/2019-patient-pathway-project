@@ -5,6 +5,7 @@ import sqlite3
 
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
+DATABASE = 'Patients.db'
 
 serv = Flask(__name__)
 serv.secret_key = 'alanr?jn312653'
@@ -65,6 +66,25 @@ def section():
         if 'login1' in request.form:
             return user_login()
 
+        elif 'patient_search' in request.form:
+            try:
+                email_search = request.form.get('email_search', default ='Error')
+
+                db = sqlite3.connect(DATABASE)
+                cursor = db.cursor()
+                cursor.execute("SELECT * FROM accounts WHERE email_addr=? AND Access = 'User' ;", [email_search])
+                data = cursor.fetchall()
+                print(data)
+
+            except:
+                print("Unfortunately an error has occurred", data)
+                db.close()
+
+            finally:
+                db.close()
+
+                username = request.cookies.get('username')
+                return render_template('01-3-patient_target_list.html', data = data, username = username, section_name = str(f'{username}\'s '))
         else:
             username = ''
             if 'username' in session:

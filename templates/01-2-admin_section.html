@@ -10,6 +10,12 @@
 
 {%block content%}
 
-<p>Hello Mr Admin Sir!</p>
+<h2>Search for Patients!</h2>
+<form method = 'post'>
+<!-- <form id='myForm' action='/Student/Search' method = 'post'> -->
+  <label for = "email_search"></label>
+  Email Username:<input type = "text" name = "email_search"><br>
+  <button name = 'patient_search' type = "submit"> search </button>
+</form>
 
 {% endblock %}
