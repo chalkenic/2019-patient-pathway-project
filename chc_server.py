@@ -125,6 +125,7 @@ def survey():
                 return msg
                 conn.close()
 
+
     if request.method == 'POST':
 
         if 'login1' in request.form:
