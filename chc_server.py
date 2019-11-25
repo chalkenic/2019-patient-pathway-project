@@ -18,7 +18,7 @@ def frontPage():
         username = request.cookies.get('username')
 
         if username is not None:
-            return render_template('00_homepage.html', username = username, section_name = str(f'{username}\'s '))
+            return render_template('00_homepage.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
         else:
             return render_template('00_homepage.html', username = "", section_name = str(""))
     if request.method == 'POST':
@@ -47,13 +47,13 @@ def section():
 
         if Access == "Admin":
             if username is not None:
-                return render_template('01-2-admin_section.html', username = username, section_name = str(f'{username}\'s '))
+                return render_template('01-2-admin_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
                 return render_template('01-2-admin_section.html', username = "", section_name = str(""))
 
         elif Access == "User":
             if username is not None:
-                return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '))
+                return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
                 return render_template('01-1-user_section.html', username = "", section_name = str(""))
 
@@ -84,7 +84,7 @@ def section():
                 db.close()
 
                 username = request.cookies.get('username')
-                return render_template('01-3-patient_target_list.html', data = data, username = username, section_name = str(f'{username}\'s '))
+                return render_template('01-3-patient_target_list.html', data = data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
         else:
             username = ''
             if 'username' in session:
@@ -97,7 +97,7 @@ def survey():
         username = request.cookies.get('username')
 
         if username is not None:
-            return render_template('03-survey.html', username = username, section_name = str(f'{username}\'s '))
+            return render_template('03-survey.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
         else:
             return render_template('03-survey.html', username = "", section_name = str(""))
 
@@ -118,7 +118,7 @@ def LTS_surv():
         username = request.cookies.get('username')
 
         if username is not None:
-            return render_template('04-Local&ThirdSector.html', username = username, section_name = str(f'{username}\'s '))
+            return render_template('04-Local&ThirdSector.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
         else:
             return render_template('04-Local&ThirdSector.html', username = "", section_name = str(""))
 
@@ -139,7 +139,7 @@ def contactUs():
         username = request.cookies.get('username')
 
         if username is not None:
-            return render_template('02-contact_us.html', username = username, section_name = str(f'{username}\'s '))
+            return render_template('02-contact_us.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
         else:
             return render_template('02-contact_us.html', username = "", section_name = str(""))
 
