@@ -1,22 +1,22 @@
-function ChangeBrand() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.open("GET", '/home', true);
-  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+// function ChangeBrand() {
+//   var xhttp = new XMLHttpRequest();
+//   xhttp.open("GET", '/home', true);
+//   xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//
+//   xhttp.onreadystatechange = function() {
+//     if (xhttp.readyState === 4) {
+//       if (xhttp.status === 200) {
+//         // var text = "Admin"
+//         var text = xhttp.responseText
+//         document.getElementById("user").innerHTML = text;
+//       } else {
+//         console.error(xhttp.statusText);
+//       }
+//     }
+//   };
+//   xhttp.send()
+// };
 
-  xhttp.onreadystatechange = function() {
-    if (xhttp.readyState === 4) {
-      if (xhttp.status === 200) {
-        // var text = "Admin"
-        var text = xhttp.responseText
-        document.getElementById("user").innerHTML = text;
-      } else {
-        console.error(xhttp.statusText);
-      }
-    }
-  };
-  xhttp.send()
-};
-
 // TEST STUFF
 // TEST STUFF
 // TEST STUFF
@@ -27,47 +27,27 @@ function ChangeBrand() {
 // TEST STUFF
 // TEST STUFF
 
-var years = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
+var time = [1500,1600,1700,1750,1800,1850,1900,1950,1999,2050];
 // For drawing the lines
-var africa = [86,114,106,106,107,111,133,221,783,2478];
-var asia = [282,350,411,502,635,809,947,1402,3700,5267];
-var europe = [168,170,178,190,203,276,408,547,675,734];
-var latinAmerica = [40,20,10,16,24,38,74,167,508,784];
-var northAmerica = [6,3,2,2,7,26,82,172,312,433];
+var gen_happ = [86,114,106,106,107,111,133,221,783,2478];
+var int_happ = [6,3,2,2,7,26,82,172,312,433];
 
-var ctx = document.getElementById("myChart");
-var myChart = new Chart(ctx, {
+var ctx = document.getElementById("userChart");
+var userChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: years,
+    labels: time,
     datasets: [
       {
-        data: africa,
-        label: "Africa",
+        data: gen_happ,
+        label: "General happiness",
         borderColor: "#3e95cd",
         fill: false
       },
+
       {
-        data: asia,
-        label: "Asia",
-        borderColor: "#8e5ea2s",
-        fill: false
-      },
-      {
-        data: europe,
-        label: "Europe",
-        borderColor: "#3cba9f",
-        fill: false
-      },
-      {
-        data: latinAmerica,
-        label: "Latin America",
-        borderColor: "#e8c3b9",
-        fill: false
-      },
-      {
-        data: northAmerica,
-        label: "North America",
+        data: int_happ,
+        label: "Interactional Happiness",
         borderColor: "#c45850",
         fill: false
       }

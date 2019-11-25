@@ -1,3 +1,5 @@
+/* 
+Adapated from: Tobias Ahlin Bjerrone code, available at: https://tobiasahlin.com/blog/introduction-to-chartjs/ */
 body {
   text-align: center;
 }
@@ -7,21 +9,9 @@ body {
   margin: 50px auto;
 }
 
-h1 {
-  font-weight: 200;
-  font-size: 3em;
-  margin: 0 0 0.1em 0;
-}
-
 h2 {
   font-weight: 200;
-  font-size: 0.9em;
-  margin: 0 0 50px;
+  font-size: 1.5em;
+  margin-bottom:50px;
   color: #999;
-}
-
-a {
-  margin-top: 50px;
-  display: block;
-  color: #3e95cd;
 }
