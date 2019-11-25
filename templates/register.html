@@ -1,0 +1,76 @@
+{% extends "00_homepage.html" %}
+
+<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+
+{%block title %}
+
+<title> Client Survey On Health & Social Care </title>
+  <div class = "body_container">
+{%endblock %}
+
+{%block content%}
+
+
+            <h3> The following is a survey which enables us to understand how your
+              interactions with the NHS have been going so far in regards to your Health & Social Care. </h3>
+              <br>
+
+              <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
+                <form action="connect.php" method="post">
+                  <br>
+
+
+                    <label for="completion date"> Please enter the day you are filling in this survey:</label>
+                    <input type="Date" name="date">
+                    <br> <br>
+                    <label for="typeofcancer">Type of cancer:</label>
+                    <input id="Typeofcancer" type="text" name="Typeofcancer">
+                    <br> <br>
+
+                    <label for ="duration of illness"> How long have you lived with cancer? </label>
+                    <input id="Duration of illness" type ="text", name ="Duration">
+
+                    <br><br>
+
+                    <label for="duration spent receiving treatment"> How long have you been receiving treatment at your local hospital </label>
+                    <input type="Date" name="date">
+                    <br> <br>
+
+                    <label for="impact nhs has had on your recovery"> What kind of impact has the NHS had on your recovery period? </label>
+                      <br>
+                      <input type="checkbox" name="Significant" value="Significant Impact"> Significant Impact
+                      <br>
+                      <input type="checkbox" name="Some" value="Some impact"> Some impact
+                      <br>
+                      <input type="checkbox" name="No" value="No impact"> No impact
+                      <br>
+                      <input type="checkbox" name="Prefer" value ="Prefer not to say"> Prefer not to say
+                      <br> <br>
+
+
+                      <label for ="affects on social life"> Has your cancer treatment affected your social life in any way? </label>
+                        <input id="affects on social life", type= "Text", name="Affect">
+                        <br><br>
+
+                        <button onclick="myFunction()",<strong>Submit</strong></button>
+
+  <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
