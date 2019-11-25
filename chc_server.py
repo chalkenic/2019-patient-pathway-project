@@ -101,6 +101,31 @@ def survey():
         else:
             return render_template('03-survey.html', username = "", section_name = str(""))
 
+    elif 'initial_survey' in request.form:
+        Date = request.form.get('Date', default = 'error')
+        Q1 = request.form.get ('Q1', default = 'error')
+        Q2 = request.form.get ('Q2', default = 'error')
+        Q3 = request.form.get('Q3', default = 'error')
+        Q4 = request.form.get('Q4', default = 'error')
+        Q5 = request.form.get('Q5', default = 'error')
+        
+        
+            try:
+                request.form.get('')
+                conn = sqlite3.connect(DATABASE)
+                cur = conn.cursor ()
+                cur.execute("INSERT INTO Survey('ACCOUNT ID', 'Date', 'Q1', 'Q2', 'Q3', 'Q4', 'Q5') VALUES (1,'','','','','','');"
+                )
+                conn.commit()
+                msg ="Survey Data successfully recorded"
+            except:
+                conn.rollback()
+                msg ="Error"
+            finally:
+                return msg
+                conn.close()
+
+
     if request.method == 'POST':
 
         if 'login1' in request.form:
