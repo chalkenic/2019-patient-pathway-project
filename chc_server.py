@@ -29,8 +29,6 @@ def frontPage():
         elif 'regLink' in request.form:
             return render_template('register.html')
 
-
-
         else:
             username = ''
             if 'username' in session:
@@ -227,7 +225,7 @@ def user_login():
         response = make_response(render_template('00_homepage.html',
         username = user,
         login_message = 'hello ' + user,
-        section_name = str(f'{user}\'s ' )))
+        section_name = str(f'{user}\'s ', welcome = str(f'Welcome {username}!'))))
 
         response.set_cookie('username', user )
 
@@ -237,9 +235,9 @@ def user_login():
         else:
             response.set_cookie('Access','User')
 
-        session['user_email'] = request.form['user_email']
-        session['Password'] = request.form['user_password']
-        print("Password checks out, hello " + user + "!")
+        # session['user_email'] = request.form['user_email']
+        # session['Password'] = request.form['user_password']
+        # print("Password checks out, hello " + user + "!")
 
     else:
         response = make_response(render_template('00_homepage.html', login_message ='Incorrect login, please try again', username=""))
