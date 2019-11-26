@@ -118,7 +118,7 @@ def section():
                 username = escape(session['username'])
             return render_template('00_homepage.html', login_message ='', username = '')
 
-@serv.route("/survey", methods = ['POST','GET'])
+@serv.route("/03-Daily_survey", methods = ['POST','GET'])
 def survey():
     if request.method == 'GET':
         username = request.cookies.get('username')
@@ -141,8 +141,9 @@ def survey():
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor ()
-            cur.execute("INSERT INTO Survey('ACCOUNT ID', 'Date', 'Q1', 'Q2', 'Q3', 'Q4', 'Q5') VALUES (1,'','','','','','');"
+            cur.execute(INSERT INTO "main"."Survey"("Volunteer ID","Date","Health","Social_Care","Local_Authority","3rd_Sector","Own_Activities") VALUES (1,'','','','','','');
             )
+
             conn.commit()
             msg ="Survey Data successfully recorded"
         except:
