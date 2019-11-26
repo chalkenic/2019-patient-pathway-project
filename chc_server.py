@@ -216,6 +216,32 @@ def user_login():
         response = make_response(render_template('00_homepage.html', login_message ='Incorrect login, please try again', username=""))
     return response
 
+
+# @serv.route("/contact_us", methods=['POST', 'GET'])
+# def addform():
+# 	if request.method =='GET':
+# 		return render_template('contactus.html')
+# 	if request.method =='POST':
+# 		forename = request.form.get('name', default="Error")#rem: args for get form for post
+# 		surname = request.form.get('lname', default="Error")
+# 		emailaddress = request.form.get('email', default="Error")
+# 		query = request.form.get('query', default="Error")
+# 		print("inserting query into database")
+#     try:
+#         request.form.get('')
+#         conn = sqlite3.connect(DATABASE)
+#         cur = conn.cursor ()
+#         cur.execute("INSERT INTO Contact('queryID', 'firstName', 'lastName', 'emailAddress', 'query')"
+#         )
+#         conn.commit()
+#         msg ="Contact us form successfully recorded"
+#     except:
+#         conn.rollback()
+#         msg ="Error"
+#     finally:
+#         return msg
+#         conn.close()
+
 # /* TEST STUFF!!! */
 # /* TEST STUFF!!! */
 # /* TEST STUFF!!! */
