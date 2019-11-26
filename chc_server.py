@@ -164,15 +164,7 @@ def survey():
                 username = escape(session['username'])
             return render_template('00_homepage.html', login_message ='', username = '')
 
-@serv.route("/LTS-surv", methods = ['POST','GET'])
-def LTS_surv():
-    if request.method == 'GET':
-        username = request.cookies.get('username')
 
-        if username is not None:
-            return render_template('04-Local&ThirdSector.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
-        else:
-            return render_template('04-Local&ThirdSector.html', username = "", section_name = str(""))
 
     if request.method == 'POST':
         if 'login1' in request.form:
