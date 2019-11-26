@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
   <script src = 'https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
+  {% block link %} {% endblock %}
 
 
     <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
@@ -69,10 +70,6 @@
                 </form>
               </div>
 
-              <!-- <div  class = navbar-text >
-                <span style = "color: #fff">{{login_message}}</span>
-              </div> -->
-
             </div>
           </nav>
 
@@ -108,8 +105,6 @@
       <main>
       </main>
 
-
-    <script src = "{{ url_for('static', filename='js-main.js') }}"></script>
 </body>
 
     </div>
@@ -121,8 +116,6 @@
       </address>
     </footer>
     <!-- Latest compiled and minified JavaScript -->
-    <script src = "{{ url_for('static', filename='js-main.js') }}"></script>
-    <script src = "{{ url_for('static', filename='js-main0.js') }}"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>

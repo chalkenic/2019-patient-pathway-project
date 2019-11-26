@@ -1,27 +1,33 @@
-DROP TABLE IF EXISTS surveyData;
 
+DROP TABLE IF EXISTS surveyData;
+DROP TABLE IF EXISTS accounts;
 
 CREATE TABLE IF NOT EXISTS 'accounts' (
-'AccountID'		   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+'userID'		   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 'email_addr'		TEXT NOT NULL,
-'Name'	            TEXT NOT NULL,
-'Password'	   TEXT NOT NULL,
-'Access'	        TEXT NOT NULL
+'name'	            TEXT NOT NULL,
+'password'	   TEXT NOT NULL,
+'access'	        TEXT NOT NULL
 );
 
-SELECT AccountID, email_addr FROM accounts WHERE Access = 'Admin';
+SELECT userID, email_addr FROM accounts WHERE Access = 'Admin';
 
-SELECT date ('now');
+--SELECT date ('now');
 
 CREATE TABLE IF NOT EXISTS 'surveyData' (
 	'surveyID'	INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 	'accountID'	INTEGER,
-	'happiness_q' INTEGER, 
+	'happiness_q' INTEGER,
 	'contact_q'  TEXT,
 	'contact_op_q' INTEGER,
 	'date'	DATETIME DEFAULT current_timestamp NOT NULL,
-	FOREIGN KEY (accountID) REFERENCES accounts(AccountID)
+	FOREIGN KEY (accountID) REFERENCES accounts(userID)
 );
+
+INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('Alan@rickman','Alan','davetheMAN1','User');
+
+INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('nick@nick','Nick','Ineedabreak22','User');
+
 
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q')VALUES(1,1,'Local authority',5);
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q')VALUES(1,2,'3rd sector',3);
@@ -52,11 +58,11 @@ INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q')V
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q')VALUES(1,2,'3rdSector',9);
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q')VALUES(1,5,'Health',5);
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q')VALUES(1,7,'Social care',6);
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q')VALUES(2,7,'Social care',6);
 
 
 
 
-SELECT surveyID, Name, happiness_q, contact_q, contact_op_q, date FROM surveyData 
+SELECT surveyID, email_addr, happiness_q, date FROM surveyData
 INNER JOIN accounts
-ON surveyData.accountID=accounts.AccountID 
-
+ON surveyData.accountID=accounts.userID

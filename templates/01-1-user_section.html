@@ -1,15 +1,27 @@
 {% extends "00_homepage.html" %}
 
-<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
 
 {%block title %}
-
 <title> {{username}}'s section </title>
-
 {%endblock %}
 
-{%block content%}
+{% block link %}
+    <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-graph.css') }}" />
+{% endblock %}
 
-<p>Hello Mr User Sir!</p>
+
+{%block content%}
+    <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+
+<div class="wrapper">
+  <h1>Your Experience</h1>
+  <h2>The data you have provided from your daily entries is collated into the graph below.  You can see how your mood has changed from the beginning of your experience!</h2>
+
+  <canvas id="userChart" width="1600" height="900"></canvas>
+</div>
+
+<script src = "../static/js-main0.js"></script>
+
+
 
 {% endblock %}

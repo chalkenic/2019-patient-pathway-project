@@ -1,0 +1,17 @@
+/* 
+Adapated from: Tobias Ahlin Bjerrone code, available at: https://tobiasahlin.com/blog/introduction-to-chartjs/ */
+body {
+  text-align: center;
+}
+
+.wrapper {
+  max-width: 800px;
+  margin: 50px auto;
+}
+
+h2 {
+  font-weight: 200;
+  font-size: 1.5em;
+  margin-bottom:50px;
+  color: #999;
+}

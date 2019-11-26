@@ -5,7 +5,7 @@ import sqlite3
 
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-DATABASE = 'Patients.db'
+DATABASE = 'survey_project.db'
 
 serv = Flask(__name__)
 serv.secret_key = 'alanr?jn312653'
@@ -53,7 +53,8 @@ def section():
 
         elif Access == "User":
             if username is not None:
-                return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+                return user_graph()
+                # return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
                 return render_template('01-1-user_section.html', username = "", section_name = str(""))
 
@@ -100,6 +101,30 @@ def survey():
             return render_template('03-survey.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
         else:
             return render_template('03-survey.html', username = "", section_name = str(""))
+
+    elif 'initial_survey' in request.form:
+        Date = request.form.get('Date', default = 'error')
+        Q1 = request.form.get ('Q1', default = 'error')
+        Q2 = request.form.get ('Q2', default = 'error')
+        Q3 = request.form.get('Q3', default = 'error')
+        Q4 = request.form.get('Q4', default = 'error')
+        Q5 = request.form.get('Q5', default = 'error')
+
+        try:
+            request.form.get('')
+            conn = sqlite3.connect(DATABASE)
+            cur = conn.cursor ()
+            cur.execute("INSERT INTO Survey('ACCOUNT ID', 'Date', 'Q1', 'Q2', 'Q3', 'Q4', 'Q5') VALUES (1,'','','','','','');"
+            )
+            conn.commit()
+            msg ="Survey Data successfully recorded"
+        except:
+            conn.rollback()
+            msg ="Error"
+        finally:
+            return msg
+            conn.close()
+
 
     if request.method == 'POST':
 
@@ -191,6 +216,32 @@ def user_login():
         response = make_response(render_template('00_homepage.html', login_message ='Incorrect login, please try again', username=""))
     return response
 
+
+# @serv.route("/contact_us", methods=['POST', 'GET'])
+# def addform():
+# 	if request.method =='GET':
+# 		return render_template('contactus.html')
+# 	if request.method =='POST':
+# 		forename = request.form.get('name', default="Error")#rem: args for get form for post
+# 		surname = request.form.get('lname', default="Error")
+# 		emailaddress = request.form.get('email', default="Error")
+# 		query = request.form.get('query', default="Error")
+# 		print("inserting query into database")
+#     try:
+#         request.form.get('')
+#         conn = sqlite3.connect(DATABASE)
+#         cur = conn.cursor ()
+#         cur.execute("INSERT INTO Contact('queryID', 'firstName', 'lastName', 'emailAddress', 'query')"
+#         )
+#         conn.commit()
+#         msg ="Contact us form successfully recorded"
+#     except:
+#         conn.rollback()
+#         msg ="Error"
+#     finally:
+#         return msg
+#         conn.close()
+
 # /* TEST STUFF!!! */
 # /* TEST STUFF!!! */
 # /* TEST STUFF!!! */
@@ -199,6 +250,33 @@ def user_login():
 # /* TEST STUFF!!! */
 # /* TEST STUFF!!! */
 
+def user_graph():
+
+    username = request.cookies.get('username')
+
+    try:
+        db = sqlite3.connect(DATABASE)
+        cursor = db.cursor()
+        cursor.execute('''SELECT surveyData.date, surveyData.happiness_q
+        FROM surveyData
+        INNER JOIN accounts
+        ON surveyData.accountID = accounts.userID
+        WHERE accounts.userID = 1''')
+
+
+        data = cursor.fetchall()
+        print(data)
+
+    except:
+        print("Unfortunately an error has occurred", data)
+        db.close()
+
+    finally:
+        db.close()
+
+        username = request.cookies.get('username')
+
+        return render_template('01-1-user_section.html', data = data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
 
 if __name__ == "__main__":
     serv.run(debug=True)
