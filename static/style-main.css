@@ -205,3 +205,9 @@ footer {
     text-align: left;
   }
 }
+
+.homepage_body {
+  text-align: center;
+  display: inline-block;
+  font: 20px arial, bold;
+}
