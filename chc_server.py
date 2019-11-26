@@ -103,6 +103,7 @@ def survey():
             return render_template('03-survey.html', username = "", section_name = str(""))
 
     elif 'initial_survey' in request.form:
+        try:
         Date = request.form.get('Date', default = 'error')
         Q1 = request.form.get ('Q1', default = 'error')
         Q2 = request.form.get ('Q2', default = 'error')
