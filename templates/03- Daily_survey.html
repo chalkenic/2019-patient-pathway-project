@@ -1,0 +1,80 @@
+{% extends "00_homepage.html" %}
+
+<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+
+{%block title %}
+
+<title> Client Survey On Health & Social Care </title>
+  <div class = "body_container">
+{%endblock %}
+
+{%block content%}
+
+
+            <h3> The following is a survey which enables us to understand how your
+              interactions with the NHS have been going so far. </h3>
+              <br>
+
+              <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
+                <h4 class = <strong> Did you undertake any activities relating to the following this week? </strong>
+
+                  <br>
+                  <table id="example" class="display" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Day </th>
+                      <th>Health </th>
+                      <th>Social Care </th>
+                      <th> Local Authority </th>
+                      <th> 3rd Sector </th>
+                      <th> Social </th>
+                      <th> Own Activities </th>
+                    </tr>
+                    <tbody>
+                      <tr>
+                        <td></td>
+                        <td> Monday <br> Tuesday <br> Wednesday <br> Thursday <br> Friday <br>
+                          <td> <input type="checkbox"><br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br> </td>
+                            <td> <input type="checkbox"><br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br> </td>
+                              <td> <input type="checkbox"><br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br> </td>
+                                <td> <input type="checkbox"><br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br> </td>
+                                  <td> <input type="checkbox"><br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br> </td>
+                                    <td> <input type="checkbox"><br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br>   <input type="checkbox"> <br> </td>
+
+
+
+                        </tr>
+
+
+
+
+                  </thead>
+
+
+
+
+
+
+
+
+  <script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
