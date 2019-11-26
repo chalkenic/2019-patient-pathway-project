@@ -13,6 +13,22 @@
 
 
 {%block content%}
+<!-- Movement of code to minimise scrolling -->
+<form action="action_page.php" method="post"></form>
+<!--action and method from WH3Schools https://www.w3schools.com/js/js_validation.asp accessed 24/11/2019-->
+<label>Query:</label><br>
+<textarea id="query" rows="5" cols="50" name="text" placeholder="Type your query here..." required></textarea>
+<!-- Field must be filled in, cannot be blank -->
+</br>
+<br>
+<input type="submit" value="Submit">
+</form>
+<!-- To store the results of the form PHP needs to be used, haven't been taught yet -->
+<!-- JavaScript can also be used https://www.encodedna.com/javascript/how-to-save-form-data-in-a-text-file-using-javascript.htm needs to be researched-->
+<p> We aim to respond to querieres as soon as possible however during peak times responses may take longer to recieve.
+    <br><br> Thank You </p>
+
+{%endblock%}
 
 <!-- Form code, need to figure out how to submit it, contains validation file  -->
 <!-- <form onsubmit="return validate()" name="myForm">
@@ -54,15 +70,4 @@
     <!-- </br> -->
 <!-- </form> --> 
 
-<form action="action_page.php" method="post"></form> <!--action and method from WH3Schools https://www.w3schools.com/js/js_validation.asp accessed 24/11/2019-->
-    <label>Query:</label><br>
-    <textarea id="query" rows="5" cols="50" name="text" placeholder = "Type your query here..." required></textarea> <!-- Field must be filled in, cannot be blank -->
-    </br>
-    <br>
-    <input type="submit" value="Submit">
-</form>
-<!-- To store the results of the form PHP needs to be used, haven't been taught yet -->
-<!-- JavaScript can also be used https://www.encodedna.com/javascript/how-to-save-form-data-in-a-text-file-using-javascript.htm needs to be researched-->
-<p> We aim to respond to querieres as soon as possible however during peak times responses may take longer to recieve. <br><br> Thank You </p>
 
-{%endblock%}
