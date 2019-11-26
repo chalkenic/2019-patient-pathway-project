@@ -26,6 +26,34 @@ def frontPage():
         if 'login1' in request.form:
             return user_login()
 
+        elif 'regLink' in request.form:
+            return render_template('register.html')
+
+
+
+        else:
+            username = ''
+            if 'username' in session:
+                username = escape(session['username'])
+            return render_template('00_homepage.html', login_message ='', username = '')
+
+
+
+
+@serv.route("/register", methods = ['POST','GET'])
+def register():
+    if request.method == 'GET':
+        username = request.cookies.get('username')
+
+        if username is not None:
+            return render_template('register.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+        else:
+            return render_template('register.html', username = "", section_name = str(""))
+
+    if request.method == 'POST':
+        if 'login1' in request.form:
+            return user_login()
+
         else:
             username = ''
             if 'username' in session:
@@ -103,6 +131,7 @@ def survey():
             return render_template('03-survey.html', username = "", section_name = str(""))
 
     elif 'initial_survey' in request.form:
+        
         Date = request.form.get('Date', default = 'error')
         Q1 = request.form.get ('Q1', default = 'error')
         Q2 = request.form.get ('Q2', default = 'error')
