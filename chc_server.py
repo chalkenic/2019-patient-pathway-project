@@ -118,15 +118,15 @@ def section():
                 username = escape(session['username'])
             return render_template('00_homepage.html', login_message ='', username = '')
 
-@serv.route("/03-Daily_survey", methods = ['POST','GET'])
+@serv.route("/survey", methods = ['POST','GET'])
 def survey():
     if request.method == 'GET':
         username = request.cookies.get('username')
 
         if username is not None:
-            return render_template('03-Daily_survey.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+            return render_template('03-daily_survey.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
         else:
-            return render_template('03-Daily_survey.html', username = "", section_name = str(""))
+            return render_template('03-daily_survey.html', username = "", section_name = str(""))
 
     elif 'initial_survey' in request.form:
 
@@ -141,8 +141,7 @@ def survey():
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor ()
-            cur.execute(INSERT INTO "main"."Survey"("Volunteer ID","Date","Health","Social_Care","Local_Authority","3rd_Sector","Own_Activities") VALUES (1,'','','','','','');
-            )
+            cur.execute("INSERT INTO main.Survey('Date','Health','Social_Care','Local_Authority','3rd_Sector', 'Own_Activities') VALUES (?,?,?,?,?,?)", (Date, Q1, Q2, Q3, Q4, Q5) )
 
             conn.commit()
             msg ="Survey Data successfully recorded"

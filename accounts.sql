@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS 'surveyData' (
 
 INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('Alan@rickman','Alan','davetheMAN1','User');
 
-INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('nick@nick','Nick','Ineedabreak22','User');
+INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('nick@nick','Nick','Ineedabreak22','Nick');
 
 
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q')VALUES(1,1,'Local authority',5);
