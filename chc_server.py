@@ -131,17 +131,17 @@ def survey():
     elif 'initial_survey' in request.form:
 
         Date = request.form.get('Date', default = 'error')
-        Q1 = request.form.get ('Q1', default = 'error')
-        Q2 = request.form.get ('Q2', default = 'error')
-        Q3 = request.form.get('Q3', default = 'error')
-        Q4 = request.form.get('Q4', default = 'error')
-        Q5 = request.form.get('Q5', default = 'error')
+        Health = request.form.get ('Health', default = 'error')
+        Social_Care = request.form.get ('Q2', default = 'error')
+        Local_Authority = request.form.get('Q3', default = 'error')
+        Third_Sector = request.form.get('Q4', default = 'error')
+        Own_Activities = request.form.get('Q5', default = 'error')
 
         try:
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor ()
-            cur.execute("INSERT INTO main.Survey('Date','Health','Social_Care','Local_Authority','3rd_Sector', 'Own_Activities') VALUES (?,?,?,?,?,?)", (Date, Q1, Q2, Q3, Q4, Q5) )
+            cur.execute("INSERT INTO main.Survey('Date','Health','Social_Care','Local_Authority','3rd_Sector', 'Own_Activities') VALUES (?,?,?,?,?,?)", (Date, Health, Social_Care, Local_Authority, Third_Sector, Own_Activities) )
 
             conn.commit()
             msg ="Survey Data successfully recorded"
