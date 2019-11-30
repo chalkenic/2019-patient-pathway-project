@@ -86,7 +86,7 @@ def section():
 
         else:
 
-            return render_template('00_homepage.html', login_message = 'Please login to access your section', username = '', section_name = str(""))
+            return render_template('00_homepage.html', welcome = 'Please login to access your section', username = '', section_name = str(""))
 
     if request.method == 'POST':
 
@@ -216,8 +216,8 @@ def user_login():
     if login_credentials(username, password) == True:
         response = make_response(render_template('00_homepage.html',
         username = user,
-        login_message = 'hello ' + user,
-        section_name = str(f'{user}\'s ', welcome = str(f'Welcome {username}!'))))
+        welcome = 'Welcome ' + user + "!",
+        section_name = str(f'{user}\'s ')))
 
         response.set_cookie('username', user )
 
