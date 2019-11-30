@@ -236,30 +236,30 @@ def user_login():
     return response
 
 
-# @serv.route("/contact_us", methods=['POST', 'GET'])
-# def addform():
-# 	if request.method =='GET':
-# 		return render_template('contactus.html')
-# 	if request.method =='POST':
-# 		forename = request.form.get('name', default="Error")#rem: args for get form for post
-# 		surname = request.form.get('lname', default="Error")
-# 		emailaddress = request.form.get('email', default="Error")
-# 		query = request.form.get('query', default="Error")
-# 		print("inserting query into database")
-#     try:
-#         request.form.get('')
-#         conn = sqlite3.connect(DATABASE)
-#         cur = conn.cursor ()
-#         cur.execute("INSERT INTO Contact('queryID', 'firstName', 'lastName', 'emailAddress', 'query')"
-#         )
-#         conn.commit()
-#         msg ="Contact us form successfully recorded"
-#     except:
-#         conn.rollback()
-#         msg ="Error"
-#     finally:
-#         return msg
-#         conn.close()
+@serv.route("/contact_us", methods = ['POST', 'GET'])
+def contactFormdata():
+    if request.method =='GET':
+        return render_template('contact_us.html')
+    if request.method =='POST':
+        firstName = request.form.get('firstName', default="Error")
+        lastName = request.form.get('lastName', default="Error")
+        email = request.form.get('email', default="Error")
+        query = request.form.get('query', default="Error")
+        print("inserting contact form"+firstName)
+        try:
+            conn = sqlite3.connect(DATABASE)
+            cur = conn.cursor()
+            cur.execute("INSERT INTO contactForm ('firstName', 'lastName', 'email', 'query')\
+                VALUES (?,?,?,?,?)", (firstName, lastName, email, query, "True") )
+
+            conn.commit()
+            msg = "Query successfully added"
+        except:
+            conn.rollback()
+            msg = "Error adding Query"
+        finally:
+            conn.close()
+            return msg
 
 # /* TEST STUFF!!! */
 # /* TEST STUFF!!! */
