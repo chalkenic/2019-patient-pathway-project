@@ -1,0 +1,132 @@
+{% extends "chc_template.html" %}
+
+<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+
+{%block title %}
+
+<title> Client Survey On Health & Social Care </title>
+  <div class = "body_container">
+{%endblock %}
+
+{%block content%}
+
+
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+
+
+
+
+
+    <table>
+      <tr>
+            <h3> The following is a survey which enables us to understand how your
+                    interactions with the NHS have been going so far. </h3>
+
+
+                    <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
+                      <h4 class = <strong> Did you undertake any activities relating to the following this week? </strong>
+
+                            <th>Day </th>
+                            <th>Health </th>
+                            <th>Social Care </th>
+                            <th> Local Authority </th>
+                            <th> 3rd Sector </th>
+                            <th> Social </th>
+                            <th> Own Activities </th>
+      </tr>
+      <tr>
+     <td>Monday</td>
+     <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox"> </td>
+       <td> <input type="checkbox"> </td>
+        <td> <input type="checkbox"> </td>
+         <td> <input type="checkbox"> </td>
+          <td> <input type="checkbox"> </td>
+      </tr>
+      <tr>
+      <td> Tuesday </td>
+      <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox"> </td>
+       <td> <input type="checkbox"> </td>
+        <td> <input type="checkbox"> </td>
+         <td> <input type="checkbox"> </td>
+          <td> <input type="checkbox"> </td>
+      </tr>
+      <tr>
+      <td> Wednesday </td>
+      <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox"> </td>
+       <td> <input type="checkbox"> </td>
+        <td> <input type="checkbox"> </td>
+         <td> <input type="checkbox"> </td>
+          <td> <input type="checkbox"> </td>
+      </tr>
+      <td> Thursday </td>
+      <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox"> </td>
+       <td> <input type="checkbox"> </td>
+        <td> <input type="checkbox"> </td>
+         <td> <input type="checkbox"> </td>
+          <td> <input type="checkbox"> </td>
+      <tr>
+      <td> Friday </td>
+      <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox"> </td>
+       <td> <input type="checkbox"> </td>
+        <td> <input type="checkbox"> </td>
+         <td> <input type="checkbox"> </td>
+          <td> <input type="checkbox"> </td>
+      </tr>
+     <tr>
+      <td>Saturday </td>
+      <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox"> </td>
+       <td> <input type="checkbox"> </td>
+        <td> <input type="checkbox"> </td>
+         <td> <input type="checkbox"> </td>
+          <td> <input type="checkbox"> </td>
+      </tr>
+    </table>
+    <input type="submit" value="Submit">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

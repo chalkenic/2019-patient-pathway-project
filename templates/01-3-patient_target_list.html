@@ -1,12 +1,10 @@
-{% extends "00_homepage.html" %}
+{% extends "chc_template.html" %}
 
 <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
 
-{%block title %}
+{%block title %}<title> {{username}}'s section </title>{%endblock %}
 
-<title> {{username}}'s section </title>
-
-{%endblock %}
+{% block anchor %} {{welcome}} {% endblock %}
 
 {%block content%}
 
