@@ -236,7 +236,7 @@ def user_login():
     return response
 
 
-@serv.route("/contact_us", methods = ['POST', 'GET'])
+@serv.route("/contact_us.html", methods = ['POST', 'GET'])
 def contactFormdata():
     if request.method =='GET':
         return render_template('contact_us.html')
