@@ -4,6 +4,13 @@ import sys
 import sqlite3
 import json
 
+# Login Imports
+import sqlite3 as sql
+from flask import Flask
+from flask import render_template
+from flask import request
+import models as dbHandler
+
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 DATABASE = 'survey_project.db'
@@ -12,6 +19,23 @@ serv = Flask(__name__)
 serv.secret_key = 'alanr?jn312653'
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
+
+# Login System
+# class LoginForm(FlaskForm):
+#     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+#     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=25)])
+
+
+@serv.route('/register', methods=['POST', 'GET'])
+def home():
+    if request.method=='POST':
+        username = request.form['username']
+        password = request.form['password']
+        dbHandler.insertUser(username, password)
+        users = dbHandler.retrieveUsers()
+        return render_template('register.html', users=users)
+    else:
+        return render_template('register.html')
 
 @serv.route("/home", methods = ['POST','GET'])
 def frontPage():
