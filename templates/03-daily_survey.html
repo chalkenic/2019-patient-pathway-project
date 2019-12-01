@@ -1,4 +1,4 @@
-{% extends "chc_user_template.html" %}
+{% extends "chc_template.html" %}
 
 <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
 
@@ -27,11 +27,11 @@
     tr:nth-child(even) {
       background-color: #dddddd;
     }
-
+   
    </style>
-
-
-
+  
+  
+  
 
 
 
@@ -45,7 +45,7 @@
                     <div class="row">
                       <div class="column">
                           </div>
-                    <h4 class=<strong>PlPlease answer these questions effectively and honestly!</strong>
+                    <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
                       <br>
                       <h4 class = <strong> DiDid you undertake any activities relating to the following this week? </strong>
 
@@ -113,11 +113,18 @@
     <div class="column left">
     </div>
     <h4 class=<strong>Finally to end this survey off for today, below, simply summarise your mood for this week.</strong>
-  <br>
-      <input type="checkbox" id="verygoodmood" />
-  <label for="verygoodmood"><img src="Very_Good_Smiley_Face.jpeg"></label>
-  <br>
-
+    <br>
+      <form>
+      <select name="Mood">
+        <option value="Very Good"> Very Good</option>
+        <option value ="Good"> Good</option>
+        <option value = "Okay"> Okay</option>
+        <option value="Bad"> Bad</option>
+        <option value="Very Bad"> Very Bad</option>
+      </select>
+    </form>
+   <br>
+   
     <input type="submit" value="Submit">
 
 
