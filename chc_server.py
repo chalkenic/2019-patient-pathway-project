@@ -2,6 +2,7 @@ import os
 from flask import Flask, redirect, request,render_template, make_response, escape, jsonify, session
 import sys
 import sqlite3
+import json
 
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -79,7 +80,7 @@ def section():
 
         elif Access == "User":
             if username is not None:
-                return user_graph()
+                return experience_graph(username)
                 # return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
                 return render_template('01-1-user_section.html', username = "", section_name = str(""))
@@ -210,16 +211,20 @@ def login_credentials(username, password):
 
 def user_login():
     username = request.form.get('user_email', default="Error")
+    email_addr = request.form.get('user_email', default="Error")
     tmp = username.split('@')
     user = tmp[0]
     password = request.form.get('user_password', default="Error")
     if login_credentials(username, password) == True:
+
         response = make_response(render_template('00_homepage.html',
         username = user,
         welcome = 'Welcome ' + user + "!",
+        email = email_addr,
         section_name = str(f'{user}\'s ')))
 
         response.set_cookie('username', user )
+        response.set_cookie('email_addr', email_addr )
 
         if user == 'Nick':
             response.set_cookie('Access', 'Admin')
@@ -269,22 +274,54 @@ def contactFormdata():
 # /* TEST STUFF!!! */
 # /* TEST STUFF!!! */
 
-def user_graph():
+def experience_graph(username):
 
-    username = request.cookies.get('username')
+    email = request.cookies.get('email_addr')
+    print(email)
 
     try:
         db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
-        cursor.execute('''SELECT surveyData.date, surveyData.happiness_q
-        FROM surveyData
+        print("Working 0")
+        cursor.execute("SELECT userID from accounts WHERE email_addr=?", [email])
+
+        cursor.execute("SELECT userID from accounts WHERE email_addr=?", [email])
+        print("Working 1")
+        id = cursor.fetchone()
+        # print(temp)
+        # print("Working 1.5")
+        # print(id)
+
+        # print("Working 2")
+        # print(id)
+        # cursor.execute('SELECT date, happiness_q FROM surveyData WHERE accountID = ?', [(id,)])
+        # print("Working 3")
+
+        cursor.execute('''SELECT surveyID, email_addr, happiness_q, date FROM surveyData
         INNER JOIN accounts
-        ON surveyData.accountID = accounts.userID
-        WHERE accounts.userID = 1''')
+        ON surveyData.accountID=accounts.userID
+        WHERE email_addr =?;''', [email])
+
+
 
 
         data = cursor.fetchall()
+        print("working 2")
+        time = [val[3] for val in data]
+        print(time)
+
+        print("working 3")
+        happiness = [val[2] for val in data]
+        print(happiness)
+
+        print("Working 4")
         print(data)
+        # linegraph_data = id + data
+        print("Working 5")
+        with open('line_graph_data', 'w') as outfile:
+            json.dump(data, outfile)
+        # js_data = json.dumps(data)
+        print("Working 6")
 
     except:
         print("Unfortunately an error has occurred", data)
@@ -295,7 +332,7 @@ def user_graph():
 
         username = request.cookies.get('username')
 
-        return render_template('01-1-user_section.html', data = data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+        return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), l_labels = time, l_values = happiness)
 
 if __name__ == "__main__":
     serv.run(debug=True)
