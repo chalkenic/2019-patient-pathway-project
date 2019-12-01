@@ -8,7 +8,6 @@
 {% block link %}
     <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-graph.css') }}" />
 
-    <script src = "../static/js-main0.js"></script>
 {% endblock %}
 
 {%block content%}
@@ -26,6 +25,8 @@
 <p id = "test"></p>
 
 <script src = "../static/js-main0.js"></script>
-
+<script>
+  var data = {{ data|safe }}
+</script>
 
 {% endblock %}
