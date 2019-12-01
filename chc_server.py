@@ -13,6 +13,13 @@ serv.secret_key = 'alanr?jn312653'
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 
+# Login System
+class LoginForm(FlaskForm):
+    username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
+    password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=25)])
+
+
+
 @serv.route("/home", methods = ['POST','GET'])
 def frontPage():
     if request.method == 'GET':
