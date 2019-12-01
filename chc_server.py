@@ -17,11 +17,22 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 def frontPage():
     if request.method == 'GET':
         username = request.cookies.get('username')
+        access = request.cookies.get('Access')
 
-        if username is not None:
-            return render_template('00_homepage.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+        if access == "Admin":
+
+            if username is not None:
+                return render_template('00-2-admin_homepage.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+            else:
+                return render_template('00-1-empty_homepage.html', username = "", section_name = str(""))
+
+        elif access == "User":
+                if username is not None:
+                    return render_template('00-3-user_homepage.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+                else:
+                    return render_template('00-1-empty_homepage.html', username = "", section_name = str(""))
         else:
-            return render_template('00_homepage.html', username = "", section_name = str(""))
+            return render_template('00-1-empty_homepage.html', username = "", section_name = str(""))
     if request.method == 'POST':
 
         if 'login1' in request.form:
@@ -74,6 +85,8 @@ def section():
 
         if Access == "Admin":
             if username is not None:
+                get_all_users(json_str = True)
+
                 return render_template('01-2-admin_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
                 return render_template('01-2-admin_section.html', username = "", section_name = str(""))
@@ -84,10 +97,6 @@ def section():
                 # return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
                 return render_template('01-1-user_section.html', username = "", section_name = str(""))
-
-        else:
-
-            return render_template('00_homepage.html', welcome = 'Please login to access your section', username = '', section_name = str(""))
 
     if request.method == 'POST':
 
@@ -113,11 +122,6 @@ def section():
 
                 username = request.cookies.get('username')
                 return render_template('01-3-patient_target_list.html', data = data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
-        else:
-            username = ''
-            if 'username' in session:
-                username = escape(session['username'])
-            return render_template('00_homepage.html', login_message ='', username = '')
 
 @serv.route("/survey", methods = ['POST','GET'])
 def survey():
@@ -188,7 +192,6 @@ def contactUs():
         else:
             return render_template('02-contact_us.html', username = "", section_name = str(""))
 
-
     if request.method == 'POST':
         if 'login1' in request.form:
             return user_login()
@@ -215,9 +218,10 @@ def user_login():
     tmp = username.split('@')
     user = tmp[0]
     password = request.form.get('user_password', default="Error")
-    if login_credentials(username, password) == True:
+    # if login_credentials(username, password) == True:
+    if user == "Nick":
 
-        response = make_response(render_template('00_homepage.html',
+        response = make_response(render_template('00-2-admin_homepage.html',
         username = user,
         welcome = 'Welcome ' + user + "!",
         email = email_addr,
@@ -225,12 +229,18 @@ def user_login():
 
         response.set_cookie('username', user )
         response.set_cookie('email_addr', email_addr )
+        response.set_cookie('Access', 'Admin')
 
-        if user == 'Nick':
-            response.set_cookie('Access', 'Admin')
+    elif user != "Nick":
+        response = make_response(render_template('00-3-user_homepage.html',
+        username = user,
+        welcome = 'Welcome ' + user + "!",
+        email = email_addr,
+        section_name = str(f'{user}\'s ')))
 
-        else:
-            response.set_cookie('Access','User')
+        response.set_cookie('username', user )
+        response.set_cookie('email_addr', email_addr )
+        response.set_cookie('Access','User')
 
         # session['user_email'] = request.form['user_email']
         # session['Password'] = request.form['user_password']
@@ -241,10 +251,17 @@ def user_login():
     return response
 
 
-@serv.route("/contact_us.html", methods = ['POST', 'GET'])
+@serv.route("/contact_us", methods = ['POST', 'GET'])
 def contactFormdata():
     if request.method =='GET':
-        return render_template('contact_us.html')
+
+        username = request.cookies.get('username')
+
+        if username is not None:
+            return render_template('02-contact_us_users.html')
+        else:
+            return render_template('02-contact_us.html')
+
     if request.method =='POST':
         firstName = request.form.get('firstName', default="Error")
         lastName = request.form.get('lastName', default="Error")
@@ -266,13 +283,25 @@ def contactFormdata():
             conn.close()
             return msg
 
-# /* TEST STUFF!!! */
-# /* TEST STUFF!!! */
-# /* TEST STUFF!!! */
-# /* TEST STUFF!!! */
-# /* TEST STUFF!!! */
-# /* TEST STUFF!!! */
-# /* TEST STUFF!!! */
+def get_all_users(json_str = False):
+
+    db = sqlite3.connect(DATABASE)
+    query = "SELECT * from accounts"
+    cursor = db.cursor()
+
+    data = cursor.execute(query)
+
+    items = [dict(zip([key[0] for key in cursor.description],row))for row in data]
+
+    print()
+    rows = cursor.fetchall()
+
+    db.commit()
+    db.close()
+
+    if json_str:
+        with open('accounts_data.json', 'w') as json_file:
+            json.dump(rows, json_file)
 
 def experience_graph(username):
 
@@ -285,42 +314,17 @@ def experience_graph(username):
         print("Working 0")
         cursor.execute("SELECT userID from accounts WHERE email_addr=?", [email])
 
-        cursor.execute("SELECT userID from accounts WHERE email_addr=?", [email])
         print("Working 1")
-        id = cursor.fetchone()
-        # print(temp)
-        # print("Working 1.5")
-        # print(id)
+        id = cursor.fetchall()
 
-        # print("Working 2")
-        # print(id)
-        # cursor.execute('SELECT date, happiness_q FROM surveyData WHERE accountID = ?', [(id,)])
-        # print("Working 3")
-
-        cursor.execute('''SELECT surveyID, email_addr, happiness_q, date FROM surveyData
-        INNER JOIN accounts
-        ON surveyData.accountID=accounts.userID
+        cursor.execute('''SELECT surveyID, email_addr, happiness_q, date FROM surveyData\
+        INNER JOIN accounts\
+        ON surveyData.accountID=accounts.userID\
         WHERE email_addr =?;''', [email])
 
-
-
-
         data = cursor.fetchall()
-        print("working 2")
-        time = [val[3] for val in data]
-        print(time)
 
-        print("working 3")
-        happiness = [val[2] for val in data]
-        print(happiness)
-
-        print("Working 4")
-        print(data)
-        # linegraph_data = id + data
-        print("Working 5")
-        with open('line_graph_data', 'w') as outfile:
-            json.dump(data, outfile)
-        # js_data = json.dumps(data)
+        js_data = json.dumps(data)
         print("Working 6")
 
     except:
@@ -332,7 +336,7 @@ def experience_graph(username):
 
         username = request.cookies.get('username')
 
-        return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), l_labels = time, l_values = happiness)
+        return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), data = json.loads(js_data))
 
 if __name__ == "__main__":
     serv.run(debug=True)
