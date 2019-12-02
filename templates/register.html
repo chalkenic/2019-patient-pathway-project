@@ -19,18 +19,21 @@
     <label for="email"><b>Email</b></label>
     <input type="email"
            name = "user_email"
+           id = "username"
            class="form-control"
            placeholder="Email">
 
     <label for="psw"><b>Password</b></label>
     <input type="password"
            name = "user_password"
+           id = "password"
            class="form-control" required id="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
            placeholder="Password">
 
     <label for="psw-repeat"><b>Repeat Password</b></label>
     <input type="password"
            name = "user_password"
+           id = "password"
            class="form-control" required id="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
            placeholder="Password">
     <hr></div>
@@ -53,6 +56,32 @@
 
 
 
+
+
+    	<div class="box">
+  			<h1>Log In</h1>
+  			<form action="/" method="post">
+    			<input type="text" name="username" id="username" placeholder="Username" required/>
+    			<br>
+    			<input type="password" name="password" id="password" placeholder="Password" required/>
+    			<br>
+    			<input type="submit" class="button" value="Log In"/>
+  			</form>
+		</div>
+
+
+    {%if users%}
+    <div class="users" style="margin-left:20%">
+      <h2>Registered Users List</h2>
+      <table style="width:100%;">
+        {%for user in users%}
+          <tr>
+            <td>{{user[0]}}</td>
+          </tr>
+        {%endfor%}
+      </table>
+    </div>
+    {%endif%}
 
 
 
@@ -81,7 +110,7 @@
 </body>
 
   </div>
-  
+
   <!-- Latest compiled and minified JavaScript -->
   <script src = "{{ url_for('static', filename='js-main.js') }}"></script>
   <script src = "{{ url_for('static', filename='js-main0.js') }}"></script>
