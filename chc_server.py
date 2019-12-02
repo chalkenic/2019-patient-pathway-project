@@ -50,29 +50,56 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 #         return render_template('register.html', users=users)
 #     else:
 #         return render_template('register.html')
+#
+# @serv.route('/register', methods=['POST', 'GET'])
+# def home():
+#     if request.method=='POST':
+#         return render_template('register.html', users=users)
+#     else:
+#         return render_template('register.html')
 
-@serv.route('/register', methods=['POST', 'GET'])
-def home():
-    if request.method=='POST':
-        return render_template('register.html', users=users)
-    else:
-        return render_template('register.html')
+#
+# @serv.route('/register/addRecord', methods=['GET'])
+# def newUser():
+#     try:
+#         conn = sqlite3.connect(DATABASE)
+#         cur = conn.cursor()
+#         cur.execute("INSERT INTO accounts ('email_addr', 'name', 'password', access) VALUES (?,?,?,?)", ("nik@nik.com", "Nikrad", "Nikniknik.1", "User"))
+#         conn.commit()
+#         msg = "Record Successfuly added"
+#     except:
+#         conn.rollback()
+#         msg = "error in insert operation"
+#     finally:
+#         return msg
+#         conn.close()
 
 
-@serv.route('/register/addRecord', methods=['GET'])
+@serv.route("/register", methods = ['POST', 'GET'])
 def newUser():
-    try:
-        conn = sqlite3.connect(DATABASE)
-        cur = conn.cursor()
-        cur.execute("INSERT INTO accounts ('email_addr', 'name', 'password', access) VALUES (?,?,?,?)", ("nik@nik.com", "Nikrad", "Nikniknik.1", "User"))
-        conn.commit()
-        msg = "Record Successfuly added"
-    except:
-        conn.rollback()
-        msg = "error in insert operation"
-    finally:
-        return msg
-        conn.close()
+    if request.method == 'GET':
+        return render_template('register.html')
+    if request.method == 'POST':
+        register_email = request.form.get('userReg_email', default="Error")
+        register_password = request.form.get('userReg_password', default="Error")
+        print("inserting user"+register_email+register_password)
+        try:
+            conn = sqlite3.connect(DATABASE)
+            cur = conn.cursor()
+            cur.execute("INSERT INTO accounts ('email_addr', 'name', 'password', access) VALUES (?,?,?,?)", ("nik12@nik.com", "Nikrad", "Nikniknik.1", "User"))
+            conn.commit()
+            msg = "Record Successfuly added"
+        except:
+            conn.rollback()
+            msg = "error in insert operation"
+        finally:
+            return msg
+            conn.close()
+
+
+
+
+
 
 
 @serv.route("/home", methods = ['POST','GET'])
