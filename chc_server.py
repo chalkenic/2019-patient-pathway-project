@@ -6,9 +6,6 @@ import json
 
 # Login Imports
 import sqlite3 as sql
-from flask import Flask
-from flask import render_template
-from flask import request
 import models as dbHandler
 import models
 
@@ -26,6 +23,21 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 #     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
 #     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=25)])
 
+
+def insertUser(email_addr,password):
+    con = sql.connect("survey_project.db")
+    cur = con.cursor()
+    cur.execute("INSERT INTO accounts (email_addr,password) VALUES (?,?)", (email_addr,password))
+    con.commit()
+    con.close()
+
+def retrieveUsers():
+	con = sql.connect("survey_project.db")
+	cur = con.cursor()
+	cur.execute("SELECT email_addr, password FROM accounts")
+	users = cur.fetchall()
+	con.close()
+	return users
 
 @serv.route('/register', methods=['POST', 'GET'])
 def home():
