@@ -249,3 +249,15 @@ footer {
   margin: 0 auto 25px;
   text-align: center;
 }
+
+
+
+.column {
+  float: left;
+  padding: 10px;
+  height: 300px; 
+}
+
+.left, .right {
+  width: 5%;
+}
