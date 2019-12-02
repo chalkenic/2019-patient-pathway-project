@@ -110,7 +110,7 @@ def section():
 
         if Access == "Admin":
             if username is not None:
-                get_all_users(json_str = True)
+                get_all_users()
 
                 return render_template('01-2-admin_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
@@ -118,7 +118,7 @@ def section():
 
         elif Access == "User":
             if username is not None:
-                return experience_graph(username)
+                return graph_data(username)
                 # return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
                 return render_template('01-1-user_section.html', username = "", section_name = str(""))
@@ -147,6 +147,34 @@ def section():
 
                 username = request.cookies.get('username')
                 return render_template('01-3-patient_target_list.html', data = data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+
+@serv.route("/allAccounts", methods = ['GET', 'POST'])
+def allAccounts():
+
+    if request.method == 'GET':
+        username = request.cookies.get('username')
+        # get_all_users()
+
+        db = sqlite3.connect(DATABASE)
+        query = "SELECT userID, email_addr, name, access from accounts"
+        cursor = db.cursor()
+
+        cursor.execute(query)
+
+        data = cursor.fetchall()
+
+
+        # all_accounts = json.dumps(data)
+        #
+        # items = [dict(zip([key[0] for key in cursor.description],row))for row in data]
+
+        db.commit()
+        db.close()
+
+        return render_template('01-2-allAccounts.html', data = data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+
+    if request.method == 'POST':
+            return user_login()
 
 @serv.route("/survey", methods = ['POST','GET'])
 def survey():
@@ -280,7 +308,7 @@ def logout():
 # FUNCTIONS
 # FUNCTIONS
 
-def experience_graph(username):
+def graph_data(username):
 
     email = request.cookies.get('email_addr')
     print(email)
@@ -289,10 +317,6 @@ def experience_graph(username):
         db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
         print("Working 0")
-        cursor.execute("SELECT userID from accounts WHERE email_addr=?", [email])
-
-        print("Working 1")
-        id = cursor.fetchall()
 
         cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date FROM surveyData\
         INNER JOIN accounts\
@@ -300,9 +324,11 @@ def experience_graph(username):
         WHERE email_addr =?;''', [email])
 
         data = cursor.fetchall()
+        print(data)
 
         js_data = json.dumps(data)
-        print("Working 6")
+        print("Working 1")
+        print(js_data)
 
     except:
         print("Unfortunately an error has occurred", data)
@@ -315,15 +341,19 @@ def experience_graph(username):
 
         return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), lineg_data = json.loads(js_data))
 
-def get_all_users(json_str = False):
+def get_all_users():
 
     db = sqlite3.connect(DATABASE)
     query = "SELECT * from accounts"
     cursor = db.cursor()
 
-    data = cursor.execute(query)
+    cursor.execute(query)
 
-    items = [dict(zip([key[0] for key in cursor.description],row))for row in data]
+    data = cursor.fetchall()
+
+    all_accounts = json.dumps(data)
+    #
+    # items = [dict(zip([key[0] for key in cursor.description],row))for row in data]
 
     print()
     rows = cursor.fetchall()
@@ -331,9 +361,7 @@ def get_all_users(json_str = False):
     db.commit()
     db.close()
 
-    if json_str:
-        with open('accounts_data.json', 'w') as json_file:
-            json.dump(rows, json_file)
+    return data
 
 def login_credentials(username, password):
         if username != None:
