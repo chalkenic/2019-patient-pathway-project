@@ -80,18 +80,20 @@ def newUser():
     if request.method == 'GET':
         return render_template('register.html')
     if request.method == 'POST':
-        register_email = request.form.get('userReg_email', default="Error")
-        register_password = request.form.get('userReg_password', default="Error")
-        print("inserting user"+register_email+register_password)
+        regEmail = request.form.get('email1', default = 'error')
+        regPass1 = request.form.get ('pass1', default = 'error')
+        regPass2 = request.form.get ('pass2', default = 'error')
         try:
+            request.form.get('')
             conn = sqlite3.connect(DATABASE)
-            cur = conn.cursor()
-            cur.execute("INSERT INTO accounts ('email_addr', 'name', 'password', access) VALUES (?,?,?,?)", ("nik12@nik.com", "Nikrad", "Nikniknik.1", "User"))
+            cur = conn.cursor ()
+            cur.execute("INSERT INTO main.accounts('email_addr','name','password','access') VALUES (?,?,?,?)", (regEmail, regPass1, regPass, "User"))
+
             conn.commit()
-            msg = "Record Successfuly added"
+            msg ="Survey Data successfully recorded"
         except:
             conn.rollback()
-            msg = "error in insert operation"
+            msg ="Error"
         finally:
             return msg
             conn.close()
@@ -140,25 +142,25 @@ def frontPage():
 
 
 
-@serv.route("/register", methods = ['POST','GET'])
-def register():
-    if request.method == 'GET':
-        username = request.cookies.get('username')
-
-        if username is not None:
-            return render_template('register.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
-        else:
-            return render_template('register.html', username = "", section_name = str(""))
-
-    if request.method == 'POST':
-        if 'login1' in request.form:
-            return user_login()
-
-        else:
-            username = ''
-            if 'username' in session:
-                username = escape(session['username'])
-            return render_template('00-1-empty_homepage.html', login_message ='', username = '')
+# @serv.route("/register", methods = ['POST','GET'])
+# def register():
+#     if request.method == 'GET':
+#         username = request.cookies.get('username')
+#
+#         if username is not None:
+#             return render_template('register.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+#         else:
+#             return render_template('register.html', username = "", section_name = str(""))
+#
+#     if request.method == 'POST':
+#         if 'login1' in request.form:
+#             return user_login()
+#
+#         else:
+#             username = ''
+#             if 'username' in session:
+#                 username = escape(session['username'])
+#             return render_template('00-1-empty_homepage.html', login_message ='', username = '')
 
 
 @serv.route("/section", methods = ['POST','GET'])
