@@ -27,7 +27,9 @@ CREATE TABLE IF NOT EXISTS 'surveyData' (
 
 INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('Alan@rickman','Alan','davetheMAN1','User');
 
-INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('nick@nick','Nick','Ineedabreak22','Nick');
+INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('Nick@white','Nick','Ineedabreak22','Admin');
+
+INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('George@marks','George','iLOVEcomsoc2','User');
 
 
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(1,1,'Local authority',5, '2019-11-01');
@@ -59,9 +61,38 @@ INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(1,2,'Third sector',9, '2019-11-27');
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(1,5,'Health',5, '2019-11-28');
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(1,7,'Social care',6, '2019-11-29');
-INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(2,7,'Social care',6, '2019-11-30');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(1,7,'Social care',6, '2019-11-30');
 
-
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,5,'Third sector',5, '2019-11-01');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,5,'Third sector',3, '2019-11-02');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,6,'Social',8, '2019-11-03');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,6,'Third sector',7, '2019-11-04');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,7,'Social',7, '2019-11-05');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,5,'Social',5, '2019-11-06');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,5,'Social Care',2, '2019-11-07');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,4,'Health',6, '2019-11-08');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,3,'Third sector',2, '2019-11-09');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,2,'Third sector',5, '2019-11-10');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,1,'Health',6, '2019-11-11');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,1,'Social',7, '2019-11-12');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,6,'Own activities',1, '2019-11-13');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,7,'Own activities',4, '2019-11-14');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,8,'Third sector',2, '2019-11-15');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,7,'Own activities',6, '2019-11-16');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,7,'Health',7, '2019-11-17');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,7,'Health',8, '2019-11-18');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,6,'Third sector',9, '2019-11-19');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,7,'Social',2, '2019-11-20');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,8,'Social care',4, '2019-11-21');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,9,'Health',4, '2019-11-22');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,7,'Social care',3, '2019-11-23');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,5,'Social care',4, '2019-11-24');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,6,'Own activities',2, '2019-11-25');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,6,'Social care',4, '2019-11-26');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,7,'Third sector',9, '2019-11-27');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,8,'Health',5, '2019-11-28');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,7,'Social care',6, '2019-11-29');
+INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(3,6,'Social',6, '2019-11-30');
 
 
 SELECT surveyID, email_addr, happiness_q, date FROM surveyData
