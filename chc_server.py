@@ -10,6 +10,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 import models as dbHandler
+import models
 
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -29,13 +30,14 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 @serv.route('/register', methods=['POST', 'GET'])
 def home():
     if request.method=='POST':
-        username = request.form['username']
+        email_addr = request.form['email_addr']
         password = request.form['password']
-        dbHandler.insertUser(username, password)
+        dbHandler.insertUser(email_addr, password)
         users = dbHandler.retrieveUsers()
         return render_template('register.html', users=users)
     else:
         return render_template('register.html')
+
 
 @serv.route("/home", methods = ['POST','GET'])
 def frontPage():
