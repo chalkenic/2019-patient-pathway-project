@@ -265,32 +265,31 @@ def contactFormdata():
 
     if request.method =='POST':
 
-        # if 'login1' in request.form:
-        #     return user_login()
+        if 'login1' in request.form:
+            return user_login()
 
-        # elif 'form_submission' in request.form:
+        elif 'form_submission_guest' in request.form:
             add_firstName = request.form.get('firstName', default="Error")
             add_lastName = request.form.get('lastName', default="Error")
             add_email = request.form.get('email', default="Error")
             add_query = request.form.get('query', default="Error")
             print("inserting contact result "+ add_firstName)
-            try:
-                conn = sqlite3.connect(DATABASE)
-                cur = conn.cursor()
-                # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
-				# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
-                sqlquery = 'INSERT INTO "contactForm" ("firstName", "lastName", "email", "query") VALUES ("'+ add_firstName +'", "'+ add_lastName +'", "'+ add_email +'",  "'+ add_query +'");'
-                print(sqlquery)
-                cur.execute(sqlquery)
-                # cur.fetchall()
-                conn.commit()
-                msg = "Thanks, we'll respond as soon as possible."
-            except:
-                conn.rollback()
-                msg = "error in insert operation"
-            finally:
-                conn.close()
-                return msg
+            print(add_lastName)
+            # try:
+            conn = sqlite3.connect(DATABASE)
+            cur = conn.cursor()
+            # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
+			# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
+            cur.execute("INSERT INTO contactForm ('firstName', 'lastName', 'email', 'query') VALUES (?,?,?,?)", (add_firstName, add_lastName, add_email, add_query))
+            # cur.fetchall()
+            conn.commit()
+            msg = "Thanks, we'll respond as soon as possible."
+        # # except:
+        #     conn.rollback()
+        #     msg = "error in insert operation"
+        # # finally:
+        #     conn.close()
+            return render_template('02-contact_us.html', msg = msg)
 
 
         # session['user_email'] = request.form['user_email']
