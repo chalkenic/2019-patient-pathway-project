@@ -23,32 +23,56 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 #     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
 #     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=25)])
 
+#
+# def insertUser(email_addr,password):
+#     con = sql.connect("survey_project.db")
+#     cur = con.cursor()
+#     cur.execute("INSERT INTO accounts (email_addr,password) VALUES (?,?)", (email_addr,password))
+#     con.commit()
+#     con.close()
+#
+# def retrieveUsers():
+# 	con = sql.connect("survey_project.db")
+# 	cur = con.cursor()
+# 	cur.execute("SELECT email_addr, password FROM accounts")
+# 	users = cur.fetchall()
+# 	con.close()
+# 	return users
 
-def insertUser(email_addr,password):
-    con = sql.connect("survey_project.db")
-    cur = con.cursor()
-    cur.execute("INSERT INTO accounts (email_addr,password) VALUES (?,?)", (email_addr,password))
-    con.commit()
-    con.close()
-
-def retrieveUsers():
-	con = sql.connect("survey_project.db")
-	cur = con.cursor()
-	cur.execute("SELECT email_addr, password FROM accounts")
-	users = cur.fetchall()
-	con.close()
-	return users
+# #
+# @serv.route('/register', methods=['POST', 'GET'])
+# def home():
+#     if request.method=='POST':
+#         email_addr = request.form['email_addr']
+#         password = request.form['password']
+#         dbHandler.insertUser(email_addr, password)
+#         users = dbHandler.retrieveUsers()
+#         return render_template('register.html', users=users)
+#     else:
+#         return render_template('register.html')
 
 @serv.route('/register', methods=['POST', 'GET'])
 def home():
     if request.method=='POST':
-        email_addr = request.form['email_addr']
-        password = request.form['password']
-        dbHandler.insertUser(email_addr, password)
-        users = dbHandler.retrieveUsers()
         return render_template('register.html', users=users)
     else:
         return render_template('register.html')
+
+
+@serv.route('/register/addRecord', methods=['GET'])
+def newUser():
+    try:
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        cur.execute("INSERT INTO accounts ('email_addr', 'name', 'password', access) VALUES (?,?,?,?)", ("nik@nik.com", "Nikrad", "Nikniknik.1", "User"))
+        conn.commit()
+        msg = "Record Successfuly added"
+    except:
+        conn.rollback()
+        msg = "error in insert operation"
+    finally:
+        return msg
+        conn.close()
 
 
 @serv.route("/home", methods = ['POST','GET'])
