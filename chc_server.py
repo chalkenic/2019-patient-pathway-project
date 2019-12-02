@@ -219,13 +219,7 @@ def contactUs():
             return render_template('00_homepage.html', login_message ='', username = '')
 
 # Adapted from stackoverflow "ThiefMaster" question Flask: How to remove cookies?. Available at: https://stackoverflow.com/questions/14386304/flask-how-to-remove-cookies
-@serv.route("/logout", methods = ['GET'])
-def logout():
-    logout = make_response(render_template('00-1-empty_homepage.html', login_message ="Logged out successfully", username = None))
-    logout.set_cookie('username', expires = 0)
-    logout.set_cookie('email_addr', expires = 0 )
-    logout.set_cookie('Access', expires = 0)
-    return logout
+
 
 
 @serv.route("/contact_us", methods = ['POST', 'GET'])
@@ -268,6 +262,19 @@ def contactFormdata():
         # session['user_email'] = request.form['user_email']
         # session['Password'] = request.form['user_password']
         # print("Password checks out, hello " + user + "!")
+
+@serv.route("/logout", methods = ['GET', 'POST'])
+def logout():
+
+    if request.method == 'GET':
+        logout = make_response(render_template('00-1-empty_homepage.html', login_message ="Logged out successfully", username = None))
+        logout.set_cookie('username', expires = 0)
+        logout.set_cookie('email_addr', expires = 0 )
+        logout.set_cookie('Access', expires = 0)
+        return logout
+
+    if request.method == 'POST':
+        return user_login()
 
 # FUNCTIONS
 # FUNCTIONS
