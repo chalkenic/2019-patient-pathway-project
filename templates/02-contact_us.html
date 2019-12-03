@@ -17,17 +17,17 @@
 <form method="post" name="myForm" onsubmit="return datatransfer()">
 <!--action and method from WH3Schools https://www.w3schools.com/js/js_validation.asp accessed 24/11/2019-->
   <label>First name:</label><br>
-  <input id="firstName" type="text" name="firstName"> <!-- Field must be filled in, cannot be blank -->
+  <input id="firstName" type="text" name="firstName" required> <!-- Field must be filled in, cannot be blank -->
   <br>
   <label>Last name:</label><br> <!-- Field must be filled in, cannot be blank -->
-  <input id="lastName" type="text" name="lastName">
+  <input id="lastName" type="text" name="lastName" required>
   <br>
   <label>Email:</label><br> <!-- Will check if email is valid by using type:"email"-->
-  <input id="email" type="email" name="email">
+  <input id="email" type="email" name="email" required>
   <!-- Field must be filled in, can't be blank, may not need with type:"email" -->
   <br>
   <label>Query:</label><br>
-  <textarea id="query" rows="5" cols="50" name="query" placeholder="Type your query here..."></textarea>
+  <textarea id="query" rows="5" cols="50" name="query" placeholder="Type your query here..." required></textarea>
   <!-- Field must be filled in, cannot be blank -->
   <br>
   <br>
