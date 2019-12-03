@@ -6,3 +6,4 @@
 #Ignores virtual environment data on personal folder.
 Pipfile
 Pipfile.lock
+survey_project.db
