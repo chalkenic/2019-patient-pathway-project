@@ -316,7 +316,7 @@ def contactUs():
 # Adapted from stackoverflow "ThiefMaster" question Flask: How to remove cookies?. Available at: https://stackoverflow.com/questions/14386304/flask-how-to-remove-cookies
 
 
-
+#GUEST LOGIN AREA
 @serv.route("/contact_us", methods = ['POST', 'GET'])
 def contactFormdata():
     if request.method =='GET':
@@ -355,6 +355,43 @@ def contactFormdata():
         # # finally:
         #     conn.close()
             return render_template('02-contact_us.html', msg = msg)
+
+#LOGGED IN USER AREA
+@serv.route("/contact_us_users", methods = ['POST', 'GET'])
+def contactFormdata_user():
+    if request.method =='GET':
+
+        username = request.cookies.get('username')
+
+        if username is not None:
+            return render_template('02-contact_us_users.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+        else:
+            return render_template('02-contact_us.html')
+
+    if request.method =='POST':
+
+        if 'login1' in request.form:
+            return user_login()
+
+        elif 'form_submission_user' in request.form:
+            add_query = request.form.get('query', default="Error")
+            print("inserting contact result")
+            # try:
+            conn = sqlite3.connect(DATABASE)
+            cur = conn.cursor()
+            # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
+			# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
+            cur.execute("INSERT INTO contactFormUsers ('query') VALUES (?)", (add_query))
+            # cur.fetchall()
+            conn.commit()
+            msg = "Thanks, we'll respond as soon as possible."
+        # # except:
+        #     conn.rollback()
+        #     msg = "error in insert operation"
+        # # finally:
+        #     conn.close()
+            return render_template('02-contact_us_users.html', msg = msg)
+
 
 
         # session['user_email'] = request.form['user_email']
