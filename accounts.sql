@@ -100,3 +100,5 @@ INNER JOIN accounts
 ON surveyData.accountID=accounts.userID
 WHERE userID = '1';
 --SELECT surveyID, email_addr, happiness_q, date FROM surveyData
+
+SELECT count(userID) from accounts;
