@@ -17,18 +17,15 @@ $(document).ready(function() {
   var own_activities = 0
 
   linegraph_data.forEach(function(linegraph_data){
-    time.push(linegraph_data[4])
-    console.log(time);
+    time.push(linegraph_data[4]);
   })
 
   linegraph_data.forEach(function(linegraph_data){
-    gen_happ.push(linegraph_data[2])
-    console.log(gen_happ);
+    gen_happ.push(linegraph_data[2]);
   })
 
   linegraph_data.forEach(function(linegraph_data){
-    interactions.push(linegraph_data[3])
-    console.log(interactions);
+    interactions.push(linegraph_data[3]);
   })
 
   linegraph_data.forEach(function(linegraph_data){
@@ -51,10 +48,13 @@ $(document).ready(function() {
       own_activities +=1;
     }
   })
-  console.log(health)
 
   // Adapted from Tobias Ahlin Bjerrome, 10 Chart.js example charts to get you started. Available at:
   // https://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
+
+  var user1 = [4,6,4,7,9,7];
+  var user2 = [3,9,1,8,3,9];
+
   var ctx = document.getElementById("line_graph");
   var line_graph = new Chart(ctx, {
     type: 'line',
@@ -62,9 +62,15 @@ $(document).ready(function() {
       labels: time,
       datasets: [
         {
-          data: gen_happ,
+          data: user1,
           label: "General experience (1-10)",
           borderColor: "#3e95cd",
+          fill: false
+        },
+        {
+          data: user2,
+          label: "General experience (1-10)",
+          borderColor: "#c45850",
           fill: false
         }
       ]

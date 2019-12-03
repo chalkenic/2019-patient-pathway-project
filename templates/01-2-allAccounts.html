@@ -1,11 +1,14 @@
 {% extends "chc_admin_template.html" %}
 
-<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
-
 {%block title %}<title> {{username}}'s section </title>{%endblock %}
 
-{%block content%}
+{% block link %}
+    <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-graph.css') }}" />
 
+{% endblock %}
+
+{%block content%}
+  <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
 
 <table class = 'table'>
    <thead>
@@ -25,5 +28,19 @@
       </tr>
    {% endfor %}
 </table>
+<div class="wrapper">
+  <h1>All users' project experience</h1>
+
+  <canvas id="line_graph" width="800" height="450"></canvas>
+
+</div>
+
+<!-- <canvas id="line_graph" width="1600" height="900"></canvas> -->
+
+<script src = "../static/js-admin-graphs.js"></script>
+
+<script>
+  var linegraph_data = {{ graph_data|safe }}
+</script>
 
 {% endblock %}
