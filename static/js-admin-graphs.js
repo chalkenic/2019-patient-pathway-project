@@ -7,7 +7,26 @@ $(document).ready(function() {
   console.log(linegraph_data);
 
   var all_users_experiences = [];
+  var start_date = linegraph_data [0][0][4];
+  console.log("Start date: " + start_date);
 
+  // console.log("Start date: " + start_date.getDate() + 1);
+
+  survey_dates = [];
+
+  for (var time_count = 0; time_count < Object.keys(linegraph_data[0]).length; time_count++) {
+    var currDate = new Date(start_date);
+    let formattedDate = currDate.getFullYear() + "-" + (currDate.getMonth()+1) + "-" + (currDate.getDate() + time_count)
+    console.log(formattedDate);
+
+    console.log(time_count);
+    survey_dates.push(formattedDate)
+  }
+
+  console.log(survey_dates)
+  // var helloDate = new Date(start_date);
+  // helloDate.setDate(helloDate.getDate() + 1);
+  // console.log(helloDate)
 
   //Captures all experience data in
   for (var user_count = 0; user_count < Object.keys(linegraph_data).length; user_count++) {
@@ -40,7 +59,7 @@ $(document).ready(function() {
   var line_graph = new Chart(ctx, {
     type: 'line',
     data: {
-      labels: all_users_experiences[0],
+      labels: survey_dates,
       datasets: [
 
           {
