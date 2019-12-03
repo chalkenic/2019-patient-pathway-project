@@ -269,9 +269,23 @@ tr:nth-child(even) {
 .column {
   float: left;
   padding: 10px;
-  height: 300px; 
+  height: 300px;
 }
 
 .left, .right {
   width: 5%;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: flex;
+}
+
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
 }

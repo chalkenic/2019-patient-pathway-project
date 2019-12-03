@@ -21,7 +21,7 @@
                       <h4 class = <strong> Did you undertake any activities relating to the following this week? </strong>
                         <br>
                         <label for="completion date"> Please enter the day you are filling in this survey:</label>
-                        <input type="Date" name="completion date">
+                        <input type="Date" name="completion date" required>
 
                             <th>Health </th>
                             <th>SocialCare </th>
@@ -44,30 +44,38 @@
     <h4 class=<strong> <b>Finally to end this survey off for today, below, simply summarise your mood for this week! </b> </strong>
    <br> <br>
 
-       <div class="form_group">
-         </div>
 
-        <label for="verygoodmood"><img src="static/assets/Very_Good_Smiley_Face.png" alt="verygoodmood", width="37%", height="15%"</label>
+        <div class="row">
+          <div class="column">
+
+
+
+        <label for="verygoodmood"><img src="static/assets/Very_Good_Smiley_Face.png" alt="verygoodmood"</label>
         <br> <br>
-
-       <label for="goodmood"><img src="static/assets/Good_Smiley_Face.jpeg", width="65%", height="15%", alt="goodmood"/>
+</div>
+<div class="column"
+       <label for="goodmood"><img src="static/assets/Good_Smiley_Face.jpeg" alt="goodmood" height="75%", width="45%"/>
        </label>
+       </div>
 
        <br> <br>
 
-
+<div class="column"
        <label for="okmood"><img src="static/assets/Orange_Smiley_Face.jpeg", alt="okmood"/>
        </label>
        <br><br>
-
-       <label for="okmood"> <img src="static/assets/Red_Angry_Face.jpeg", width="35%", height="15%" alt="badmood">
+</div>
+<div class="column"
+       <label for="okmood"> <img src="static/assets/Red_Angry_Face.jpeg", width="35%", height="75%" alt="badmood">
       </label>
       <br> <br>
+</div>
+</div>
 
-      <input type="submit" name="survey"
+</form>
+      <input type="submit" name="survey">
       <br>
 
-<br>
 <a href ="static/assets/Cilent_Survey.pdf"> <b> Click here for a downloadable version of this survey. <b>
 
 

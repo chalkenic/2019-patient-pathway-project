@@ -298,6 +298,13 @@ def survey():
                 username = escape(session['username'])
             return render_template('00_homepage.html', login_message ='', username = '')
 
+@serv.route("/Diary", methods = ['POST', 'GET'])
+def Diary():
+    if request.method == 'GET':
+        return render_template('05- Diary.html')
+
+        
+
 @serv.route("/contact", methods = ['POST','GET'])
 def contactUs():
     if request.method == 'GET':
