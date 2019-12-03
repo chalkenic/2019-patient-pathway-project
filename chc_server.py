@@ -6,9 +6,6 @@ import json
 
 # Login Imports
 import sqlite3 as sql
-from flask import Flask
-from flask import render_template
-from flask import request
 import models as dbHandler
 import models
 
@@ -26,17 +23,85 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 #     username = StringField('username', validators=[InputRequired(), Length(min=4, max=15)])
 #     password = PasswordField('password', validators=[InputRequired(), Length(min=8, max=25)])
 
+#
+# def insertUser(email_addr,password):
+#     con = sql.connect("survey_project.db")
+#     cur = con.cursor()
+#     cur.execute("INSERT INTO accounts (email_addr,password) VALUES (?,?)", (email_addr,password))
+#     con.commit()
+#     con.close()
+#
+# def retrieveUsers():
+# 	con = sql.connect("survey_project.db")
+# 	cur = con.cursor()
+# 	cur.execute("SELECT email_addr, password FROM accounts")
+# 	users = cur.fetchall()
+# 	con.close()
+# 	return users
 
-@serv.route('/register', methods=['POST', 'GET'])
-def home():
-    if request.method=='POST':
-        email_addr = request.form['email_addr']
-        password = request.form['password']
-        dbHandler.insertUser(email_addr, password)
-        users = dbHandler.retrieveUsers()
-        return render_template('register.html', users=users)
-    else:
+# #
+# @serv.route('/register', methods=['POST', 'GET'])
+# def home():
+#     if request.method=='POST':
+#         email_addr = request.form['email_addr']
+#         password = request.form['password']
+#         dbHandler.insertUser(email_addr, password)
+#         users = dbHandler.retrieveUsers()
+#         return render_template('register.html', users=users)
+#     else:
+#         return render_template('register.html')
+#
+# @serv.route('/register', methods=['POST', 'GET'])
+# def home():
+#     if request.method=='POST':
+#         return render_template('register.html', users=users)
+#     else:
+#         return render_template('register.html')
+
+#
+# @serv.route('/register/addRecord', methods=['GET'])
+# def newUser():
+#     try:
+#         conn = sqlite3.connect(DATABASE)
+#         cur = conn.cursor()
+#         cur.execute("INSERT INTO accounts ('email_addr', 'name', 'password', access) VALUES (?,?,?,?)", ("nik@nik.com", "Nikrad", "Nikniknik.1", "User"))
+#         conn.commit()
+#         msg = "Record Successfuly added"
+#     except:
+#         conn.rollback()
+#         msg = "error in insert operation"
+#     finally:
+#         return msg
+#         conn.close()
+
+
+@serv.route("/register", methods = ['POST', 'GET'])
+def newUser():
+    if request.method == 'GET':
         return render_template('register.html')
+    if request.method == 'POST':
+        regEmail = request.form.get('email1', default = 'error')
+        regPass1 = request.form.get ('pass1', default = 'error')
+        regPass2 = request.form.get ('pass2', default = 'error')
+        try:
+            request.form.get('')
+            conn = sqlite3.connect(DATABASE)
+            cur = conn.cursor ()
+            cur.execute("INSERT INTO main.accounts('email_addr','name','password','access') VALUES (?,?,?,?)", (regEmail, regPass1, regPass, "User"))
+
+            conn.commit()
+            msg ="Survey Data successfully recorded"
+        except:
+            conn.rollback()
+            msg ="Error"
+        finally:
+            return msg
+            conn.close()
+
+
+
+
+
 
 
 @serv.route("/home", methods = ['POST','GET'])
@@ -77,25 +142,25 @@ def frontPage():
 
 
 
-@serv.route("/register", methods = ['POST','GET'])
-def register():
-    if request.method == 'GET':
-        username = request.cookies.get('username')
-
-        if username is not None:
-            return render_template('register.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
-        else:
-            return render_template('register.html', username = "", section_name = str(""))
-
-    if request.method == 'POST':
-        if 'login1' in request.form:
-            return user_login()
-
-        else:
-            username = ''
-            if 'username' in session:
-                username = escape(session['username'])
-            return render_template('00-1-empty_homepage.html', login_message ='', username = '')
+# @serv.route("/register", methods = ['POST','GET'])
+# def register():
+#     if request.method == 'GET':
+#         username = request.cookies.get('username')
+#
+#         if username is not None:
+#             return render_template('register.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+#         else:
+#             return render_template('register.html', username = "", section_name = str(""))
+#
+#     if request.method == 'POST':
+#         if 'login1' in request.form:
+#             return user_login()
+#
+#         else:
+#             username = ''
+#             if 'username' in session:
+#                 username = escape(session['username'])
+#             return render_template('00-1-empty_homepage.html', login_message ='', username = '')
 
 
 @serv.route("/section", methods = ['POST','GET'])
@@ -112,7 +177,7 @@ def section():
 
         if Access == "Admin":
             if username is not None:
-                get_all_users(json_str = True)
+                get_all_users()
 
                 return render_template('01-2-admin_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
@@ -120,7 +185,7 @@ def section():
 
         elif Access == "User":
             if username is not None:
-                return experience_graph(username)
+                return graph_data(username)
                 # return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
                 return render_template('01-1-user_section.html', username = "", section_name = str(""))
@@ -149,6 +214,34 @@ def section():
 
                 username = request.cookies.get('username')
                 return render_template('01-3-patient_target_list.html', data = data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+
+@serv.route("/allAccounts", methods = ['GET', 'POST'])
+def allAccounts():
+
+    if request.method == 'GET':
+        username = request.cookies.get('username')
+        # get_all_users()
+
+        db = sqlite3.connect(DATABASE)
+        query = "SELECT userID, email_addr, name, access from accounts"
+        cursor = db.cursor()
+
+        cursor.execute(query)
+
+        data = cursor.fetchall()
+
+
+        # all_accounts = json.dumps(data)
+        #
+        # items = [dict(zip([key[0] for key in cursor.description],row))for row in data]
+
+        db.commit()
+        db.close()
+
+        return render_template('01-2-allAccounts.html', data = data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+
+    if request.method == 'POST':
+            return user_login()
 
 @serv.route("/survey", methods = ['POST','GET'])
 def survey():
@@ -237,32 +330,31 @@ def contactFormdata():
 
     if request.method =='POST':
 
-        # if 'login1' in request.form:
-        #     return user_login()
+        if 'login1' in request.form:
+            return user_login()
 
-        # elif 'form_submission' in request.form:
+        elif 'form_submission_guest' in request.form:
             add_firstName = request.form.get('firstName', default="Error")
             add_lastName = request.form.get('lastName', default="Error")
             add_email = request.form.get('email', default="Error")
             add_query = request.form.get('query', default="Error")
             print("inserting contact result "+ add_firstName)
-            try:
-                conn = sqlite3.connect(DATABASE)
-                cur = conn.cursor()
-                # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
-				# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
-                sqlquery = 'INSERT INTO "contactForm" ("firstName", "lastName", "email", "query") VALUES ("'+ add_firstName +'", "'+ add_lastName +'", "'+ add_email +'",  "'+ add_query +'");'
-                print(sqlquery)
-                cur.execute(sqlquery)
-                # cur.fetchall()
-                conn.commit()
-                msg = "Thanks, we'll respond as soon as possible."
-            except:
-                conn.rollback()
-                msg = "error in insert operation"
-            finally:
-                conn.close()
-                return msg
+            print(add_lastName)
+            # try:
+            conn = sqlite3.connect(DATABASE)
+            cur = conn.cursor()
+            # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
+			# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
+            cur.execute("INSERT INTO contactForm ('firstName', 'lastName', 'email', 'query') VALUES (?,?,?,?)", (add_firstName, add_lastName, add_email, add_query))
+            # cur.fetchall()
+            conn.commit()
+            msg = "Thanks, we'll respond as soon as possible."
+        # # except:
+        #     conn.rollback()
+        #     msg = "error in insert operation"
+        # # finally:
+        #     conn.close()
+            return render_template('02-contact_us.html', msg = msg)
 
 
         # session['user_email'] = request.form['user_email']
@@ -286,7 +378,7 @@ def logout():
 # FUNCTIONS
 # FUNCTIONS
 
-def experience_graph(username):
+def graph_data(username):
 
     email = request.cookies.get('email_addr')
     print(email)
@@ -295,10 +387,6 @@ def experience_graph(username):
         db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
         print("Working 0")
-        cursor.execute("SELECT userID from accounts WHERE email_addr=?", [email])
-
-        print("Working 1")
-        id = cursor.fetchall()
 
         cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date FROM surveyData\
         INNER JOIN accounts\
@@ -306,9 +394,11 @@ def experience_graph(username):
         WHERE email_addr =?;''', [email])
 
         data = cursor.fetchall()
+        print(data)
 
         js_data = json.dumps(data)
-        print("Working 6")
+        print("Working 1")
+        print(js_data)
 
     except:
         print("Unfortunately an error has occurred", data)
@@ -321,15 +411,19 @@ def experience_graph(username):
 
         return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), lineg_data = json.loads(js_data))
 
-def get_all_users(json_str = False):
+def get_all_users():
 
     db = sqlite3.connect(DATABASE)
     query = "SELECT * from accounts"
     cursor = db.cursor()
 
-    data = cursor.execute(query)
+    cursor.execute(query)
 
-    items = [dict(zip([key[0] for key in cursor.description],row))for row in data]
+    data = cursor.fetchall()
+
+    all_accounts = json.dumps(data)
+    #
+    # items = [dict(zip([key[0] for key in cursor.description],row))for row in data]
 
     print()
     rows = cursor.fetchall()
@@ -337,9 +431,7 @@ def get_all_users(json_str = False):
     db.commit()
     db.close()
 
-    if json_str:
-        with open('accounts_data.json', 'w') as json_file:
-            json.dump(rows, json_file)
+    return data
 
 def login_credentials(username, password):
         if username != None:

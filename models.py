@@ -1,9 +1,9 @@
 import sqlite3 as sql
 
-def insertUser(username,password):
+def insertUser(email_addr,password):
     con = sql.connect("survey_project.db")
     cur = con.cursor()
-    cur.execute("INSERT INTO users (username,password) VALUES (?,?)", (username,password))
+    cur.execute("INSERT INTO accounts (email_addr,password) VALUES (?,?)", (email_addr,password))
     con.commit()
     con.close()
 

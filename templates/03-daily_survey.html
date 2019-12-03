@@ -1,7 +1,7 @@
 {% extends "chc_user_template.html" %}
 
 <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
-
+<link rel="stylesheet" href="static/style-main.css"
 {%block title %}
 
 <title> Client Survey On Health & Social Care </title>
@@ -9,47 +9,18 @@
 {%endblock %}
 
 {%block content%}
-
-
-<style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
-
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-
-   </style>
-
-
-
-
-
-
-
-
-    <table>
+<table>
       <tr>
             <h3> The following is a survey which enables us to understand how your
                     interactions with the NHS have been going so far. </h3>
 
-                    <div class="row">
-                      <div class="column">
-                          </div>
                     <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
                       <br>
-                      <h4 class = <strong> DiDid you undertake any activities relating to the following this week? </strong>
+                      <h4 class = <strong> Did you undertake any activities relating to the following this week? </strong>
+                        <br>
+                        <label for="completion date"> Please enter the day you are filling in this survey:</label>
+                        <input type="Date" name="completion date">
 
-                            <th>Day </th>
                             <th>Health </th>
                             <th>Social Care </th>
                             <th> Local Authority </th>
@@ -58,7 +29,7 @@
                             <th> Own Activities </th>
       </tr>
       <tr>
-     <td>Monday</td>
+
      <td> <input type="checkbox"> </td>
       <td> <input type="checkbox"> </td>
        <td> <input type="checkbox"> </td>
@@ -67,65 +38,77 @@
           <td> <input type="checkbox"> </td>
       </tr>
       <tr>
-      <td> Tuesday </td>
-      <td> <input type="checkbox"> </td>
-      <td> <input type="checkbox"> </td>
-       <td> <input type="checkbox"> </td>
-        <td> <input type="checkbox"> </td>
-         <td> <input type="checkbox"> </td>
-          <td> <input type="checkbox"> </td>
-      </tr>
-      <tr>
-      <td> Wednesday </td>
-      <td> <input type="checkbox"> </td>
-      <td> <input type="checkbox"> </td>
-       <td> <input type="checkbox"> </td>
-        <td> <input type="checkbox"> </td>
-         <td> <input type="checkbox"> </td>
-          <td> <input type="checkbox"> </td>
-      </tr>
-      <td> Thursday </td>
-      <td> <input type="checkbox"> </td>
-      <td> <input type="checkbox"> </td>
-       <td> <input type="checkbox"> </td>
-        <td> <input type="checkbox"> </td>
-         <td> <input type="checkbox"> </td>
-          <td> <input type="checkbox"> </td>
-      <tr>
-      <td> Friday </td>
-      <td> <input type="checkbox"> </td>
-      <td> <input type="checkbox"> </td>
-       <td> <input type="checkbox"> </td>
-        <td> <input type="checkbox"> </td>
-         <td> <input type="checkbox"> </td>
-          <td> <input type="checkbox"> </td>
-      </tr>
-     <tr>
-      <td>Saturday </td>
-      <td> <input type="checkbox"> </td>
-      <td> <input type="checkbox"> </td>
-       <td> <input type="checkbox"> </td>
-        <td> <input type="checkbox"> </td>
-         <td> <input type="checkbox"> </td>
-          <td> <input type="checkbox"> </td>
-      </tr>
-    </table>
-    <div class="column left">
-    </div>
-    <h4 class=<strong>Finally to end this survey off for today, below, simply summarise your mood for this week.</strong>
-    <br>
-      <form>
-      <select name="Mood">
-        <option value="Very Good"> Very Good</option>
-        <option value ="Good"> Good</option>
-        <option value = "Okay"> Okay</option>
-        <option value="Bad"> Bad</option>
-        <option value="Very Bad"> Very Bad</option>
-      </select>
-    </form>
-   <br>
 
-    <input type="submit" value="Submit">
+      <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox"> </td>
+       <td> <input type="checkbox"> </td>
+        <td> <input type="checkbox"> </td>
+         <td> <input type="checkbox"> </td>
+          <td> <input type="checkbox"> </td>
+      </tr>
+      <tr>
+
+      <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox"> </td>
+       <td> <input type="checkbox"> </td>
+        <td> <input type="checkbox"> </td>
+         <td> <input type="checkbox"> </td>
+          <td> <input type="checkbox"> </td>
+      </tr>
+
+      <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox"> </td>
+       <td> <input type="checkbox"> </td>
+        <td> <input type="checkbox"> </td>
+         <td> <input type="checkbox"> </td>
+          <td> <input type="checkbox"> </td>
+      <tr>
+
+      <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox"> </td>
+       <td> <input type="checkbox"> </td>
+        <td> <input type="checkbox"> </td>
+         <td> <input type="checkbox"> </td>
+          <td> <input type="checkbox"> </td>
+      </tr>
+
+    </table>
+
+    <h4 class=<strong>Finally to end this survey off for today, below, simply summarise your mood for this week.</strong>
+   <br> <br>
+     <form action="#"  method="post" class = "my_form" onsubmit="return validateForm();">
+       <div class="form_group"
+ <input type="checkbox" id="goodmood" required id ="goodmood">
+    <label for="goodmood"><img src="static/assets/Good_Smiley_Face.jpeg", width="65%", height="15%", alt="goodmood"/> </label>
+
+    <br>
+
+    <input type="checkbox" id="okmood" required id= "okmood">
+    <label for="okmood"><img src="static/assets/Orange_Smiley_Face.jpeg", alt="okmood"/>
+    </label>
+    <br>
+    <input type="checkbox" required id="badmood"/>
+    <label for="okmood"> <img src="static/assets/Red_Angry_Face.jpeg", width="35%", height="15%" alt="badmood">
+    </label>
+    <br>
+
+    <input type="submit" onsubmit="return validateForm()" name="submit"  value="Submit">
+    <script type="text/javascript">
+     function validateForm(){
+       var goodmood = document.getElementById('goodmood').value;
+       var okmood = document.getElementById('okmood').value;
+       var badmood = document.getElementById('badmood').value;
+       if(goodmood, okmood, badmood=='')
+   {
+     alert('Please Fill all Required Fields');
+     return false;
+    }
+    else {
+   return true;
+     }
+   }
+     </script>
+
 
 
 
