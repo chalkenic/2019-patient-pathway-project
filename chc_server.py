@@ -274,9 +274,9 @@ def survey():
             conn.rollback()
             msg ="Something's gone wrong :("
         finally:
-            return msg
             conn.close()
 
+    return render_template('03-daily_survey.html', msg = msg)
     if request.method == 'POST':
 
         if 'login1' in request.form:
@@ -303,7 +303,7 @@ def Diary():
     if request.method == 'GET':
         return render_template('05- Diary.html')
 
-        
+
 
 @serv.route("/contact", methods = ['POST','GET'])
 def contactUs():
