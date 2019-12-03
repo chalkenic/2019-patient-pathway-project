@@ -253,26 +253,26 @@ def survey():
         else:
             return render_template('03-daily_survey.html', username = "", section_name = str(""))
 
-    elif 'initial_survey' in request.form:
+    elif 'survey' in request.form:
 
         Date = request.form.get('Date', default = 'error')
         Health = request.form.get ('Health', default = 'error')
-        Social_Care = request.form.get ('Q2', default = 'error')
-        Local_Authority = request.form.get('Q3', default = 'error')
-        Third_Sector = request.form.get('Q4', default = 'error')
-        Own_Activities = request.form.get('Q5', default = 'error')
+        SocialCare = request.form.get ('SocialCare', default = 'error')
+        LocalAuthority = request.form.get('LocalAuthority', default = 'error')
+        ThirdSector = request.form.get('ThirdSector', default = 'error')
+        OwnActivities = request.form.get('OwnActivities', default = 'error')
 
         try:
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor ()
-            cur.execute("INSERT INTO main.Survey('Date','Health','Social_Care','Local_Authority','3rd_Sector', 'Own_Activities') VALUES (?,?,?,?,?,?)", (Date, Health, Social_Care, Local_Authority, Third_Sector, Own_Activities) )
+            cur.execute("INSERT INTO main.Survey('ID','Date','Health','SocialCare','LocalAuthority','ThirdSector','OwnActivities') VALUES (1,'','','','','','')",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
 
             conn.commit()
-            msg ="Survey Data successfully recorded"
+            msg ="Survey Data successfully recorded. See You Tomorrow!"
         except:
             conn.rollback()
-            msg ="Error"
+            msg ="Something's gone wrong :("
         finally:
             return msg
             conn.close()
