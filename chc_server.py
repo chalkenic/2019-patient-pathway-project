@@ -254,7 +254,7 @@ def survey():
             return render_template('03-daily_survey.html', username = "", section_name = str(""))
 
     elif 'survey' in request.form:
-
+        
         Date = request.form.get('Date', default = 'error')
         Health = request.form.get ('Health', default = 'error')
         SocialCare = request.form.get ('SocialCare', default = 'error')
@@ -266,12 +266,13 @@ def survey():
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor ()
-            cur.execute("INSERT INTO main.Survey('ID','Date','Health','SocialCare','LocalAuthority','ThirdSector','OwnActivities') VALUES (1,'','','','','','')",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
+            cur.execute("INSERT INTO Survey('Date','Health','SocialCare','LocalAuthority','ThirdSector','OwnActivities') VALUES (?,?,?,?,?,?)",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
 
             conn.commit()
             msg ="Survey Data successfully recorded. See You Tomorrow!"
-        except:
+        except Exception as e:
             conn.rollback()
+            print(e)
             msg ="Something's gone wrong :("
         finally:
             conn.close()
