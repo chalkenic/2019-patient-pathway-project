@@ -171,9 +171,9 @@ def section():
             if username is not None:
                 get_all_users()
 
-                return render_template('01-2-admin_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+                return render_template('01-2-patientSearch.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
-                return render_template('01-2-admin_section.html', username = "", section_name = str(""))
+                return render_template('01-2-patientSearch.html', username = "", section_name = str(""))
 
         elif Access == "User":
             if username is not None:
@@ -189,8 +189,9 @@ def section():
 
         elif 'patient_search' in request.form:
 
-            email_search = request.form.get('email_search', default ='Error')
-            target_patient_data(username, email_search)
+            username = request.cookies.get('username', default ='Error')
+            id_search = request.form.get('id_search', default ='Error')
+            return target_patient_data(username, id_search)
 
 
 @serv.route("/allAccounts", methods = ['GET', 'POST'])
@@ -342,15 +343,13 @@ def logout():
 def target_patient_data(username, email):
 
     try:
-        email_search = request.form.get('email_search', default ='Error')
+        volunteer_ID = request.form.get('id_search', default ='Error')
 
         db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM accounts WHERE email_addr=? AND Access = 'User' ;", [email_search])
+        cursor.execute("SELECT * FROM accounts WHERE volunteerID=? AND Access = 'User';", [volunteer_ID])
         data = cursor.fetchall()
         print(data)
-
-
 
     except:
         print("Unfortunately an error has occurred", data)

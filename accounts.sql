@@ -7,7 +7,8 @@ CREATE TABLE IF NOT EXISTS 'accounts' (
 'email_addr'		TEXT NOT NULL,
 'name'	            TEXT NOT NULL,
 'password'	   TEXT NOT NULL,
-'access'	        TEXT NOT NULL
+'access'	        TEXT NOT NULL,
+'volunteerID'	INTEGER NOT NULL UNIQUE
 );
 
 SELECT userID, email_addr FROM accounts WHERE Access = 'Admin';
@@ -25,11 +26,11 @@ CREATE TABLE IF NOT EXISTS 'surveyData' (
 	FOREIGN KEY (accountID) REFERENCES accounts(userID)
 );
 
-INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('Alan@rickman','Alan','davetheMAN1','User');
+INSERT INTO 'accounts'('email_addr','name', 'password', 'access', 'volunteerID')VALUES('Alan@rickman','Alan','davetheMAN1','User', 311267);
 
-INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('Nick@white','Nick','Ineedabreak22','Admin');
+INSERT INTO 'accounts'('email_addr','name', 'password', 'access',  'volunteerID')VALUES('Nick@white','Nick','Ineedabreak22','Admin', 000001);
 
-INSERT INTO 'accounts'('email_addr','name', 'password', 'access')VALUES('George@marks','George','iLOVEcomsoc2','User');
+INSERT INTO 'accounts'('email_addr','name', 'password', 'access', 'volunteerID')VALUES('George@marks','George','iLOVEcomsoc2','User', 193692);
 
 
 INSERT INTO 'surveyData'('accountID','happiness_q','contact_q', 'contact_op_q', 'date')VALUES(1,1,'Local authority',5, '2019-11-01');
