@@ -20,7 +20,7 @@ $(document).ready(function() {
     console.log(formattedDate);
 
     console.log(time_count);
-    survey_dates.push(formattedDate)
+    survey_dates.push(formattedDate);
   }
 
   console.log(survey_dates)
