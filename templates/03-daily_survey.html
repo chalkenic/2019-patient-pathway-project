@@ -9,106 +9,77 @@
 {%endblock %}
 
 {%block content%}
+<form method="post" name="mysurvey" onsubmit="return datatransfer()">
+
 <table>
       <tr>
             <h3> The following is a survey which enables us to understand how your
                     interactions with the NHS have been going so far. </h3>
 
                     <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
+                      <br><br>
+                      <label for="completion date"> Please enter the day you are filling in this survey:</label>
                       <br>
+                      <input type="Date" name="completion date" required>
                       <h4 class = <strong> Did you undertake any activities relating to the following this week? </strong>
                         <br>
-                        <label for="completion date"> Please enter the day you are filling in this survey:</label>
-                        <input type="Date" name="completion date">
+
 
                             <th>Health </th>
-                            <th>Social Care </th>
-                            <th> Local Authority </th>
-                            <th> 3rd Sector </th>
-                            <th> Social </th>
-                            <th> Own Activities </th>
+                            <th>SocialCare </th>
+                            <th> LocalAuthority </th>
+                            <th> ThirdSector </th>
+                            <th> OwnActivities </th>
       </tr>
       <tr>
 
-     <td> <input type="checkbox"> </td>
-      <td> <input type="checkbox"> </td>
-       <td> <input type="checkbox"> </td>
-        <td> <input type="checkbox"> </td>
-         <td> <input type="checkbox"> </td>
-          <td> <input type="checkbox"> </td>
-      </tr>
-      <tr>
-
-      <td> <input type="checkbox"> </td>
-      <td> <input type="checkbox"> </td>
-       <td> <input type="checkbox"> </td>
-        <td> <input type="checkbox"> </td>
-         <td> <input type="checkbox"> </td>
-          <td> <input type="checkbox"> </td>
-      </tr>
-      <tr>
-
-      <td> <input type="checkbox"> </td>
-      <td> <input type="checkbox"> </td>
-       <td> <input type="checkbox"> </td>
-        <td> <input type="checkbox"> </td>
-         <td> <input type="checkbox"> </td>
-          <td> <input type="checkbox"> </td>
+      <td> <input type="checkbox" name="Health"> </td>
+       <td> <input type="checkbox" name="SocialCare"> </td>
+        <td> <input type="checkbox" name="LocalAuthority"> </td>
+         <td> <input type="checkbox" name="ThirdSector"> </td>
+          <td> <input type="checkbox" name="OwnActivities"> </td>
       </tr>
 
-      <td> <input type="checkbox"> </td>
-      <td> <input type="checkbox"> </td>
-       <td> <input type="checkbox"> </td>
-        <td> <input type="checkbox"> </td>
-         <td> <input type="checkbox"> </td>
-          <td> <input type="checkbox"> </td>
-      <tr>
-
-      <td> <input type="checkbox"> </td>
-      <td> <input type="checkbox"> </td>
-       <td> <input type="checkbox"> </td>
-        <td> <input type="checkbox"> </td>
-         <td> <input type="checkbox"> </td>
-          <td> <input type="checkbox"> </td>
-      </tr>
 
     </table>
 
-    <h4 class=<strong>Finally to end this survey off for today, below, simply summarise your mood for this week.</strong>
+    <h4 class=<strong> <b>Finally to end this survey off for today, below, simply summarise your mood for this week! </b> </strong>
    <br> <br>
-     <form action="#"  method="post" class = "my_form" onsubmit="return validateForm();">
-       <div class="form_group"
- <input type="checkbox" id="goodmood" required id ="goodmood">
-    <label for="goodmood"><img src="static/assets/Good_Smiley_Face.jpeg", width="65%", height="15%", alt="goodmood"/> </label>
 
-    <br>
 
-    <input type="checkbox" id="okmood" required id= "okmood">
-    <label for="okmood"><img src="static/assets/Orange_Smiley_Face.jpeg", alt="okmood"/>
-    </label>
-    <br>
-    <input type="checkbox" required id="badmood"/>
-    <label for="okmood"> <img src="static/assets/Red_Angry_Face.jpeg", width="35%", height="15%" alt="badmood">
-    </label>
-    <br>
+        <div class="row">
+          <div class="column">
 
-    <input type="submit" onsubmit="return validateForm()" name="submit"  value="Submit">
-    <script type="text/javascript">
-     function validateForm(){
-       var goodmood = document.getElementById('goodmood').value;
-       var okmood = document.getElementById('okmood').value;
-       var badmood = document.getElementById('badmood').value;
-       if(goodmood, okmood, badmood=='')
-   {
-     alert('Please Fill all Required Fields');
-     return false;
-    }
-    else {
-   return true;
-     }
-   }
-     </script>
 
+
+        <label for="verygoodmood"><img src="static/assets/Very_Good_Smiley_Face.png" alt="verygoodmood"</label>
+        <br> <br>
+</div>
+<div class="column"
+       <label for="goodmood"><img src="static/assets/Good_Smiley_Face.jpeg" alt="goodmood" height="75%", width="45%"/>
+       </label>
+       </div>
+
+       <br> <br>
+
+<div class="column"
+       <label for="okmood"><img src="static/assets/Orange_Smiley_Face.jpeg", alt="okmood"/>
+       </label>
+       <br><br>
+</div>
+<div class="column"
+       <label for="okmood"> <img src="static/assets/Red_Angry_Face.jpeg", width="35%", height="75%" alt="badmood">
+      </label>
+      <br> <br>
+</div>
+</div>
+
+</form>
+      <input type="submit" name="survey">
+      <br>
+
+
+<a href ="static/assets/Cilent_Survey.pdf"> <b> Click here for a downloadable version of this survey. <b>
 
 
 

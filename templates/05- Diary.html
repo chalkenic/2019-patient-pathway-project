@@ -1,0 +1,22 @@
+<!-- These references extend the skeleton of the homepage-->
+{% extends "chc_template.html" %}
+<!-- Style sheet reference -->
+<link rel="stylesheet" type="text/css" href="../static/style-main.css" />
+<!--Script Reference-->
+<script type="text/javascript" src="../script/myscript.js"></script>
+
+{%block title %}
+
+<title> Cancer Patient Pathways - Diary </title>
+{%endblock %}
+
+{%block content%}
+
+<form method="post" name="myForm" onsubmit="return datatransfer()">
+<!--action and method from WH3Schools https://www.w3schools.com/js/js_validation.asp accessed 24/11/2019-->
+<label>Diary Entry:</label><br>
+<textarea id="diaryentry" rows="5" cols="50" name="query" placeholder="Type your Diary entry here..." required></textarea>
+<br>
+
+<input type="submit">
+</form>

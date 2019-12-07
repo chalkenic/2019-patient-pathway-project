@@ -253,30 +253,31 @@ def survey():
         else:
             return render_template('03-daily_survey.html', username = "", section_name = str(""))
 
-    elif 'initial_survey' in request.form:
-
+    elif 'survey' in request.form:
+        
         Date = request.form.get('Date', default = 'error')
         Health = request.form.get ('Health', default = 'error')
-        Social_Care = request.form.get ('Q2', default = 'error')
-        Local_Authority = request.form.get('Q3', default = 'error')
-        Third_Sector = request.form.get('Q4', default = 'error')
-        Own_Activities = request.form.get('Q5', default = 'error')
+        SocialCare = request.form.get ('SocialCare', default = 'error')
+        LocalAuthority = request.form.get('LocalAuthority', default = 'error')
+        ThirdSector = request.form.get('ThirdSector', default = 'error')
+        OwnActivities = request.form.get('OwnActivities', default = 'error')
 
         try:
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor ()
-            cur.execute("INSERT INTO main.Survey('Date','Health','Social_Care','Local_Authority','3rd_Sector', 'Own_Activities') VALUES (?,?,?,?,?,?)", (Date, Health, Social_Care, Local_Authority, Third_Sector, Own_Activities) )
+            cur.execute("INSERT INTO Survey('Date','Health','SocialCare','LocalAuthority','ThirdSector','OwnActivities') VALUES (?,?,?,?,?,?)",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
 
             conn.commit()
-            msg ="Survey Data successfully recorded"
-        except:
+            msg ="Survey Data successfully recorded. See You Tomorrow!"
+        except Exception as e:
             conn.rollback()
-            msg ="Error"
+            print(e)
+            msg ="Something's gone wrong :("
         finally:
-            return msg
             conn.close()
 
+    return render_template('03-daily_survey.html', msg = msg)
     if request.method == 'POST':
 
         if 'login1' in request.form:
@@ -297,6 +298,13 @@ def survey():
             if 'username' in session:
                 username = escape(session['username'])
             return render_template('00_homepage.html', login_message ='', username = '')
+
+@serv.route("/Diary", methods = ['POST', 'GET'])
+def Diary():
+    if request.method == 'GET':
+        return render_template('05- Diary.html')
+
+
 
 @serv.route("/contact", methods = ['POST','GET'])
 def contactUs():
