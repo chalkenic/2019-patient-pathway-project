@@ -179,6 +179,7 @@ td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  font-size: 18px;
 }
 
 tr:nth-child(even) {
@@ -239,7 +240,31 @@ tr:nth-child(even) {
   transition: max-height 0.2s ease-out;
 }
 
-/* ADMIN GRAPH STYLING SECTION */
+
+
+
+/* ADMIN ACCOUNT SEARCH STYLING SECTION */
+
+.search_box_wrapper {
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.form-control {
+  width: 100px;
+  display: inline;
+
+}
+
+.admin_form {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#search_header {text-align: center;}
 
 #result_header {text-align: center;}
 
@@ -247,7 +272,7 @@ tr:nth-child(even) {
 
 .flex_container {
   display: inline-flex;
-  max-width: 95%;
+  max-width: 90%%;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
@@ -265,3 +290,57 @@ tr:nth-child(even) {
   flex-basis: auto;
   margin: 7px;
   padding: 2px;
+}
+
+.pdf_download_descriptor {
+  text-align: center;
+}
+
+.pdf_button_wrapper {
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border: 2px solid #000;
+}
+
+.admin_button, .pdf_button {
+  letter-spacing: .1em;
+  color: #fff;
+  font-size: 120%;
+  text-align: center;
+  padding: 5px 100px;
+  background: #7B64AB;
+  border-bottom: 1px solid #000000;
+  text-decoration: none;
+  border-radius: 5px;
+  transition-property: background, border-radius, transform;
+  transition-duration: 0.5s;
+}
+
+/* Dicates how the nested link anchors react on mouse hover */
+.pdf_button:hover {
+  background: #f58282;
+  border-radius: 25px;
+  color: #000000;
+  transform: rotate(0deg);
+}
+
+.admin_button:hover {
+  background: #5cb85c;
+  border-radius: 25px;
+}
+
+.data_header {
+  text-align: center;
+}
+
+@media screen and  (max-width: 850px)
+{
+  .fullsize_box {
+    width: 100vw!important;
+    height: 100vh!important;
+  }
+}
