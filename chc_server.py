@@ -454,10 +454,10 @@ def target_patient_data(username, email):
         cursor.execute("SELECT * FROM accounts WHERE volunteerID=? AND Access = 'User';", [volunteer_ID])
         table_data = cursor.fetchall()
 
-        print(volunteer_ID)
+        print(table_data)
 
         print("hello1")
-        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID FROM surveyData\
+        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID, name FROM surveyData\
         INNER JOIN accounts\
         ON surveyData.accountID=accounts.userID\
         WHERE volunteerID =?;''', [volunteer_ID])

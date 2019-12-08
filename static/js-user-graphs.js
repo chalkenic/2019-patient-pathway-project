@@ -8,6 +8,7 @@
 $(document).ready(function() {
 
   console.log(linegraph_data);
+  console.log(table_data)
 
 
   var time = []
@@ -107,7 +108,7 @@ $(document).ready(function() {
     }
   });
 
-  var volunteer_name = linegraph_data[2];
+  var volunteer_name = linegraph_data[0][6];
   console.log(volunteer_name)
 
   document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
@@ -134,7 +135,7 @@ $(document).ready(function() {
     doc.setFont("Courier")
     doc.setFontSize(20);
     doc.setFontType("Bold");
-    doc.text(75, 15, "Volunteer #" + user_data);
+    doc.text(75, 15, "Volunteer #" + user_data + " - " + volunteer_name);
 
     doc.fromHTML($('#graph_header_1').html(), 10, 15, {
       'width': 190,

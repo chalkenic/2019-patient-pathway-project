@@ -83,11 +83,12 @@
   //Pulls jinja for loop data into JavaScript
   var user_data = {{row[5]|safe}}
 
-  var table_data = {{ data|safe}}
+
 </script>
 
 
 {% endfor %}
+<script> var table_data = {{ data|safe}}</script>
 
 <script src = "../static/js-user-graphs.js"></script>
 
