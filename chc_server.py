@@ -304,6 +304,11 @@ def Diary():
     if request.method == 'GET':
         return render_template('05- Diary.html')
 
+@serv.route("/FAQ", methods = ['POST', 'GET'])
+def FAQ():
+    if request.method == 'GET':
+        return render_template('FAQ.html')
+
 
 
 @serv.route("/contact", methods = ['POST','GET'])
