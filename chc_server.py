@@ -304,12 +304,17 @@ def Diary():
     if request.method == 'GET':
         return render_template('05- Diary.html')
 
+# FAQ LINKING
 @serv.route("/FAQ", methods = ['POST', 'GET'])
 def FAQ():
     if request.method == 'GET':
         return render_template('FAQ.html')
 
-
+#CONTACT US LINK
+@serv.route("/contact_us_users", methods = ['POST', 'GET'])
+def contact_us_users_link():
+    if request.method == 'GET':
+        return render_template('02-contact_us_users.html')
 
 @serv.route("/contact", methods = ['POST','GET'])
 def contactUs():
