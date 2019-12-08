@@ -1,6 +1,11 @@
+<div id="content">
+
 {% extends "chc_admin_template.html" %}
 
-<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+{% block script %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+
+{% endblock %}
 
 {%block title %}<title> {{username}}'s section </title>{%endblock %}
 
@@ -10,15 +15,15 @@
 
 {% for row in data %}
 
-<h1>Data for volunteer {{row[5]}}</h1>
+<h1 id = "result_header">Data for volunteer {{row[5]}}</h1>
 
-<table class = 'table'>
+<table>
    <thead>
-      <th>AccountID</th>
-      <th>email_addr</th>
+      <th>Database ID</th>
+      <th>Email Address</th>
       <th>Name</th>
       <th>Password</th>
-      <th>Access</th>
+      <th>Website Access Level</th>
    </thead>
 
 
@@ -33,6 +38,48 @@
 
 </table>
 
+
+
+<section class="flex_container">
+
+
+  <div >
+    <h2> {{row[2]}}'s Experiences</h2>
+    <canvas id="line_graph" class = "data_1" width="800" height="450"></canvas>
+  </div>
+
+
+  <div>
+    <h2> {{row[2]}}'s Interactions</h2>
+    <canvas id="bar_chart" class="data_2"width="800" height="450"></canvas>
+
+  </div>
+
+
+  <div >
+    <h2 id = "user_messages"> {{row[2]}}'s messages</h2>
+    <canvas id="bar_chart" class="data_3" width="800" height="450"></canvas>
+
+  </div>
+</section>
+
 {% endfor %}
+
+<a href="javascript:demoFromHTML()" class="button">Run Code</a>
+
+
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline@0.1.3/src/chartjs-plugin-trendline.min.js"></script>"
+
+<!-- <script src = "js/query.min.js"></script>
+<script src = js/jsPDF/dist/jspdf.min.js"></script> -->
+
+
+
+<script>
+  var linegraph_data = {{ lineg_data|safe }}
+</script>
 
 {% endblock %}
