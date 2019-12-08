@@ -169,7 +169,7 @@ def section():
 
         if Access == "Admin":
             if username is not None:
-                get_all_users()
+                # get_all_users()
 
                 return render_template('01-2-patientSearch.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
@@ -348,18 +348,33 @@ def target_patient_data(username, email):
         db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
         cursor.execute("SELECT * FROM accounts WHERE volunteerID=? AND Access = 'User';", [volunteer_ID])
-        data = cursor.fetchall()
-        print(data)
+        table_data = cursor.fetchall()
+
+        print(volunteer_ID)
+
+        print("hello1")
+        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID FROM surveyData\
+        INNER JOIN accounts\
+        ON surveyData.accountID=accounts.userID\
+        WHERE volunteerID =?;''', [volunteer_ID])
+        print("hello2")
+
+        graph_data = cursor.fetchall()
+        print(graph_data)
+
+        js_data = json.dumps(graph_data)
+        print(js_data)
+
 
     except:
-        print("Unfortunately an error has occurred", data)
+        print("Unfortunately an error has occurred", table_data)
         db.close()
 
     finally:
         db.close()
 
         username = request.cookies.get('username')
-        return render_template('01-2-patientSearchResult.html', data = data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+        return render_template('01-2-patientSearchResult.html', data = table_data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), lineg_data = json.loads(js_data))
 
 def all_user_data(username):
 
