@@ -310,11 +310,17 @@ def FAQ():
     if request.method == 'GET':
         return render_template('FAQ.html')
 
-#CONTACT US LINK
+#CONTACT US USERS LINK
 @serv.route("/contact_us_users", methods = ['POST', 'GET'])
 def contact_us_users_link():
     if request.method == 'GET':
         return render_template('02-contact_us_users.html')
+
+# ADMIN CONTACT US LINK
+@serv.route("/admin_contact", methods = ['POST', 'GET'])
+def admin_contact_link():
+    if request.method == 'GET':
+        return render_template('admin_contact.html')
 
 @serv.route("/contact", methods = ['POST','GET'])
 def contactUs():
