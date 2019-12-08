@@ -1,11 +1,9 @@
-<!-- These references extend the skeleton of the homepage-->
-{% extends "chc_template.html" %}
-<!-- Style sheet reference -->
-<link rel="stylesheet" type="text/css" href="../static/style-main.css" />
-<!--Script Reference-->
-<script type="text/javascript" src="../script/myscript.js"></script>
+{% extends "chc_user_template.html" %}
 
+<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+<link rel="stylesheet" href="static/style-main.css"
 {%block title %}
+
 
 <title> Cancer Patient Pathways - Diary </title>
 {%endblock %}
@@ -20,3 +18,5 @@
 
 <input type="submit">
 </form>
+
+{%endblock%}
