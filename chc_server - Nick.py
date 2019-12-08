@@ -119,10 +119,7 @@ def frontPage():
 
     if request.method == 'POST':
 
-        if 'login1' in request.form:
-            return user_login()
-
-        elif 'regLink' in request.form:
+        if 'regLink' in request.form:
             return render_template('register.html')
 
         else:
@@ -145,14 +142,14 @@ def register():
             return render_template('register.html', username = "", section_name = str(""))
 
     if request.method == 'POST':
-        if 'login1' in request.form:
-            return user_login()
-
-        else:
-            username = ''
-            if 'username' in session:
-                username = escape(session['username'])
-            return render_template('00-1-empty_homepage.html', login_message ='', username = '')
+        # if 'login1' in request.form:
+        #     return user_login()
+        #
+        # else:
+        username = ''
+        if 'username' in session:
+            username = escape(session['username'])
+        return render_template('00-1-empty_homepage.html', login_message ='', username = '')
 
 
 @serv.route("/section", methods = ['POST','GET'])
@@ -184,14 +181,14 @@ def section():
 
     if request.method == 'POST':
 
-        if 'login1' in request.form:
-            return user_login()
+        # if 'login1' in request.form:
+        #     return user_login()
+        #
+        # elif 'patient_search' in request.form:
 
-        elif 'patient_search' in request.form:
-
-            username = request.cookies.get('username', default ='Error')
-            id_search = request.form.get('id_search', default ='Error')
-            return target_patient_data(username, id_search)
+        username = request.cookies.get('username', default ='Error')
+        id_search = request.form.get('id_search', default ='Error')
+        return target_patient_data(username, id_search)
 
 
 @serv.route("/allAccounts", methods = ['GET', 'POST'])
@@ -202,11 +199,6 @@ def allAccounts():
         username = request.cookies.get('username')
         return all_user_data(username)
         # get_all_users()
-
-
-
-    if request.method == 'POST':
-            return user_login()
 
 @serv.route("/survey", methods = ['POST','GET'])
 def survey():
@@ -244,14 +236,14 @@ def survey():
 
     if request.method == 'POST':
 
-        if 'login1' in request.form:
-            return user_login()
-
-        else:
-            username = ''
-            if 'username' in session:
-                username = escape(session['username'])
-            return render_template('00_homepage.html', login_message ='', username = '')
+        # if 'login1' in request.form:
+        #     return user_login()
+        #
+        # else:
+        username = ''
+        if 'username' in session:
+            username = escape(session['username'])
+        return render_template('00_homepage.html', login_message ='', username = '')
 
     if request.method == 'POST':
         if 'login1' in request.form:
@@ -269,14 +261,14 @@ def contactUs():
         return render_template('02-contact_us.html', username = "", section_name = str(""))
 
     if request.method == 'POST':
-        if 'login1' in request.form:
-            return user_login()
-
-        else:
-            username = ''
-            if 'username' in session:
-                username = escape(session['username'])
-            return render_template('00_homepage.html', login_message ='', username = '')
+        # if 'login1' in request.form:
+        #     return user_login()
+        #
+        # else:
+        username = ''
+        if 'username' in session:
+            username = escape(session['username'])
+        return render_template('00_homepage.html', login_message ='', username = '')
 
 # Adapted from stackoverflow "ThiefMaster" question Flask: How to remove cookies?. Available at: https://stackoverflow.com/questions/14386304/flask-how-to-remove-cookies
 
@@ -293,36 +285,36 @@ def contactFormdata():
 
     if request.method =='POST':
 
-        if 'login1' in request.form:
-            return user_login()
+        # if 'login1' in request.form:
+        #     return user_login()
+        #
+        # elif 'form_submission_guest' in request.form:
+        add_firstName = request.form.get('firstName', default="Error")
+        add_lastName = request.form.get('lastName', default="Error")
+        add_email = request.form.get('email', default="Error")
+        add_query = request.form.get('query', default="Error")
+        print("inserting contact result "+ add_firstName)
+        print(add_lastName)
+        # try:
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
+		# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
+        cur.execute("INSERT INTO contactForm ('firstName', 'lastName', 'email', 'query') VALUES (?,?,?,?)", (add_firstName, add_lastName, add_email, add_query))
+        # cur.fetchall()
+        conn.commit()
+        msg = "Thanks, we'll respond as soon as possible."
+    # # except:
+    #     conn.rollback()
+    #     msg = "error in insert operation"
+    # # finally:
+    #     conn.close()
+        return render_template('02-contact_us.html', msg = msg)
 
-        elif 'form_submission_guest' in request.form:
-            add_firstName = request.form.get('firstName', default="Error")
-            add_lastName = request.form.get('lastName', default="Error")
-            add_email = request.form.get('email', default="Error")
-            add_query = request.form.get('query', default="Error")
-            print("inserting contact result "+ add_firstName)
-            print(add_lastName)
-            # try:
-            conn = sqlite3.connect(DATABASE)
-            cur = conn.cursor()
-            # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
-			# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
-            cur.execute("INSERT INTO contactForm ('firstName', 'lastName', 'email', 'query') VALUES (?,?,?,?)", (add_firstName, add_lastName, add_email, add_query))
-            # cur.fetchall()
-            conn.commit()
-            msg = "Thanks, we'll respond as soon as possible."
-        # # except:
-        #     conn.rollback()
-        #     msg = "error in insert operation"
-        # # finally:
-        #     conn.close()
-            return render_template('02-contact_us.html', msg = msg)
 
-
-        # session['user_email'] = request.form['user_email']
-        # session['Password'] = request.form['user_password']
-        # print("Password checks out, hello " + user + "!")
+    # session['user_email'] = request.form['user_email']
+    # session['Password'] = request.form['user_password']
+    # print("Password checks out, hello " + user + "!")
 
 @serv.route("/logout", methods = ['GET', 'POST'])
 def logout():
@@ -333,9 +325,6 @@ def logout():
         logout.set_cookie('email_addr', expires = 0 )
         logout.set_cookie('Access', expires = 0)
         return logout
-
-    if request.method == 'POST':
-        return user_login()
 
 # FUNCTIONS
 # FUNCTIONS
@@ -482,6 +471,7 @@ def login_credentials(username, password):
         else:
             return False
 
+@serv.route("/login", methods =["POST"])
 def user_login():
     username = request.form.get('user_email', default="Error")
     email_addr = request.form.get('user_email', default="Error")
