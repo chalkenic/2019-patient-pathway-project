@@ -372,13 +372,13 @@ def all_user_data(username):
     # for user in range(1,userID_count[0]):
     for user in range(0,userID_count[0]):
 
-        print(user_count)
         cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, access FROM surveyData\
         INNER JOIN accounts\
         ON surveyData.accountID=accounts.userID\
         WHERE userID =? AND access == "User";''', [user_count])
 
         range_data = cursor.fetchall()
+
         temp_dict[user] = range_data
 
         user_count += 1

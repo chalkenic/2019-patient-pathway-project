@@ -227,7 +227,7 @@ def survey():
         finally:
             conn.close()
 
-# Link to Diary
+
 @serv.route("/Diary", methods = ['POST', 'GET'])
 def Diary():
     if request.method == 'GET':
@@ -454,10 +454,10 @@ def target_patient_data(username, email):
         cursor.execute("SELECT * FROM accounts WHERE volunteerID=? AND Access = 'User';", [volunteer_ID])
         table_data = cursor.fetchall()
 
-        print(table_data)
+        print(volunteer_ID)
 
         print("hello1")
-        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID, name FROM surveyData\
+        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID FROM surveyData\
         INNER JOIN accounts\
         ON surveyData.accountID=accounts.userID\
         WHERE volunteerID =?;''', [volunteer_ID])
