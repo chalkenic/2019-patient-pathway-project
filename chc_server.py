@@ -238,7 +238,6 @@ def allAccounts():
         username = request.cookies.get('username')
         return all_user_data(username)
 
-
 @serv.route("/survey", methods = ['POST','GET'])
 def survey():
     if request.method == 'GET':
@@ -298,10 +297,7 @@ def Diary():
         print(e)
         msg="Something's gone wrong :("
     finally:
-        conn.close()
-        return msg
-
-
+     return msg
 
 # FAQ LINKING
 @serv.route("/FAQ", methods = ['POST', 'GET'])
@@ -505,34 +501,6 @@ def all_user_data(username):
     db.close()
 
     return render_template('01-2-allAccounts.html', data = tabledata, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), graph_data = json.loads(admin_graph_data))
-
-@serv.route("/delete", methods =['DELETE'])
-def delete_user():
-    username = request.cookies.get('username')
-    # if request.method == 'DELETE':
-    user_id = request.form['id']
-    try:
-        print(user_id)
-        db = sqlite3.connect(DATABASE)
-        cursor = db.cursor()
-        cursor.execute("DELETE from accounts where userID =?;", [user_id])
-        message = f"{user_id} deleted from server."
-        print(message)
-        db.commit()
-    except:
-        db.rollback()
-        message = "Error - please try again."
-    finally:
-        db.close()
-        print("Hello Theo!")
-        return message
-    # else:
-    #     return "Hello this should never be called everrrr"
-
-        # query = "(DELETE * from accounts where userID =?, [user_id];)"
-
-
-
 
 def get_all_users():
 
