@@ -216,7 +216,7 @@ def survey():
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor ()
-            cur.execute("INSERT INTO Survey('Date','Health','SocialCare','LocalAuthority','ThirdSector','OwnActivities') VALUES (?,?,?,?,?,?)",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
+            cur.execute("INSERT INTO Survey('Date','Health','Social_Care','Local_Authority','Third_Sector','Own_Activities') VALUES (?,?,?,?,?,?)",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
 
             conn.commit()
             msg ="Survey Data successfully recorded. See You Tomorrow!"
@@ -226,6 +226,7 @@ def survey():
             msg ="Something's gone wrong :("
         finally:
             conn.close()
+            return msg
 
 
 @serv.route("/Diary", methods = ['POST', 'GET'])
@@ -245,11 +246,52 @@ def contact_us_users_link():
     if request.method == 'GET':
         return render_template('02-contact_us_users.html')
 
+    if request.method =='POST':
+
+        add_query_users = request.form.get('query', default="Error")
+        print(add_query_users)
+        # try:
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
+		# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
+        cur.execute("INSERT INTO contactFormUsers ('query') VALUES (?)", (add_query_users,))
+        # cur.fetchall()
+        conn.commit()
+        msg = "Thanks, we'll respond as soon as possible."
+    # # except:
+    #     conn.rollback()
+    #     msg = "error in insert operation"
+    # # finally:
+    #     conn.close()
+        return render_template('02-contact_us_users.html', msg = msg)
+
 # ADMIN CONTACT US LINK
 @serv.route("/admin_contact", methods = ['POST', 'GET'])
 def admin_contact_link():
     if request.method == 'GET':
         return render_template('admin_contact.html')
+
+    if request.method == 'POST':
+
+        add_admin_query = request.form.get('query', default="Error")
+        print(add_admin_query)
+        # try:
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
+	# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
+        cur.execute(
+            "INSERT INTO adminContact ('query') VALUES (?)", (add_admin_query,))
+        # cur.fetchall()
+        conn.commit()
+        msg = "Thanks, we'll respond as soon as possible."
+    # # except:
+    #     conn.rollback()
+    #     msg = "error in insert operation"
+    # # finally:
+    #     conn.close()
+        return render_template('admin_contact.html', msg=msg)
 
 @serv.route("/contact", methods = ['POST','GET'])
 def contactUs():
