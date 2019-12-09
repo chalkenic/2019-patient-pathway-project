@@ -77,7 +77,7 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 def newUser():
     if request.method == 'GET':
         return render_template('register.html')
-    elif request.method == 'GET':
+    elif request.method == 'POST':
         regEmail = request.form.get('registerEmail', default = 'error')
         regPass1 = request.form.get ('registerPassword', default = 'error')
         print (regEmail)
@@ -86,7 +86,7 @@ def newUser():
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor()
-            cur.execute("INSERT INTO accounts('userID', 'email_addr', 'name', 'password', 'access', volunteerID) VALUES (?,?,?,?,?,?)", ('15', regEmail, 'nik', regPass1, 'User', '22121'))
+            cur.execute("INSERT INTO accounts( 'email_addr', 'name', 'password', 'access', volunteerID) VALUES (?,?,?,?,?,?)", ( regEmail, 'nik', regPass1, 'User', '22121'))
             conn.commit()
             msg ="Survey Data successfully recorded"
             conn.close()
