@@ -26,10 +26,10 @@
           <td>{{row[0]}}</td>
           <td>{{row[1]}}</td>
           <td>{{row[2]}}</td>
-          <td>{{row[3]}}</td>        
-            <td>
-              <input type = 'hidden' value = '{{row[0]}}'>
-              <input type = 'submit' value = 'delete'>
+          <td>{{row[3]}}</td>
+            <td class = "delete_button_td">
+              <!-- <input type = 'hidden' name = "user_id" value = '{{row[0]}}'> -->
+              <button onclick = "return deleteUser({{ row[0] }})">&nbsp; Delete Account &nbsp; </button>
             </td>
 
         </tr>
@@ -37,10 +37,14 @@
   </table>
 </form>
 
-<section class="flex_container">
-  <h1>All users' project experience</h1>
+<section class="aggregate_container">
 
-  <canvas id="line_graph" width="800" height="450"></canvas>
+
+  <div class = 'fullsize_box'>
+    <h1 class = "data_header">All users' project experience</h1>
+    <canvas id="line_graph" class = "data_line" width="800" height="450"></canvas>
+  </div>
+
 
 </section>
 

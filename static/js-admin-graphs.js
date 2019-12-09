@@ -1,4 +1,5 @@
 
+
 $(document).ready(function() {
 
 
@@ -7,7 +8,8 @@ $(document).ready(function() {
   console.log(linegraph_data);
 
   var all_users_experiences = [];
-  var start_date = linegraph_data [0][0][4];
+  var start_date = "2019-11-1";
+  // var start_date = linegraph_data [0][0][4];
   console.log("Start date: " + start_date);
 
   // console.log("Start date: " + start_date.getDate() + 1);
@@ -21,18 +23,6 @@ $(document).ready(function() {
   var social = 0
   var own_activities = 0
 
-  // function deleteNulls(array) {
-  //   for (var user in array) {
-  //     for (var data in user) {
-  //       if(user[data] === null || user[data] === undefined) {
-  //         delete array[user];
-  //       }
-  //     }
-  //     // if (array[user][0] === null || array[user][0] === undefined) {
-  //     //   delete array[user];
-  //     // }
-  //   }
-  // }
 
   Object.keys(linegraph_data).forEach((key) => (linegraph_data[key] == null) && delete linegraph_data[key]);
 
@@ -178,50 +168,6 @@ $(document).ready(function() {
   //   console.log(user_exp_totals);
   // }
 
-
-    // console.log(pos_total)
-
-  // for()
-
-
-  // var ctx = document.getElementById("line_graph");
-  // var line_graph = new Chart(ctx, {
-  //   type: 'line',
-  //   data: {
-  //     labels: survey_dates,
-  //     datasets: [
-  //
-  //         {
-  //         data: all_users_experiences[0],
-  //         label: "User_1",
-  //         borderColor: "#3e95cd",
-  //         fill: false
-  //       },
-  //       {
-  //         data: all_users_experiences[1],
-  //         label: "User_2",
-  //         borderColor: "#c45850",
-  //         fill: false
-  //       },
-  //       {
-  //         data: user_exp_aggregate,
-  //         label: "Average",
-  //         borderColor: "#",
-  //         fill: false,
-  //         trendlineLinear: {
-  //           label: "Experience trendline",
-  //           borderColor: "#c45850",
-  //           // style: "rgb(43, 66, 255, 0.3)",
-  //           lineStyle: "dotted|solid",
-  //           width: 2
-  //         }
-  //       }
-  //     ]
-  //   }
-  // });
-
-
-
   var ctx = document.getElementById("line_graph");
   var line_graph = new Chart(ctx, {
     type: 'line',
@@ -284,3 +230,26 @@ $(document).ready(function() {
   deleteLast()
 
 });
+
+
+function deleteUser(userID){
+  console.log(userID);
+  confirm = confirm("Really delete?");
+
+  if (confirm == true){
+    $.ajax('/delete', {
+      type: 'DELETE',
+      data: {
+        id: userID
+      },
+      success: function(){
+        console.log("Success");
+      },
+
+      error: function() {
+        console.log("Error when deleting user.");
+      }
+    });
+  }
+  return false;
+};
