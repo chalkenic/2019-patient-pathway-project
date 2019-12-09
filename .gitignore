@@ -1,8 +1,0 @@
-
-#Ignores databases when merging due to potential conflicts of entries.
-*.db
-*.db-journal
-
-#Ignores virtual environment data on personal folder.
-Pipfile
-Pipfile.lock
