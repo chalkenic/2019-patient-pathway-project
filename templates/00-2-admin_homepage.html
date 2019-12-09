@@ -4,158 +4,37 @@
 
 {% block content  %}
 
-<main> <center>
-  <div class="homepage_body"> The Cancer Patient Survey <br>
-    <br>
-    If you've experienced the NHS Cancer service we'd like your feedback to improve the quality of the service that we
-    provide to patients <br>
-    <br>
-    You'll be provided with unique login details to allow you to provide feedback on the service <br>
-    <br>
-    Each response is taken into consideration, you may be contacted individually to allow us to follow up on the matter at
-    hand.<br>
-    <br>
-    For any questions please use the contact form, response will depend on the query <br>
-    <br>
-    Thank you.
-</center></main> 
+<main>
+  <h1 class = "admin_head">Administration homepage</h1>
+  <h3 class = "admin_head">From this space you can do the following using the tabs above:</h3>
+    <section class = "admin_flex_container">
+      <article class = "element_1"><a href = "/section" class = "admin_link">
+        <h2 class = "admin_head">Find Account</h2>
+        <p>Our designers spend their whole lives studying the use of furniture and have brought to you a chair with 4 legs, a flat table, and a bed you can lie on</p>
+      </a>
+    </article>
+
+      <article class = "element_2"><a href = "/section" class = "admin_link">
+        <h2 class = "admin_head">List All Accounts</h2>
+        <p>Our novel construction approach, attaches the legs on to the underside of the table top one at a time.</p>
+        </a>
+      </article>
+
+      <article class = "element_3"><a href = "/section" class = "admin_link">
+        <h2 class = "admin_head">Decoration</h2>
+        <p>Our Artists have discovered an incredible coating material for our furniture. It is called paint, and it comes in all manner of colours</p>
+        </a>
+      </article>
+
+      <article class = "element_4"><a href = "/section" class = "admin_link">
+        <h2 class = "admin_head">Decoration</h2>
+        <p>Our Artists have discovered an incredible coating material for our furniture. It is called paint, and it comes in all manner of colours</p>
+        </a>
+      </article>
+    </section>
+
+    <section class = 'admin_logout'>
+      <a href = '/logout' class = logout_link><p>Click Here to logout</p></a>
+    </section>
 
 {% endblock %}
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "icon" type = "image/gif/png" href = "/static/assets/health_counc_img_notext_purple.png">
-    <title>Cancer Patient Pathways - Home</title>
-
-
-      <!-- <link rel = "stylesheet" href = "{{ url_for('static', filename='bootstrap.min.css') }}" /> -->
-
-      <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-  <script src = 'https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
-  {% block link %} {% endblock %}
-
-
-    <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
-
-  </head>
-
-  <body>
-    <div class = "body_container">
-
-      <header>
-        <div class = "title_head_container">
-
-          <!-- Positioning & styling of login-box. Collapsible -->
-          <nav class=" navbar-inverse">
-            <div class="container-fluid">
-              <div class="navbar-header">
-                <button class = "navbar-toggle" data-toggle = "collapse" data-target = ".navbar-collapse">
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                </button>
-                <a style = "color: #fff" class="navbar-brand" id = user>{{welcome}}</a>
-              </div>
-
-              <div class = "collapse navbar-collapse">
-                <form class="navbar-form navbar-left" method = "post">
-                  <div class="form-group">
-                    <label for="user_email"></label>
-                    <input type="email"
-                    required
-                           name = "user_email"
-                           class="form-control"
-                           placeholder="Email">
-
-                  </div>
-
-                  <div class="form-group">
-                    <label for="user_password"></label>
-                    <input type="password"
-                    required
-                           name = "user_password"
-                           class="form-control" id="passwordInput" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                           placeholder="Password">
-                  </div>
-
-                    <button
-                            name = "login1"
-                            type="submit"
-                            class="btn btn-success">Sign in
-                    </button>
-
-                    <button
-                          class="btn btn-default" name="regLink"><a href = "/register">Register new account</a>
-                    </button>
-                </form>
-              </div>
-
-            </div>
-          </nav>
-
-          <!-- Covers title of website along with link to frontpage -->
-          <div class = "title_head">
-            <h1 id = "project_title"><a href = "/home">The Cancer Pathway Project</a></h1>
-          </div>
-
-          <!-- Covers hand image in header along with CHC symbol -->
-          <div class = "jumbotron_bckground">
-            <figure id = chc_logo>
-              <img src = "/static/assets/health_counc_img_notext_white.png"
-              alt = "Community Health council img">
-            </figure>
-          </div>
-
-          <!-- Navigation to all webpages -->
-          <div class = "title_navigation_container">
-            <nav class = "main_nav">
-              <span><a href = "/section">{{section_name}} Section</a></span>
-              <span><a href = "/survey">Survey Entry</a></span>
-              <span><a href ="/LTS-surv"> Local&ThirdSector Survey </a> </span>
-              <span><a href = "/contact">Contact</a></span>
-            </nav>
-          </div>
-
-        </header>
-
-      </div>
-
-      <main> <center>
-        <div class="homepage_body"> The Cancer Patient Survey <br>
-          <br>
-          If you've expeirenced the NHS Cancer service we'd like your feedback to improve the quality of the service that we
-          provide to paients <br>
-          <br>
-          You'll be provided with unique login details to allow you to provide feedback on the service <br>
-          <br>
-          Each response is taken into consideration, you may be contacted individually to allow us to follow up on the matter at
-          hand.<br>
-          <br>
-          For any questions please use the contact form, response will depend on the query <br>
-          <br>
-          Thank you.
-      </main> </center>
-
-</body>
-
-    </div>
-    <footer>
-      <hr>
-      <address>
-        <span><u>©2019: 	Cancer Pathway Project </u>| Contact: <a href="mailto:cancer-pathway@outlook.com"> cancer-pathway@outlook.com</a>
-        <u>Address</u></span>
-      </address>
-    </footer>
-    <!-- Latest compiled and minified JavaScript -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
-
-
-  </body>

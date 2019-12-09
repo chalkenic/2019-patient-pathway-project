@@ -1,0 +1,194 @@
+.admin_flex_container {
+  display: flex;
+
+
+}
+
+.admin_flex_container > .element_1 {
+  border: 2px solid #000;
+  background-color: #7B64AB;
+  color: #fff;
+  flex-basis: 2;
+  margin: 1%;
+  padding: 1px;
+}
+
+.admin_flex_container > .element_2 {
+  border: 2px solid #000;
+  background-color: #7B64AB;
+  color: #fff;
+  flex-basis: 2;
+  margin: 1%;
+  padding: 1px;
+  text-decoration: none;
+}
+.admin_flex_container > .element_3 {
+  border: 2px solid #000;
+  background-color: #7B64AB;
+  color: #fff;
+  flex-basis: 2;
+  margin: 1%;
+  padding: 1px;
+}
+.admin_flex_container > .element_4 {
+  border: 2px solid #000;
+  background-color: #7B64AB;
+  color: #fff;
+  flex-basis: 2;
+  margin: 1%;
+  padding: 1px;
+}
+
+.admin_link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.admin_link:hover{
+  color: #ebf2ff;
+}
+
+.admin_head {
+  text-align: center;
+}
+
+/* .admin_box  {
+
+} */
+
+.admin_logout {
+  border: 1px solid #000;
+  background-color: #7B64AB;
+  padding-top: 10px;
+  width: 90%;
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  /* justify-content: center; */
+}
+
+.logout_link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.admin_link:hover{
+  color: #ebf2ff;
+}
+
+@media screen and  (max-width: 850px)
+{
+  .fullsize_box {
+    width: 100vw!important;
+    height: 100vh!important;
+  }
+  .aggregate_container {
+    margin-left: 0;
+  }
+}
+
+.pdf_button_wrapper {
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border: 2px solid #000;
+}
+
+.admin_button, .pdf_button {
+  letter-spacing: .1em;
+  color: #fff;
+  font-size: 120%;
+  text-align: center;
+  padding: 5px 100px;
+  background: #7B64AB;
+  border-bottom: 1px solid #000000;
+  text-decoration: none;
+  border-radius: 5px;
+  transition-property: background, border-radius, transform;
+  transition-duration: 0.5s;
+}
+
+/* Dicates how the nested link anchors react on mouse hover */
+.pdf_button:hover {
+  background: #f58282;
+  border-radius: 25px;
+  color: #000000;
+  transform: rotate(0deg);
+}
+
+.admin_button:hover {
+  background: #5cb85c;
+  border-radius: 25px;
+}
+
+.data_header {
+  text-align: center;
+}
+
+.flex_container {
+  display: inline-flex;
+  max-width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flex_container > .data_1 {
+  border: 2px solid #000;
+  flex-basis: auto;
+  margin: 7px;
+  padding: 2px;
+}
+
+.flex_container > .data_2 {
+  border: 2px solid #000;
+  flex-basis: auto;
+  margin: 7px;
+  padding: 2px;
+}
+
+.delete_button_td {
+  width: 20%;
+}
+
+.aggregate_container {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.aggregate_container > .data_line {
+  display: inline;
+  align-items: center;
+  border: 2px solid #000;
+
+}
+
+.form-control {
+  width: 100px;
+  display: inline;
+
+}
+
+@media screen and  (max-width: 850px)
+{
+  .aggregate_container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+#search_header {text-align: center;}
+
+#result_header {text-align: center;}
+
+#user_messages {text-align: center;}
