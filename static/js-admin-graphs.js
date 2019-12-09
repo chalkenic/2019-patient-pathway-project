@@ -230,12 +230,12 @@ $(document).ready(function() {
       datasets: [{
           data: user_exp_aggregate,
           label: "Average",
-          borderColor: "#",
+          borderColor: "#c45850",
           fill: false,
           trendlineLinear: {
             label: "Experience trendline",
             borderColor: "#c45850",
-            // style: "rgb(43, 66, 255, 0.3)",
+            style: "rgb(43, 66, 255, 0.3)",
             lineStyle: "dotted|solid",
             width: 2
           }
@@ -273,7 +273,14 @@ $(document).ready(function() {
 
   for(user = 0; user < user_total; user++){
     addData(line_graph, "user " + user, getRandomColor(), all_users_experiences[user]);
+
   };
 
+  function deleteLast() {
+    line_graph.data.datasets.pop();
+    line_graph.update()
+  }
+
+  deleteLast()
 
 });

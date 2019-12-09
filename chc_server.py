@@ -457,7 +457,7 @@ def target_patient_data(username, email):
         print(volunteer_ID)
 
         print("hello1")
-        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID FROM surveyData\
+        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID , name FROM surveyData\
         INNER JOIN accounts\
         ON surveyData.accountID=accounts.userID\
         WHERE volunteerID =?;''', [volunteer_ID])
