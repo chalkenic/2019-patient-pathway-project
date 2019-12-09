@@ -6,8 +6,6 @@ import json
 
 # Login Imports
 import sqlite3 as sql
-import models as dbHandler
-import models
 
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -79,16 +77,17 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 def newUser():
     if request.method == 'GET':
         return render_template('register.html')
-    if request.method == 'POST':
-        regEmail = request.form.get('email1', default = 'error')
-        regPass1 = request.form.get ('pass1', default = 'error')
-        regPass2 = request.form.get ('pass2', default = 'error')
+        alert ('LOADED THE WEBAPAGGEE@@@')
+    elif request.method == 'GET':
+        regEmail = request.form.get('email', default = 'error')
+        regPass1 = request.form.get ('psw', default = 'error')
+        print (regEmail)
+        print (regPass1)
         try:
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
-            cur = conn.cursor ()
-            cur.execute("INSERT INTO main.accounts('email_addr','name','password','access') VALUES (?,?,?,?)", (regEmail, regPass1, regPass, "User"))
-
+            cur = conn.cursor()
+            cur.execute("INSERT INTO main.accounts('email_addr','password') VALUES (?,?)", (regEmail, regPass1))
             conn.commit()
             msg ="Survey Data successfully recorded"
         except:
@@ -99,6 +98,46 @@ def newUser():
             conn.close()
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #
+    #
+    # elif request.method == 'GET':
+    #     print (request.args.get('email1', defailt = 'error'))
+    #     regEmail = "Yo"
+    #     regPass1 = "Test"
+    #     regEmail = request.args.get('email1', default = 'error')
+    #     regPass1 = request.args.get('pass1', default = 'error')
+    #     regPass2 = request.args.get('pass2', default = 'error')
+    #     print (regEmail)
+    #     try:
+    #         request.form.get('')
+    #         conn = sqlite3.connect(DATABASE)
+    #         cur = conn.cursor ()
+    #         cur.execute("INSERT INTO accounts ('email_addr','password','access') VALUES (?,?,?)", (regEmail, regPass1, 'User'))
+    #
+    #         conn.commit()
+    #         msg ="Survey Data successfully recorded"
+    #     except:
+    #         conn.rollback()
+    #         msg ="Error"
+    #     finally:
+    #         return msg
+    #         conn.close()
+    #
+    #
 
 
 
