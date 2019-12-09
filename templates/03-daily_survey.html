@@ -9,8 +9,11 @@
 
 <table>
       <tr>
+        <div class="flex-container-home">
+          <div style="flex-grow: 4">
             <h3> The following is a survey which enables us to understand how your
                     interactions with the NHS have been going so far. </h3>
+
 
                     <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
                       <br><br>
@@ -20,6 +23,8 @@
                       <br>
                       <h4 class = <strong> Did you undertake any activities relating to the following this week? </strong>
                         <br>
+                        </div>
+                        </div>
 
 
                             <th>Health </th>
@@ -40,7 +45,9 @@
 
     </table>
 
-    <h4 class=<strong> <b>Finally to end this survey off for today, below, simply summarise your mood for this week! </b> </strong>
+    <div style="flex-grow: 3">
+
+    <h4> Finally to end this survey off for today, below, simply summarise your mood for this week! </h4>
    <br> <br>
 
 
@@ -59,7 +66,7 @@
 
        <label>
            <input type="radio" name="Happy" value="happy" >
-       <img src="static/assets/Good_Smiley_Face.jpeg"  height="75%", width="55%"/>
+       <img src="static/assets/Good_Smiley_Face.jpeg"  height="75%", width="65%"/>
        </label>
        </div>
 
@@ -68,16 +75,22 @@
 <div class="column">
        <label>
            <input type="radio" name="Ok" value="ok" >
-         <img src="static/assets/Orange_Smiley_Face.jpeg", alt="okmood"/>
+         <img src="static/assets/Yellow_ok_face.jpeg", width="65%" alt="okmood"/>
        </label>
        <br><br>
 </div>
 <div class="column">
        <label>
            <input type="radio" name="Upset" value="upset" >
-        <img src="static/assets/Red_Angry_Face.jpeg", width="55%", height="75%" alt="badmood">
+        <img src="static/assets/Orange_upset_Face.jpeg",  alt="badmood">
       </label>
+      </div>
       <br> <br>
+<div class="column">
+  <label>
+    <input type="radio" name="angry" value="angry">
+    <img src="static/assets/Red_Angry_Face.jpeg" width="55%", height="75%">
+    </label>
 </div>
 </div>
 
@@ -87,6 +100,6 @@
 
 
 <a href ="static/assets/Client_Survey.pdf"> <b> Click here for a downloadable version of this survey. <b>
-
+</div>
 
 {% endblock %}
