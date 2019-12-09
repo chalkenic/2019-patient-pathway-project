@@ -173,6 +173,20 @@
 
 }
 
+.form-control {
+  width: 100px;
+  display: inline;
+
+}
+
+@media screen and  (max-width: 850px)
+{
+  .aggregate_container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
 #search_header {text-align: center;}
 
 #result_header {text-align: center;}
