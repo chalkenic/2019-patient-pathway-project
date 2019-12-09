@@ -77,19 +77,20 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 def newUser():
     if request.method == 'GET':
         return render_template('register.html')
-        alert ('LOADED THE WEBAPAGGEE@@@')
     elif request.method == 'GET':
-        regEmail = request.form.get('email', default = 'error')
-        regPass1 = request.form.get ('psw', default = 'error')
+        regEmail = request.form.get('registerEmail', default = 'error')
+        regPass1 = request.form.get ('registerPassword', default = 'error')
         print (regEmail)
         print (regPass1)
         try:
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor()
-            cur.execute("INSERT INTO main.accounts('email_addr','password') VALUES (?,?)", (regEmail, regPass1))
+            cur.execute("INSERT INTO accounts('userID', 'email_addr', 'name', 'password', 'access', volunteerID) VALUES (?,?,?,?,?,?)", ('15', regEmail, 'nik', regPass1, 'User', '22121'))
             conn.commit()
             msg ="Survey Data successfully recorded"
+            conn.close()
+            return regEmail
         except:
             conn.rollback()
             msg ="Error"
@@ -97,7 +98,8 @@ def newUser():
             return msg
             conn.close()
 
-<<<<<<< HEAD
+        return regEmail
+
 
 
 
@@ -142,10 +144,6 @@ def newUser():
 
 
 
-
-
-=======
->>>>>>> 8183d1d6923aa595a4745480a63c454b7b3d4df5
 @serv.route("/home", methods = ['POST','GET'])
 def frontPage():
     if request.method == 'GET':
