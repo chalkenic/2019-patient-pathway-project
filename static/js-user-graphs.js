@@ -72,10 +72,9 @@ $(document).ready(function() {
           borderColor: "#3e95cd",
           fill: false,
           trendlineLinear: {
-            label: "Experience trendline",
-            style: "rgb(43, 66, 255, 0.3)",
-            lineStyle: "dotted|solid",
-            width: 2
+            style: "rgba(119,136,153)",
+            lineStyle: "dotted",
+            width: 3
           }
 
         }
