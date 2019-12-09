@@ -216,7 +216,7 @@ def survey():
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor ()
-            cur.execute("INSERT INTO Survey('Date','Health','SocialCare','LocalAuthority','ThirdSector','OwnActivities') VALUES (?,?,?,?,?,?)",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
+            cur.execute("INSERT INTO Survey('Date','Health','Social_Care','Local_Authority','Third_Sector','Own_Activities') VALUES (?,?,?,?,?,?)",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
 
             conn.commit()
             msg ="Survey Data successfully recorded. See You Tomorrow!"
@@ -226,6 +226,7 @@ def survey():
             msg ="Something's gone wrong :("
         finally:
             conn.close()
+            return msg
 
 
 @serv.route("/Diary", methods = ['POST', 'GET'])
