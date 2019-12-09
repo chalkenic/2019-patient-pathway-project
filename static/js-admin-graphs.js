@@ -1,4 +1,24 @@
+function deleteUser(userID){
+  console.log(userID);
+  confirm = confirm("Really delete?");
 
+  if (confirm == true){
+    $.ajax('/delete', {
+      type: 'DELETE',
+      data: {
+        id: userID
+      },
+      success: function(){
+        console.log("Success");
+      },
+
+      error: function() {
+        console.log("Error when deleting user.");
+      }
+    });
+  }
+  return false;
+};
 
 $(document).ready(function() {
 
@@ -10,7 +30,7 @@ $(document).ready(function() {
   var all_users_experiences = [];
   var start_date = "2019-11-1";
   // var start_date = linegraph_data [0][0][4];
-  console.log("Start date: " + start_date);
+  // console.log("Start date: " + start_date);
 
   // console.log("Start date: " + start_date.getDate() + 1);
 
@@ -59,11 +79,8 @@ $(document).ready(function() {
         user_experience_levels.push(user_survey_data[2]);
 
       }
-      console.log("experience_levels");
-      console.log(user_experience_levels);
       all_users_experiences.push(user_experience_levels)
     }
-    // console.log(experience_levels)
   }
 
   //Creates for loop with length based upon number of user IDs parsed from database.
@@ -87,8 +104,6 @@ $(document).ready(function() {
         //Variable that stores all values of user at nested dictionary position.
         var user_survey_data = Object.values(user_data[user_survey_count]);
 
-        console.log("Data: " +user_survey_data)
-
         //Pushes all value data at position 2 - the user experience.
         if(user_survey_data[3] == "Health"){
           health +=1;
@@ -110,63 +125,63 @@ $(document).ready(function() {
         }
 
       }
-      console.log("experience_levels");
-      console.log(user_experience_levels);
       all_users_experiences.push(user_experience_levels);
     }
   };
-
-
-
-  // console.log("All users in array: ")
-  // console.log(all_users_experiences)
-  // console.log("All data contained in array '0': ")
-  // console.log(all_users_experiences[0])
-  // console.log("all data contained in array '1': ")
-  // console.log(all_users_experiences[1])
-
-  // for(sum_count = 0; sum_count < all_users_experiences[0].length; sum_count++) {
-  //   console.log(sum_count)
-  // }
-  // console.log(linegraph_data)
   var data_total = all_users_experiences[0].length;
 
   var user_total = Object.keys(linegraph_data).length;
-    // var total_users = 30;
-  console.log('total users: ' + user_total)
-  console.log('Total data: ' + data_total)
 
-  //
-  // $scope.sum = function(items, prop) {
-  //   if items.reduce(fucntion(a, b) {
-  //     return a + b[prop];
-  //   }, 0);
-  // };
-  //
-  // $scope.travelerTotal = $scope.sum()
 
-  // var sum = all_users_experiences.map(function (num, idx) {
-  //   return num + all_users_experiences[idx];
-  // });
-  // console.log(sum)
+  var aggregate_total = user_total
 
-  user_exp_aggregate = [];
-  // console.log(all_users_experiences)
-  console.log("Initial list: "+ user_exp_aggregate);
+  console.log('total users: ' + aggregate_total)
+  console.log('Total individal user data points: ' + data_total)
+  console.log("")
+  console.log("Health interactions: " + health);
+  console.log("social_care interactions: " + social_care);
+  console.log("local_authority interactions: " + local_authority);
+  console.log("third_sector interactions: " + third_sector);
+  console.log("social interactions: " + social);
+  console.log("own_activities interactions: " + own_activities);
+  console.log("")
+
+
+  var user_exp_aggregate = [];
+
+  for (var entry = 0; entry < data_total; entry++){
+    user_exp_aggregate[entry] = 0;
+  }
+
+  console.log("Checking total patient count...")
+  console.log("")
+  //For loop that selects all
   for (var user = 0; user < user_total; user++){
 
-    for(var data_item = 0; data_item < data_total; data_item++){}
+    for(var data_item = 0; data_item < data_total; data_item++){
 
-    user_exp_aggregate.push(all_users_experiences[0][user] + all_users_experiences[1][user]);
-    console.log("updated list: " + user_exp_aggregate);
+      if(isNaN(all_users_experiences[user][2])){
+        aggregate_total -- ;
+        console.log("Null user found, removing from data. New aggregate total: " + aggregate_total)
+        break;
+      }
+      else{
+        user_exp_aggregate[data_item] = user_exp_aggregate[data_item] + all_users_experiences[user][data_item];
+      }
+    }
   }
-  console.log("Total list: " + user_exp_aggregate);
 
-  // for (var total_user_count = total_users; total_user_count > 0; total_user_count--) {
-  //   // console.log("Hello" + total_user_count);
-  //   var user_exp_totals = all_users_experiences.map((a, total_users) => a + all_users_experiences[total_users]);
-  //   console.log(user_exp_totals);
-  // }
+  console.log('Final user count: ' + aggregate_total)
+
+
+
+
+  for (var avg = 0; avg < user_exp_aggregate.length; avg++) {
+
+    user_exp_aggregate[avg] = user_exp_aggregate[avg] / aggregate_total;
+  };
+  console.log("")
+  console.log("Average data points: " + user_exp_aggregate);
 
   var ctx = document.getElementById("line_graph");
   var line_graph = new Chart(ctx, {
@@ -174,19 +189,41 @@ $(document).ready(function() {
     data: {
       labels: survey_dates,
       datasets: [{
-          data: user_exp_aggregate,
-          label: "Average",
-          borderColor: "#c45850",
-          fill: false,
-          trendlineLinear: {
-            label: "Experience trendline",
-            borderColor: "#c45850",
-            style: "rgb(43, 66, 255, 0.3)",
-            lineStyle: "dotted|solid",
-            width: 2
+        data: user_exp_aggregate,
+        label: "Average of all users",
+        borderColor: "#000",
+        borderDash: [10,5],
+        // fill: false,
+        trendlineLinear: {
+          style: "rgba(119,136,153)",
+          lineStyle: "dotted",
+          width: 3
           }
+      }]
+    }
+  });
+
+  var ctx = document.getElementById("bar_chart");
+  var bar_chart = new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ["Health","Social Care","Local Authority","3rd Sector","Social","Own Activities"],
+      datasets: [
+        {
+          data: [health,social_care,local_authority,third_sector,social,own_activities],
+          label: "Interactions",
+          backgroundColor: ["#9b00d4", "#ff0000","#0048ff","#07d400","#cdd400","#00bf8c"],
+          borderColor: "#000",
+          fill: false
         }
       ]
+    },
+    options: {
+      legend: {display: false},
+      title: {
+        display: true,
+        text: "Your interactions"
+      }
     }
   });
 
@@ -200,14 +237,6 @@ $(document).ready(function() {
     return color;
   }
 
-  // function getRandomColor() {
-  //
-  //   var colors = Array['#fc0000', '#0004ff', '#07fa02', '#e6f202' ];
-  //   var color_choice = colors[Math.floor(Math.random()*color.length)];
-  //   return color_choice;
-  // }
-  //
-
   function addData(chart, label, color, data) {
     chart.data.datasets.push({
       label: label,
@@ -215,10 +244,10 @@ $(document).ready(function() {
       data: data,
       fill: false
     });
-    chart.update()}
+    chart.update()};
 
   for(user = 0; user < user_total; user++){
-    addData(line_graph, "user " + user, getRandomColor(), all_users_experiences[user]);
+    addData(line_graph, "user " + (user + 1), getRandomColor(), all_users_experiences[user]);
 
   };
 
@@ -226,30 +255,6 @@ $(document).ready(function() {
     line_graph.data.datasets.pop();
     line_graph.update()
   }
-
   deleteLast()
 
 });
-
-
-function deleteUser(userID){
-  console.log(userID);
-  confirm = confirm("Really delete?");
-
-  if (confirm == true){
-    $.ajax('/delete', {
-      type: 'DELETE',
-      data: {
-        id: userID
-      },
-      success: function(){
-        console.log("Success");
-      },
-
-      error: function() {
-        console.log("Error when deleting user.");
-      }
-    });
-  }
-  return false;
-};
