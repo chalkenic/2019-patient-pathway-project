@@ -1,0 +1,37 @@
+{% extends "chc_admin_template.html" %}
+
+<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+
+{%block title %}<title> {{username}}'s section </title>{%endblock %}
+
+{%block content%}
+
+
+<h2 id = 'search_header'>Patient Search via ID number</h2>
+<!-- <form method = 'post'> -->
+<!-- <form id='myForm' action='/Student/Search' method = 'post'> -->
+  <!-- <label for = "email_search"></label>
+  Volunteer ID number:<input type = "text" name = "email_search"><br>
+  <button name = 'patient_search' type = "submit"> search </button>
+</form> -->
+
+<div class = "search_box_wrapper">
+  <form method = 'post' class = "admin_form">
+    <label  for = "email_search"></label>
+     ID number (6 digits): <input class="form-control" type = "text" name = "id_search"><br><br>
+    <button class = "admin_button" name = 'patient_search' type = "submit"> search </button>
+  </form>
+</div>
+
+<script>
+
+</script>
+<script src = "../static/js-main0.js"></script>
+{% endblock %}
+
+{% block script %}
+{{ super() }}
+
+
+
+{% endblock %}

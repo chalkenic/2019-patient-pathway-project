@@ -1,5 +1,5 @@
 <!-- These references extend the skeleton of the homepage-->
-{% extends "chc_user_template.html" %}
+{% extends "chc_template.html" %}
 <!-- Style sheet reference -->
 <link rel="stylesheet" type="text/css" href="../static/style-main.css" />
 <!--Script Reference-->
@@ -7,26 +7,63 @@
 
 {%block title %}
 
-<title> {{username}} - Contact </title>
+<title> Cancer Patient Pathways - Contact </title>
 <!-- <div class="sub_text"> <h2>Generic Questions Only</h2> </div> -->
 {%endblock %}
 
 
 {%block content%}
-<br>
 <!-- Movement of code to minimise scrolling -->
-<form method="post" name="myForm">
-    <!--action and method from WH3Schools https://www.w3schools.com/js/js_validation.asp accessed 24/11/2019-->
-    <textarea id="query_users" rows="5" cols="50" name="query" placeholder="Type your query here..." required></textarea>
-    <!-- Field must be filled in, cannot be blank -->
-    <br>
-    <input type="submit" name='form_submission_user'>
+<form method="post" name="myForm" onsubmit="return datatransfer()">
+<!--action and method from WH3Schools https://www.w3schools.com/js/js_validation.asp accessed 24/11/2019-->
+  <label>First name:</label><br>
+  <input id="firstName" type="text" name="firstName" required> <!-- Field must be filled in, cannot be blank -->
+  <br>
+  <label>Last name:</label><br> <!-- Field must be filled in, cannot be blank -->
+  <input id="lastName" type="text" name="lastName" required>
+  <br>
+  <label>Email:</label><br> <!-- Will check if email is valid by using type:"email"-->
+  <input id="email" type="email" name="email" required>
+  <!-- Field must be filled in, can't be blank, may not need with type:"email" -->
+  <br>
+  <label>Query:</label><br>
+  <textarea id="query" rows="5" cols="50" name="query" placeholder="Type your query here..." required></textarea>
+  <!-- Field must be filled in, cannot be blank -->
+  <br>
+  <br>
+  <input type="submit" name ='form_submission_guest'>
 </form>
 <span id='txt'>{{msg}}</span>
 <!-- To store the results of the form PHP needs to be used, haven't been taught yet -->
 <!-- JavaScript can also be used https://www.encodedna.com/javascript/how-to-save-form-data-in-a-text-file-using-javascript.htm needs to be researched-->
 <p> We aim to respond to querieres as soon as possible however during peak times responses may take longer to recieve.
     <br><br> Thank You </p>
+
+
+
+<script>
+    // function datatransfer() {
+    //     var firstName = document.forms["myForm"]["firstName"].value;
+    //     var surname = document.forms["myForm"]["lastName"].value;
+    //     var email = document.forms["myForm"]["email"].value;
+    //     var query = document.forms["myForm"]["query"].value;
+    //     params = 'firstName=' + firstName + '&lastName=' + lastName + '&email=' + email + '&query=' + query;
+    //     var xhttp = new XMLHttpRequest();
+    //     xhttp.open("POST", '/contact_us', true); // true is asynchronous
+    //     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    //     xhttp.onload = function () {
+    //         if (xhttp.readyState === 4 && xhttp.status === 200) {
+    //             console.log(xhttp.responseText);
+    //             document.getElementById("txt").innerHTML = xhttp.responseText;
+    //         } else {
+    //             console.error(xhttp.statusText);
+    //         }
+    //     };
+    //     xhttp.send(params);
+    //     return false;
+    // }
+
+</script>
 
 {%endblock%}
 

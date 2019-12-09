@@ -1,9 +1,14 @@
+// window.onload = function() {
+//
+// };
+//
+//
+
 
 $(document).ready(function() {
 
-
   console.log(linegraph_data);
-
+  console.log(table_data)
 
   var time = []
   var gen_happ = []
@@ -17,18 +22,15 @@ $(document).ready(function() {
   var own_activities = 0
 
   linegraph_data.forEach(function(linegraph_data){
-    time.push(linegraph_data[4])
-    console.log(time);
+    time.push(linegraph_data[4]);
   })
 
   linegraph_data.forEach(function(linegraph_data){
-    gen_happ.push(linegraph_data[2])
-    console.log(gen_happ);
+    gen_happ.push(linegraph_data[2]);
   })
 
   linegraph_data.forEach(function(linegraph_data){
-    interactions.push(linegraph_data[3])
-    console.log(interactions);
+    interactions.push(linegraph_data[3]);
   })
 
   linegraph_data.forEach(function(linegraph_data){
@@ -51,10 +53,13 @@ $(document).ready(function() {
       own_activities +=1;
     }
   })
-  console.log(health)
 
   // Adapted from Tobias Ahlin Bjerrome, 10 Chart.js example charts to get you started. Available at:
   // https://tobiasahlin.com/blog/chartjs-charts-to-get-you-started/
+
+  var user1 = [4,6,4,7,9,7];
+  var user2 = [3,9,1,8,3,9];
+
   var ctx = document.getElementById("line_graph");
   var line_graph = new Chart(ctx, {
     type: 'line',
@@ -65,7 +70,14 @@ $(document).ready(function() {
           data: gen_happ,
           label: "General experience (1-10)",
           borderColor: "#3e95cd",
-          fill: false
+          fill: false,
+          trendlineLinear: {
+            label: "Experience trendline",
+            style: "rgb(43, 66, 255, 0.3)",
+            lineStyle: "dotted|solid",
+            width: 2
+          }
+
         }
       ]
     }
@@ -94,5 +106,60 @@ $(document).ready(function() {
       }
     }
   });
+
+  var volunteer_name = linegraph_data[0][6];
+  console.log(volunteer_name)
+
+  document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
+
+  //Adapted from Rodrigo jsfiddle code for implementing chartJS data, available at: https://jsfiddle.net/crabbly/kL68ey5z/
+  function downloadPDF() {
+    var lineGraph = document.querySelector('#line_graph');
+    var barChart = document.querySelector('#bar_chart');
+    var messages = document.querySelector('#message_list');
+    var elementHandlers = {
+      '#ignorePDF': function(element, renderer) {
+        return true;
+      }
+    };
+
+    var lineGraphCanvas = lineGraph.toDataURL("image/png", 1.0);
+    var barChartCanvas = barChart.toDataURL("image/png", 1.0);
+    var messageBoxCanvas = messages.toDataURL("image/png", 1.0);
+
+    var doc = new jsPDF('p','mm', 'a4');
+
+    var pageHeight = doc.internal.pageSize.height;
+
+    doc.setFont("Courier")
+    doc.setFontSize(20);
+    doc.setFontType("Bold");
+    doc.text(75, 15, "Volunteer #" + user_data + " - " + volunteer_name);
+
+    doc.fromHTML($('#graph_header_1').html(), 10, 15, {
+      'width': 190,
+    'elementHandlers': elementHandlers
+    });
+    doc.addImage(lineGraphCanvas, 'PNG', 10, 30, 190, 100);
+
+    doc.fromHTML($('#graph_header_2').html(), 10, 140, {
+      'width': 190,
+    'elementHandlers': elementHandlers
+    });
+
+    doc.addImage(barChartCanvas, 'PNG', 10, 155, 190, 100);
+
+    doc.addPage()
+
+    doc.fromHTML($('#user_messages').html(), 10, 10, {
+      'width': 190,
+    'elementHandlers': elementHandlers
+    });
+
+    doc.addImage(messageBoxCanvas, 'PNG', 10, 155, 190);
+
+    doc.save("Volunteer " + user_data + " data.pdf");
+
+  }
 
 });

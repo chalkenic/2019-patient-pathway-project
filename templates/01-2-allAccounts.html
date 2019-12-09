@@ -1,29 +1,59 @@
 {% extends "chc_admin_template.html" %}
 
-<link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
-
 {%block title %}<title> {{username}}'s section </title>{%endblock %}
 
+{% block link %}
+    <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-graph.css') }}" />
+
+{% endblock %}
+
 {%block content%}
+  <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+
+<form method = "post">
+  <table>
+     <thead>
+        <th>User ID</th>
+        <th>Email Address</th>
+        <th>Name</th>
+        <th>Access</th>
+        <th></th>
+     </thead>
+
+     {% for row in data %}
+
+        <tr>
+          <td>{{row[0]}}</td>
+          <td>{{row[1]}}</td>
+          <td>{{row[2]}}</td>
+          <td>{{row[3]}}</td>
+            <td class = "delete_button_td">
+              <!-- <input type = 'hidden' name = "user_id" value = '{{row[0]}}'> -->
+              <button onclick = "return deleteUser({{ row[0] }})">&nbsp; Delete Account &nbsp; </button>
+            </td>
+
+        </tr>
+     {% endfor %}
+  </table>
+</form>
+
+<section class="aggregate_container">
 
 
-<table class = 'table'>
-   <thead>
-      <th>User ID</th>
-      <th>Email Address</th>
-      <th>Name</th>
-      <th>Access</th>
-   </thead>
+  <div class = 'fullsize_box'>
+    <h1 class = "data_header">All users' project experience</h1>
+    <canvas id="line_graph" class = "data_line" width="800" height="450"></canvas>
+  </div>
 
-   {% for row in data %}
 
-      <tr>
-        <td>{{row[0]}}</td>
-        <td>{{row[1]}}</td>
-        <td>{{row[2]}}</td>
-        <td>{{row[3]}}</td>
-      </tr>
-   {% endfor %}
-</table>
+</section>
+
+<!-- <canvas id="line_graph" width="1600" height="900"></canvas> -->
+
+<script src = "../static/js-admin-graphs.js"></script>
+
+<script>
+  var linegraph_data = {{ graph_data|safe }}
+</script>
 
 {% endblock %}

@@ -1,4 +1,4 @@
-/* 
+/*
 Adapated from: Tobias Ahlin Bjerrone code, available at: https://tobiasahlin.com/blog/introduction-to-chartjs/ */
 body {
   text-align: center;
@@ -13,5 +13,5 @@ h2 {
   font-weight: 200;
   font-size: 1.5em;
   margin-bottom:50px;
-  color: #999;
+  color: pink;
 }

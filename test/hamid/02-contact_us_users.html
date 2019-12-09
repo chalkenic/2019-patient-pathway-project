@@ -7,17 +7,16 @@
 
 {%block title %}
 
-<title> {{username}} - Contact </title>
+<title> Cancer Patient Pathways - Contact </title>
 <!-- <div class="sub_text"> <h2>Generic Questions Only</h2> </div> -->
 {%endblock %}
 
 
 {%block content%}
-<br>
 <!-- Movement of code to minimise scrolling -->
-<form method="post" name="myForm">
+<form method="post" name="myForm" onsubmit="return datatransfer()">
     <!--action and method from WH3Schools https://www.w3schools.com/js/js_validation.asp accessed 24/11/2019-->
-    <textarea id="query_users" rows="5" cols="50" name="query" placeholder="Type your query here..." required></textarea>
+    <textarea id="query" rows="5" cols="50" name="query" placeholder="Type your query here..." required></textarea>
     <!-- Field must be filled in, cannot be blank -->
     <br>
     <input type="submit" name='form_submission_user'>

@@ -5,14 +5,12 @@
   box-sizing: border-box;
 }
 
-
 .body_container {
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
   height: 100%;
 }
-
 
 .jumbotron_bckground {
   white-space: nowrap;
@@ -27,7 +25,6 @@
   width: 100%;
   background-color: #7B64AB;
 }
-
 
 .title_head_container {
   display: block;
@@ -73,19 +70,15 @@ input{
 
 .title_navigation_container {
   background-color: #614B8B;
-  /* min-height: 100px; */
-  /* border-radius: 1em; */
+
 }
 
 .main_nav {
-  /* overflow: hidden; */
+
   text-align: center;
   bottom: 10%;
-  /* left: 40%; */
-  /* min-height: 75px; */
+
 }
-
-
 
 .main_nav  a{
   display: inline-block;
@@ -111,12 +104,10 @@ https://codepen.io/martinwolf/pen/eNNdme */
   transition-timing-function: ease-in-out;
 }
 
-
 .main_nav a:hover::after {
     width: 100%;
 
 }
-
 
 footer {
   padding: 10px;
@@ -139,93 +130,12 @@ footer {
   }
 }
 
-/* TEST STUFF!!! */
-/* TEST STUFF!!! */
-/* TEST STUFF!!! */
-/* TEST STUFF!!! */
-/* TEST STUFF!!! */
-/* TEST STUFF!!! */
-/* TEST STUFF!!! */
-
-/* Add a black background color to the top navigation */
-.topnav {
-  background-color: #333;
-  overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Add an active class to highlight the current page */
-.topnav a.active {
-  background-color: #4CAF50;
-  color: white;
-}
-
-/* Hide the link that should open and close the topnav on small screens */
-.topnav .icon {
-  display: none;
-}
-
-
-/* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
-@media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-/* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive a.icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
 
 .homepage_body {
   text-align: center;
   display: inline-block;
   font: 20px arial, bold;
 }
-
-
-
-
-.login-box{
-  float: center;
-  background-color: blue;
-  width: 33.3%;
-
-  display: flex;
-  align-items: flex-start;
-  align-items: flex-end;
-  align-items: center;
-}
-
 
 /* .container {
   padding: 16px;
@@ -253,13 +163,23 @@ footer {
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  width: 90%;
+}
+
+th {
+  background-color: #000000;
+  color: #ffffff;
+  font-weight: bolder;
 }
 
 td, th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
+  font-size: 18px;
 }
 
 tr:nth-child(even) {
@@ -269,9 +189,231 @@ tr:nth-child(even) {
 .column {
   float: left;
   padding: 10px;
-  height: 300px; 
+  height: 300px;
 }
 
 .left, .right {
   width: 5%;
+}
+
+.row {
+  display: flex;
+}
+
+
+.column {
+  flex: 33.33%;
+  padding: 5px;
+}
+
+/* FAQ STYLING BEGIN */
+/* https://www.w3schools.com/howto/howto_js_collapsible.asp CODE FROM HERE - MODIFIED TO MATCH WEBSITE */
+
+/* Button styling - Opening and closing FAQ*/
+.collapsible-faq {
+  background-color: #eee;
+  color: #333;
+  /* ENQIURE ABOUT CORRECT COLOUR */
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: 1px;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content.*/
+.content-faq {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+  /* PERFORM ANIMATIONS */
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+
+
+
+/* ADMIN ACCOUNT SEARCH STYLING SECTION */
+
+.search_box_wrapper {
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-bottom: 20px;
+  text-align: center;
+}
+
+.form-control {
+  width: 100px;
+  display: inline;
+
+}
+
+.admin_form {
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+#search_header {text-align: center;}
+
+#result_header {text-align: center;}
+
+#user_messages {text-align: center;}
+
+.flex_container {
+  display: inline-flex;
+  max-width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.flex_container > .data_1 {
+  border: 2px solid #000;
+  flex-basis: auto;
+  margin: 7px;
+  padding: 2px;
+}
+
+.flex_container > .data_2 {
+  border: 2px solid #000;
+  flex-basis: auto;
+  margin: 7px;
+  padding: 2px;
+}
+
+.delete_button_td {
+  width: 20%;
+}
+
+.aggregate_container {
+  margin-left: 10%;
+  margin-right: 10%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.aggregate_container > .data_line {
+  display: inline;
+  align-items: center;
+  border: 2px solid #000;
+
+}
+
+
+
+.pdf_download_descriptor {
+  text-align: center;
+}
+
+.pdf_button_wrapper {
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border: 2px solid #000;
+}
+
+.admin_button, .pdf_button {
+  letter-spacing: .1em;
+  color: #fff;
+  font-size: 120%;
+  text-align: center;
+  padding: 5px 100px;
+  background: #7B64AB;
+  border-bottom: 1px solid #000000;
+  text-decoration: none;
+  border-radius: 5px;
+  transition-property: background, border-radius, transform;
+  transition-duration: 0.5s;
+}
+
+/* Dicates how the nested link anchors react on mouse hover */
+.pdf_button:hover {
+  background: #f58282;
+  border-radius: 25px;
+  color: #000000;
+  transform: rotate(0deg);
+}
+
+.admin_button:hover {
+  background: #5cb85c;
+  border-radius: 25px;
+}
+
+.data_header {
+  text-align: center;
+}
+
+@media screen and  (max-width: 850px)
+{
+  .fullsize_box {
+    width: 100vw!important;
+    height: 100vh!important;
+  }
+  .aggregate_container {
+    margin-left: 0;
+  }
+}
+
+@media screen and  (max-width: 850px)
+{
+  .aggregate_container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+.homepage_text {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 20px;
+}
+
+.flex-container-home {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-container-home > div {
+  padding: 20px;
+  margin: 20px;
+  border: 3px solid black;
+}
+
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+
+[type=radio] + img {
+
+  cursor: pointer;
+
+}
+
+
+
+[type=radio]:checked + img {
+
+  outline: 2px solid #f00;
+
 }
