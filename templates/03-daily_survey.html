@@ -17,6 +17,7 @@
                       <label for="completion date"> Please enter the day you are filling in this survey:</label>
                       <br>
                       <input type="Date" name="completion date" required>
+                      <br>
                       <h4 class = <strong> Did you undertake any activities relating to the following this week? </strong>
                         <br>
 
@@ -48,23 +49,33 @@
 
 
 
-        <label for="verygoodmood"><img src="static/assets/Very_Good_Smiley_Face.png" alt="verygoodmood"</label>
+        <label>
+          <input type="radio" name="Veryhappy" value="veryhappy" >
+          <img src="static/assets/Very_Good_Smiley_Face.png">
+        </label>
         <br> <br>
 </div>
-<div class="column"
-       <label for="goodmood"><img src="static/assets/Good_Smiley_Face.jpeg" alt="goodmood" height="75%", width="45%"/>
+<div class="column">
+
+       <label>
+           <input type="radio" name="Happy" value="happy" >
+       <img src="static/assets/Good_Smiley_Face.jpeg"  height="75%", width="55%"/>
        </label>
        </div>
 
        <br> <br>
 
-<div class="column"
-       <label for="okmood"><img src="static/assets/Orange_Smiley_Face.jpeg", alt="okmood"/>
+<div class="column">
+       <label>
+           <input type="radio" name="Ok" value="ok" >
+         <img src="static/assets/Orange_Smiley_Face.jpeg", alt="okmood"/>
        </label>
        <br><br>
 </div>
-<div class="column"
-       <label for="okmood"> <img src="static/assets/Red_Angry_Face.jpeg", width="35%", height="75%" alt="badmood">
+<div class="column">
+       <label>
+           <input type="radio" name="Upset" value="upset" >
+        <img src="static/assets/Red_Angry_Face.jpeg", width="55%", height="75%" alt="badmood">
       </label>
       <br> <br>
 </div>
@@ -75,7 +86,7 @@
       <br>
 
 
-<a href ="static/assets/Cilent_Survey.pdf"> <b> Click here for a downloadable version of this survey. <b>
+<a href ="static/assets/Client_Survey.pdf"> <b> Click here for a downloadable version of this survey. <b>
 
 
 {% endblock %}

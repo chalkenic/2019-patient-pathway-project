@@ -6,8 +6,6 @@ import json
 
 # Login Imports
 import sqlite3 as sql
-import models as dbHandler
-import models
 
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -79,24 +77,72 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 def newUser():
     if request.method == 'GET':
         return render_template('register.html')
-    if request.method == 'POST':
-        regEmail = request.form.get('email1', default = 'error')
-        regPass1 = request.form.get ('pass1', default = 'error')
-        regPass2 = request.form.get ('pass2', default = 'error')
+    elif request.method == 'GET':
+        regEmail = request.form.get('registerEmail', default = 'error')
+        regPass1 = request.form.get ('registerPassword', default = 'error')
+        print (regEmail)
+        print (regPass1)
         try:
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
-            cur = conn.cursor ()
-            cur.execute("INSERT INTO main.accounts('email_addr','name','password','access') VALUES (?,?,?,?)", (regEmail, regPass1, regPass, "User"))
-
+            cur = conn.cursor()
+            cur.execute("INSERT INTO accounts('userID', 'email_addr', 'name', 'password', 'access', volunteerID) VALUES (?,?,?,?,?,?)", ('15', regEmail, 'nik', regPass1, 'User', '22121'))
             conn.commit()
             msg ="Survey Data successfully recorded"
+            conn.close()
+            return regEmail
         except:
             conn.rollback()
             msg ="Error"
         finally:
             return msg
             conn.close()
+
+        return regEmail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #
+    #
+    # elif request.method == 'GET':
+    #     print (request.args.get('email1', defailt = 'error'))
+    #     regEmail = "Yo"
+    #     regPass1 = "Test"
+    #     regEmail = request.args.get('email1', default = 'error')
+    #     regPass1 = request.args.get('pass1', default = 'error')
+    #     regPass2 = request.args.get('pass2', default = 'error')
+    #     print (regEmail)
+    #     try:
+    #         request.form.get('')
+    #         conn = sqlite3.connect(DATABASE)
+    #         cur = conn.cursor ()
+    #         cur.execute("INSERT INTO accounts ('email_addr','password','access') VALUES (?,?,?)", (regEmail, regPass1, 'User'))
+    #
+    #         conn.commit()
+    #         msg ="Survey Data successfully recorded"
+    #     except:
+    #         conn.rollback()
+    #         msg ="Error"
+    #     finally:
+    #         return msg
+    #         conn.close()
+    #
+    #
+
+
 
 @serv.route("/home", methods = ['POST','GET'])
 def frontPage():
@@ -192,7 +238,6 @@ def allAccounts():
         username = request.cookies.get('username')
         return all_user_data(username)
 
-
 @serv.route("/survey", methods = ['POST','GET'])
 def survey():
     if request.method == 'GET':
@@ -235,6 +280,24 @@ def Diary():
     if request.method == 'GET':
         username = request.cookies.get('username')
         return render_template('05- Diary.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+
+    if request.method == 'POST':
+        diaryentry = request.form.get('diary_entry', default= "Error")
+
+    try:
+        request.form.get('')
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        cur.execute("INSERT INTO main.DiaryEntry('VolunteerID','DiaryEntry') VALUES (1,'');"),(VolunteerID, DiaryEntry)
+
+        con.commit()
+        msg= "Thanks for being honest :)"
+    except Exception as e:
+        conn.rollback()
+        print(e)
+        msg="Something's gone wrong :("
+    finally:
+     return msg
 
 # FAQ LINKING
 @serv.route("/FAQ", methods = ['POST', 'GET'])
@@ -438,34 +501,6 @@ def all_user_data(username):
     db.close()
 
     return render_template('01-2-allAccounts.html', data = tabledata, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), graph_data = json.loads(admin_graph_data))
-
-@serv.route("/delete", methods =['DELETE'])
-def delete_user():
-    username = request.cookies.get('username')
-    # if request.method == 'DELETE':
-    user_id = request.form['id']
-    try:
-        print(user_id)
-        db = sqlite3.connect(DATABASE)
-        cursor = db.cursor()
-        cursor.execute("DELETE from accounts where userID =?;", [user_id])
-        message = f"{user_id} deleted from server."
-        print(message)
-        db.commit()
-    except:
-        db.rollback()
-        message = "Error - please try again."
-    finally:
-        db.close()
-        print("Hello Theo!")
-        return message
-    # else:
-    #     return "Hello this should never be called everrrr"
-
-        # query = "(DELETE * from accounts where userID =?, [user_id];)"
-
-
-
 
 def get_all_users():
 
