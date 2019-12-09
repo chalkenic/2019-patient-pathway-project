@@ -240,9 +240,6 @@ tr:nth-child(even) {
   transition: max-height 0.2s ease-out;
 }
 
-
-
-
 /* ADMIN ACCOUNT SEARCH STYLING SECTION */
 
 .search_box_wrapper {
@@ -264,112 +261,8 @@ tr:nth-child(even) {
   justify-content: center;
 }
 
-#search_header {text-align: center;}
-
-#result_header {text-align: center;}
-
-#user_messages {text-align: center;}
-
-.flex_container {
-  display: inline-flex;
-  max-width: 100%;
-  margin-left: 5%;
-  margin-right: 5%;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.flex_container > .data_1 {
-  border: 2px solid #000;
-  flex-basis: auto;
-  margin: 7px;
-  padding: 2px;
-}
-
-.flex_container > .data_2 {
-  border: 2px solid #000;
-  flex-basis: auto;
-  margin: 7px;
-  padding: 2px;
-}
-
-.delete_button_td {
-  width: 20%;
-}
-
-.aggregate_container {
-  margin-left: 10%;
-  margin-right: 10%;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.aggregate_container > .data_line {
-  display: inline;
-  align-items: center;
-  border: 2px solid #000;
-
-}
-
-
-
 .pdf_download_descriptor {
   text-align: center;
-}
-
-.pdf_button_wrapper {
-  margin-left: 50px;
-  margin-right: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-  border: 2px solid #000;
-}
-
-.admin_button, .pdf_button {
-  letter-spacing: .1em;
-  color: #fff;
-  font-size: 120%;
-  text-align: center;
-  padding: 5px 100px;
-  background: #7B64AB;
-  border-bottom: 1px solid #000000;
-  text-decoration: none;
-  border-radius: 5px;
-  transition-property: background, border-radius, transform;
-  transition-duration: 0.5s;
-}
-
-/* Dicates how the nested link anchors react on mouse hover */
-.pdf_button:hover {
-  background: #f58282;
-  border-radius: 25px;
-  color: #000000;
-  transform: rotate(0deg);
-}
-
-.admin_button:hover {
-  background: #5cb85c;
-  border-radius: 25px;
-}
-
-.data_header {
-  text-align: center;
-}
-
-@media screen and  (max-width: 850px)
-{
-  .fullsize_box {
-    width: 100vw!important;
-    height: 100vh!important;
-  }
-  .aggregate_container {
-    margin-left: 0;
-  }
 }
 
 @media screen and  (max-width: 850px)
