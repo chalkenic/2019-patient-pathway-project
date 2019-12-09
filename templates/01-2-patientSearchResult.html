@@ -1,5 +1,3 @@
-
-
 {% extends "chc_admin_template.html" %}
 
 {% block script %}
@@ -16,7 +14,11 @@
 {%block content%}
 {% for row in data %}
 
-<h1 id = "result_header">Data for volunteer: {{row[5]}}</h1>
+<script>
+
+</script>
+
+<h1 id = "result_header">Data for volunteer: #{{row[5]}} - {{row[2]}}</h1>
 
 <table>
    <thead>
@@ -32,7 +34,7 @@
       <tr>
         <td>{{row[0]}}</td>
         <td>{{row[1]}}</td>
-        <td>{{row[2]}}</td>
+        <td id = "volunteer_name">{{row[2]}}</td>
         <td>********</td>
         <td>{{row[4]}}</td>
       </tr>
@@ -40,36 +42,56 @@
 </table>
 
 <section class="flex_container">
-  <div >
-    <h2> {{row[2]}}'s Experiences</h2>
+  <div class = 'fullsize_box'>
+    <h2 id = "graph_header_1" class = "data_header"> #{{row[5]}}'s Experiences</h2>
     <canvas id="line_graph" class = "data_1" width="800" height="450"></canvas>
   </div>
 
-  <div>
-    <h2> {{row[2]}}'s Interactions</h2>
+  <div class = 'fullsize_box'>
+    <h2 id = "graph_header_2"  class = "data_header"> #{{row[5]}}'s Interactions</h2>
     <canvas id="bar_chart" class="data_2"width="800" height="450"></canvas>
   </div>
 
-  <div >
-    <h2 id = "user_messages"> {{row[2]}}'s messages</h2>
-    <canvas id="bar_chart" class="data_3" width="800" height="450"></canvas>
+  <div class = 'fullsize_box'>
+    <h2 id = "user_messages"  class = "data_header"> #{{row[5]}}'s messages</h2>
+    <canvas id="message_list" class="data_3" width="800" height="450"></canvas>
 
   </div>
+
+
 </section>
 
-{% endfor %}
 
-<!-- <a href="javascript:demoFromHTML()" class="button">Run Code</a> -->
 
-<!-- <script src = "js/query.min.js"></script>
-<script src = js/jsPDF/dist/jspdf.min.js"></script> -->
+<div class = "pdf_button_wrapper">
+  <h3 class = pdf_download_descriptor>
+  Click button below to create a PDF copy of this user.
+  </h3>
+  <button id="downloadPDF" class="pdf_button" data-toggle="button" aria-pressed="false" autocomplete="off">Download PDF</button>
+</div>
+
+<div id = "graph_1"></div>
+<div id = "graph_2"></div>
+<div id = "messages"></div>
+<script src = "js/query.min.js"></script>
+<script src = "js/jsPDF/dist/jspdf.min.js"></script>
 
 <script>
+  //Pulls all data from server template render, converts into JavaScript variable for usage - marked as safe for further iteration.
   var linegraph_data = {{ lineg_data|safe }}
+
+  //Pulls jinja for loop data into JavaScript
+  var user_data = {{row[5]|safe}}
+
+
 </script>
+
+
+{% endfor %}
+<script> var table_data = {{ data|safe}}</script>
 
 <script src = "../static/js-user-graphs.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline@0.1.3/src/chartjs-plugin-trendline.min.js"></script>"
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline@0.1.3/src/chartjs-plugin-trendline.min.js"></script>
 
 {% endblock %}

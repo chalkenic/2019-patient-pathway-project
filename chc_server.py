@@ -227,7 +227,7 @@ def survey():
         finally:
             conn.close()
 
-# Link to Diary
+
 @serv.route("/Diary", methods = ['POST', 'GET'])
 def Diary():
     if request.method == 'GET':
