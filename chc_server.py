@@ -235,6 +235,27 @@ def Diary():
         username = request.cookies.get('username')
         return render_template('05- Diary.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
 
+    if request.method == 'POST':
+        diaryentry = request.form.get('diary_entry', default= "Error")
+
+    try:
+        request.form.get('')
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        cur.execute("INSERT INTO main.DiaryEntry('VolunteerID','DiaryEntry') VALUES (1,'');"),(VolunteerID, DiaryEntry)
+
+        con.commit()
+        msg= "Thanks for being honest :)"
+    except Exception as e:
+        conn.rollback()
+        print(e)
+        msg="Something's gone wrong :("
+    finally:
+        conn.close()
+        return msg
+
+
+
 # FAQ LINKING
 @serv.route("/FAQ", methods = ['POST', 'GET'])
 def FAQ():
