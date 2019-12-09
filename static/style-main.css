@@ -249,11 +249,7 @@ tr:nth-child(even) {
   text-align: center;
 }
 
-.form-control {
-  width: 100px;
-  display: inline;
 
-}
 
 .admin_form {
   text-align: center;
@@ -265,13 +261,7 @@ tr:nth-child(even) {
   text-align: center;
 }
 
-@media screen and  (max-width: 850px)
-{
-  .aggregate_container {
-    margin-left: 0;
-    margin-right: 0;
-  }
-}
+
 
 .homepage_text {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
