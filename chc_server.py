@@ -216,7 +216,7 @@ def survey():
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor ()
-            cur.execute("INSERT INTO Survey('Date','Health','SocialCare','LocalAuthority','ThirdSector','OwnActivities') VALUES (?,?,?,?,?,?)",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
+            cur.execute("INSERT INTO Survey('Date','Health','Social_Care','Local_Authority','Third_Sector','Own_Activities') VALUES (?,?,?,?,?,?)",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
 
             conn.commit()
             msg ="Survey Data successfully recorded. See You Tomorrow!"
@@ -226,12 +226,14 @@ def survey():
             msg ="Something's gone wrong :("
         finally:
             conn.close()
+            return msg
 
 
 @serv.route("/Diary", methods = ['POST', 'GET'])
 def Diary():
     if request.method == 'GET':
-        return render_template('05- Diary.html')
+        username = request.cookies.get('username')
+        return render_template('05- Diary.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
 
 # FAQ LINKING
 @serv.route("/FAQ", methods = ['POST', 'GET'])
@@ -243,7 +245,8 @@ def FAQ():
 @serv.route("/contact_us_users", methods = ['POST', 'GET'])
 def contact_us_users_link():
     if request.method == 'GET':
-        return render_template('02-contact_us_users.html')
+        username = request.cookies.get('username')
+        return render_template('02-contact_us_users.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
 
     if request.method =='POST':
 
@@ -295,7 +298,7 @@ def admin_contact_link():
 @serv.route("/contact", methods = ['POST','GET'])
 def contactUs():
     if request.method == 'GET':
-        return render_template('02-contact_us.html', username = "", section_name = str(""))
+        return render_template('02-contact_us.html', username = username, section_name = str(""))
 
     if request.method == 'POST':
 
@@ -360,35 +363,40 @@ def logout():
 def user_login():
     username = request.form.get('user_email', default="Error")
     email_addr = request.form.get('user_email', default="Error")
+    password = request.form.get('user_password', default = "Error")
     tmp = username.split('@')
     user = tmp[0]
     password = request.form.get('user_password', default="Error")
     # if login_credentials(username, password) == True:
-    if user == "Nick":
 
-        response = make_response(render_template('00-2-admin_homepage.html',
-        username = user,
-        welcome = 'Welcome ' + user + "!",
-        email = email_addr,
-        section_name = str(f'{user}\'s ')))
-
-        response.set_cookie('username', user )
-        response.set_cookie('email_addr', email_addr )
-        response.set_cookie('Access', 'Admin')
-
-    elif user != "Nick":
-        response = make_response(render_template('00-3-user_homepage.html',
-        username = user,
-        welcome = 'Welcome ' + user + "!",
-        email = email_addr,
-        section_name = str(f'{user}\'s ')))
-
-        response.set_cookie('username', user )
-        response.set_cookie('email_addr', email_addr )
-        response.set_cookie('Access','User')
-
-    else:
+    if username == "" or password == "" :
         response = make_response(render_template('00_homepage.html', login_message ='Incorrect login, please try again', username=""))
+    else:
+
+        if user == "Nick":
+
+            response = make_response(render_template('00-2-admin_homepage.html',
+            username = user,
+            welcome = 'Welcome ' + user + "!",
+            email = email_addr,
+            section_name = str(f'{user}\'s ')))
+
+            response.set_cookie('username', user )
+            response.set_cookie('email_addr', email_addr )
+            response.set_cookie('Access', 'Admin')
+
+        elif user != "Nick":
+            response = make_response(render_template('00-3-user_homepage.html',
+            username = user,
+            welcome = 'Welcome ' + user + "!",
+            email = email_addr,
+            section_name = str(f'{user}\'s ')))
+
+            response.set_cookie('username', user )
+            response.set_cookie('email_addr', email_addr )
+            response.set_cookie('Access','User')
+
+
     return response
 
 # FUNCTIONS
@@ -498,7 +506,7 @@ def target_patient_data(username, email):
         print(volunteer_ID)
 
         print("hello1")
-        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID FROM surveyData\
+        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID , name FROM surveyData\
         INNER JOIN accounts\
         ON surveyData.accountID=accounts.userID\
         WHERE volunteerID =?;''', [volunteer_ID])

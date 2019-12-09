@@ -10,7 +10,6 @@ $(document).ready(function() {
   console.log(linegraph_data);
   console.log(table_data)
 
-
   var time = []
   var gen_happ = []
   var interactions = []
