@@ -43,18 +43,14 @@
   </div>
 </form>
 
-<form method="get" name="myForm">
-<!--action and method from WH3Schools https://www.w3schools.com/js/js_validation.asp accessed 24/11/2019-->
-  <label>Email:</label><br>
-  <input id="registerEmail" type="text" name="registerEmail" required> <!-- Field must be filled in, cannot be blank -->
-  <br>
-  <label>Password:</label><br> <!-- Field must be filled in, cannot be blank -->
-  <input id="registerPassword" type="text" name="registerPassword" required>
-  <br>
-  <input type="submit" name ='form_submission_guest'>
+
+<form method = 'post' class = "admin_form">
+  <label  for = "email_register"></label>
+   ID number (6 digits): <input class="form-control" type = "text" name = "registerEmail"><br><br>
+   <label  for = "password_register"></label>
+    ID number (6 digits): <input class="form-control" type = "text" name = "registerPassword"><br>
+  <button class = "admin_button" name = 'patient_search' type = "submit"> search </button>
 </form>
-
-
 
 
     </main>
