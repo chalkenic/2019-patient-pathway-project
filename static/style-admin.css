@@ -4,6 +4,14 @@
 
 }
 
+.table-hover {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+table tr.active {background: #ccc;}
+
 .admin_flex_container > .element_1 {
   border: 2px solid #000;
   background-color: #7B64AB;
@@ -39,23 +47,17 @@
   padding: 1px;
 }
 
-.admin_link {
-  text-decoration: none;
-  color: #fff;
-}
 
-.admin_link:hover{
-  color: #ebf2ff;
-}
 
 .admin_head {
   text-align: center;
 }
 
-/* .admin_box  {
 
-} */
-
+.admin_link {
+  text-decoration: none;
+  color: #fff;
+}
 .admin_logout {
   border: 1px solid #000;
   background-color: #7B64AB;
@@ -65,28 +67,43 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  /* justify-content: center; */
-}
 
-.logout_link {
-  text-decoration: none;
-  color: #fff;
 }
 
 .admin_link:hover{
   color: #ebf2ff;
+  font-weight: bold;
 }
+
+.logout_link:hover{
+  color: #ebf2ff;
+  font-weight: bold;
+  font-size: 200%;
+  text-decoration: none;
+}
+
+.logout_link {
+  letter-spacing: .1em;
+  text-decoration: none;
+  color: #fff;
+  transition-property: font-weight, font-size ;
+  transition-duration: 0.2s;
+}
+
 
 @media screen and  (max-width: 850px)
 {
   .fullsize_box {
     width: 100vw!important;
-    height: 100vh!important;
+    /* height: 100vh!important; */
   }
   .aggregate_container {
     margin-left: 0;
   }
+
 }
+
+
 
 .pdf_button_wrapper {
   margin-left: 50px;

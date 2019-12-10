@@ -6,8 +6,6 @@ import json
 
 # Login Imports
 import sqlite3 as sql
-import models as dbHandler
-import models
 
 # sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
@@ -79,24 +77,72 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'css'])
 def newUser():
     if request.method == 'GET':
         return render_template('register.html')
-    if request.method == 'POST':
-        regEmail = request.form.get('email1', default = 'error')
-        regPass1 = request.form.get ('pass1', default = 'error')
-        regPass2 = request.form.get ('pass2', default = 'error')
+    elif request.method == 'POST':
+        regEmail = request.form.get('registerEmail', default = 'error')
+        regPass1 = request.form.get ('registerPassword', default = 'error')
+        print (regEmail)
+        print (regPass1)
         try:
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
-            cur = conn.cursor ()
-            cur.execute("INSERT INTO main.accounts('email_addr','name','password','access') VALUES (?,?,?,?)", (regEmail, regPass1, regPass, "User"))
-
+            cur = conn.cursor()
+            cur.execute("INSERT INTO accounts( 'email_addr', 'name', 'password', 'access', volunteerID) VALUES (?,?,?,?,?,?)", ( regEmail, 'nik', regPass1, 'User', '22121'))
             conn.commit()
             msg ="Survey Data successfully recorded"
+            conn.close()
+            return regEmail
         except:
             conn.rollback()
             msg ="Error"
         finally:
             return msg
             conn.close()
+
+        return regEmail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    #
+    #
+    # elif request.method == 'GET':
+    #     print (request.args.get('email1', defailt = 'error'))
+    #     regEmail = "Yo"
+    #     regPass1 = "Test"
+    #     regEmail = request.args.get('email1', default = 'error')
+    #     regPass1 = request.args.get('pass1', default = 'error')
+    #     regPass2 = request.args.get('pass2', default = 'error')
+    #     print (regEmail)
+    #     try:
+    #         request.form.get('')
+    #         conn = sqlite3.connect(DATABASE)
+    #         cur = conn.cursor ()
+    #         cur.execute("INSERT INTO accounts ('email_addr','password','access') VALUES (?,?,?)", (regEmail, regPass1, 'User'))
+    #
+    #         conn.commit()
+    #         msg ="Survey Data successfully recorded"
+    #     except:
+    #         conn.rollback()
+    #         msg ="Error"
+    #     finally:
+    #         return msg
+    #         conn.close()
+    #
+    #
+
+
 
 @serv.route("/home", methods = ['POST','GET'])
 def frontPage():
@@ -216,7 +262,7 @@ def survey():
             request.form.get('')
             conn = sqlite3.connect(DATABASE)
             cur = conn.cursor ()
-            cur.execute("INSERT INTO Survey('Date','Health','SocialCare','LocalAuthority','ThirdSector','OwnActivities') VALUES (?,?,?,?,?,?)",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
+            cur.execute("INSERT INTO Survey('Date','Health','Social_Care','Local_Authority','Third_Sector','Own_Activities') VALUES (?,?,?,?,?,?)",(Date, Health, SocialCare, LocalAuthority, ThirdSector, OwnActivities));
 
             conn.commit()
             msg ="Survey Data successfully recorded. See You Tomorrow!"
@@ -226,12 +272,32 @@ def survey():
             msg ="Something's gone wrong :("
         finally:
             conn.close()
+            return msg
 
 
 @serv.route("/Diary", methods = ['POST', 'GET'])
 def Diary():
     if request.method == 'GET':
-        return render_template('05- Diary.html')
+        username = request.cookies.get('username')
+        return render_template('05- Diary.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+
+    # if request.method == 'POST':
+    #     diaryentry = request.form.get('diary_entry', default= "Error")
+    #
+    # try:
+    #     request.form.get('')
+    #     conn = sqlite3.connect(DATABASE)
+    #     cur = conn.cursor()
+    #     cur.execute("INSERT INTO main.DiaryEntry('VolunteerID','DiaryEntry') VALUES (1,'');"),(VolunteerID, DiaryEntry)
+    #
+    #     con.commit()
+    #     msg= "Thanks for being honest :)"
+    # except Exception as e:
+    #     conn.rollback()
+    #     print(e)
+    #     msg="Something's gone wrong :("
+    # finally:
+    #  return msg
 
 # FAQ LINKING
 @serv.route("/FAQ", methods = ['POST', 'GET'])
@@ -243,7 +309,28 @@ def FAQ():
 @serv.route("/contact_us_users", methods = ['POST', 'GET'])
 def contact_us_users_link():
     if request.method == 'GET':
-        return render_template('02-contact_us_users.html')
+        username = request.cookies.get('username')
+        return render_template('02-contact_us_users.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+
+    if request.method =='POST':
+
+        add_query_users = request.form.get('query', default="Error")
+        print(add_query_users)
+        # try:
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
+		# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
+        cur.execute("INSERT INTO contactFormUsers ('query') VALUES (?)", (add_query_users,))
+        # cur.fetchall()
+        conn.commit()
+        msg = "Thanks, we'll respond as soon as possible."
+    # # except:
+    #     conn.rollback()
+    #     msg = "error in insert operation"
+    # # finally:
+    #     conn.close()
+        return render_template('02-contact_us_users.html', msg = msg)
 
 # ADMIN CONTACT US LINK
 @serv.route("/admin_contact", methods = ['POST', 'GET'])
@@ -251,10 +338,31 @@ def admin_contact_link():
     if request.method == 'GET':
         return render_template('admin_contact.html')
 
+    if request.method == 'POST':
+
+        add_admin_query = request.form.get('query', default="Error")
+        print(add_admin_query)
+        # try:
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
+	# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
+        cur.execute(
+            "INSERT INTO adminContact ('query') VALUES (?)", (add_admin_query,))
+        # cur.fetchall()
+        conn.commit()
+        msg = "Thanks, we'll respond as soon as possible."
+    # # except:
+    #     conn.rollback()
+    #     msg = "error in insert operation"
+    # # finally:
+    #     conn.close()
+        return render_template('admin_contact.html', msg=msg)
+
 @serv.route("/contact", methods = ['POST','GET'])
 def contactUs():
     if request.method == 'GET':
-        return render_template('02-contact_us.html', username = "", section_name = str(""))
+        return render_template('02-contact_us.html', username = username, section_name = str(""))
 
     if request.method == 'POST':
 
@@ -319,40 +427,71 @@ def logout():
 def user_login():
     username = request.form.get('user_email', default="Error")
     email_addr = request.form.get('user_email', default="Error")
+    password = request.form.get('user_password', default = "Error")
     tmp = username.split('@')
     user = tmp[0]
     password = request.form.get('user_password', default="Error")
     # if login_credentials(username, password) == True:
-    if user == "Nick":
 
-        response = make_response(render_template('00-2-admin_homepage.html',
-        username = user,
-        welcome = 'Welcome ' + user + "!",
-        email = email_addr,
-        section_name = str(f'{user}\'s ')))
-
-        response.set_cookie('username', user )
-        response.set_cookie('email_addr', email_addr )
-        response.set_cookie('Access', 'Admin')
-
-    elif user != "Nick":
-        response = make_response(render_template('00-3-user_homepage.html',
-        username = user,
-        welcome = 'Welcome ' + user + "!",
-        email = email_addr,
-        section_name = str(f'{user}\'s ')))
-
-        response.set_cookie('username', user )
-        response.set_cookie('email_addr', email_addr )
-        response.set_cookie('Access','User')
-
-    else:
+    if username == "" or password == "" :
         response = make_response(render_template('00_homepage.html', login_message ='Incorrect login, please try again', username=""))
+    else:
+
+        if user == "Nick":
+
+            response = make_response(render_template('00-2-admin_homepage.html',
+            username = user,
+            welcome = 'Welcome ' + user + "!",
+            email = email_addr,
+            section_name = str(f'{user}\'s ')))
+
+            response.set_cookie('username', user )
+            response.set_cookie('email_addr', email_addr )
+            response.set_cookie('Access', 'Admin')
+
+        elif user != "Nick":
+            response = make_response(render_template('00-3-user_homepage.html',
+            username = user,
+            welcome = 'Welcome ' + user + "!",
+            email = email_addr,
+            section_name = str(f'{user}\'s ')))
+
+            response.set_cookie('username', user )
+            response.set_cookie('email_addr', email_addr )
+            response.set_cookie('Access','User')
+
+
     return response
 
 # FUNCTIONS
 # FUNCTIONS
 # FUNCTIONS
+
+@serv.route("/allComments", methods = ['GET', 'POST'])
+def allComments():
+
+    if request.method == 'GET':
+
+        username = request.cookies.get('username')
+        return all_user_comments(username)
+
+@serv.route("/allAccounts", methods = ['GET', 'POST'])
+
+def all_user_comments(username):
+
+    db = sqlite3.connect(DATABASE)
+
+    cursor = db.cursor()
+    cursor.execute('''SELECT messageID, email_addr, date, query FROM contactFormUsers\
+    INNER JOIN accounts\
+    ON contactFormUsers.accountID=accounts.userID WHERE access == "User";''')
+
+    message_list = cursor.fetchall()
+
+    db.commit()
+    db.close()
+
+    return render_template('01-5-allMessages.html', data = message_list, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
 
 def all_user_data(username):
 
@@ -372,13 +511,13 @@ def all_user_data(username):
     # for user in range(1,userID_count[0]):
     for user in range(0,userID_count[0]):
 
+        print(user_count)
         cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, access FROM surveyData\
         INNER JOIN accounts\
         ON surveyData.accountID=accounts.userID\
         WHERE userID =? AND access == "User";''', [user_count])
 
         range_data = cursor.fetchall()
-
         temp_dict[user] = range_data
 
         user_count += 1
@@ -388,6 +527,34 @@ def all_user_data(username):
     db.close()
 
     return render_template('01-2-allAccounts.html', data = tabledata, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), graph_data = json.loads(admin_graph_data))
+
+@serv.route("/delete", methods =['DELETE'])
+def delete_user():
+    username = request.cookies.get('username')
+    # if request.method == 'DELETE':
+    user_id = request.form['id']
+    try:
+        print(user_id)
+        db = sqlite3.connect(DATABASE)
+        cursor = db.cursor()
+        cursor.execute("DELETE from accounts where userID =?;", [user_id])
+        message = f"{user_id} deleted from server."
+        print(message)
+        db.commit()
+    except:
+        db.rollback()
+        message = "Error - please try again."
+    finally:
+        db.close()
+        print("Hello Theo!")
+        return message
+    # else:
+    #     return "Hello this should never be called everrrr"
+
+        # query = "(DELETE * from accounts where userID =?, [user_id];)"
+
+
+
 
 def get_all_users():
 
@@ -457,7 +624,7 @@ def target_patient_data(username, email):
         print(volunteer_ID)
 
         print("hello1")
-        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID FROM surveyData\
+        cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID , name FROM surveyData\
         INNER JOIN accounts\
         ON surveyData.accountID=accounts.userID\
         WHERE volunteerID =?;''', [volunteer_ID])

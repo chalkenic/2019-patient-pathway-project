@@ -300,8 +300,25 @@ tr:nth-child(even) {
   outline: 5px solid ;
 
 }
+/* input[type=checkbox]
+{
 
-input[type="text"], select {
+  -ms-transform: scale(2);
+  -moz-transform: scale(2);
+  -webkit-transform: scale(2);
+  -o-transform: scale(2);
+  transform: scale(2);
+  padding: 10px;
+}
+
+.checkboxtext
+{
+
+  font-size: 110%;
+  display: inline; */
+}
+
+/* input[type="text"], select {
   width: 30%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -334,4 +351,4 @@ input[type="email"] {
   border: 1px solid #ccc;
   border-radius: 4px;
   box-sizing: border-box;
-}
+} */
