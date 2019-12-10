@@ -226,7 +226,7 @@ def section():
                 return solo_graph_data(username)
 
             else:
-                return render_template('01-1-user_section.html', username = "", section_name = str(""))
+                return render_template('02-1-user_section.html', username = "", section_name = str(""))
 
     if request.method == 'POST':
 
@@ -615,9 +615,19 @@ def solo_graph_data(username):
         INNER JOIN accounts\
         ON surveyData.accountID=accounts.userID\
         WHERE email_addr =?;''', [email])
+        print("Working 1")
 
         data = cursor.fetchall()
         js_data = json.dumps(data)
+        print("Working 2")
+        cursor.execute('''SELECT messageID, accountID, email_addr, query, date FROM contactFormUsers\
+        INNER JOIN accounts\
+        ON contactFormUsers.accountID = accounts.userID
+         WHERE email_addr=?;''', [email])
+        print("Working 3")
+
+        message_data = cursor.fetchall()
+        print(message_data)
 
     except:
         print("Unfortunately an error has occurred", data)
@@ -627,7 +637,7 @@ def solo_graph_data(username):
         db.close()
         username = request.cookies.get('username')
 
-        return render_template('01-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), lineg_data = json.loads(js_data))
+        return render_template('02-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), lineg_data = json.loads(js_data), message_data = message_data)
 
 def target_patient_data(username, email):
 

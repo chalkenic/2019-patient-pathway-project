@@ -148,7 +148,7 @@ INSERT INTO 'contactFormUsers'('accountID', 'Volunteer','date','query') VALUES (
 INSERT INTO 'contactFormUsers'('accountID','Volunteer','date','query') VALUES (4,145218,'2019-11-06','How do I change a previous diary entry?');
 INSERT INTO 'contactFormUsers'('accountID','Volunteer','date','query') VALUES (1,311267,'2019-11-07','What do I do if I miss a day?');
 INSERT INTO 'contactFormUsers'('accountID','Volunteer','date','query') VALUES (1,311267,'2019-11-10','How do i cease my involvement in this project?');
-INSERT INTO 'contactFormUsers'('accountID','Volunteer','date','query') VALUES (4,145218,'2019-11-18','Can i edit my previous survey entry?');
+INSERT INTO 'contactFormUsers'('accountID','Volunteer','date','query') VALUES (4,145218,'2019-11-18','Can i change a previous survey entry?');
 INSERT INTO 'contactFormUsers'('accountID','Volunteer','date','query') VALUES (3,193692,'2019-11-24','Who are your affiliates?');
 
 
