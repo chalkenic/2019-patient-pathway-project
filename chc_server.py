@@ -119,27 +119,38 @@ def newUser():
         regEmail = request.form.get('registerEmail', default = 'error')
         regPass1 = request.form.get ('registerPassword', default = 'error')
         regPass2 = request.form.get ('registerPassword2', default = 'error')
-        if regPass1 == regPass2:
-            userAccess = "User"
-            volunteerID = "9925"
 
-            print (regEmail)
-            print (regPass1)
-            try:
-                conn = sqlite3.connect(DATABASE)
-                cur = conn.cursor()
-                cur.execute(("INSERT INTO accounts('email_addr', 'name', 'password', 'access', 'volunteerID') VALUES (?,?,?,?,?);"),(regEmail, regName, regPass1, userAccess, volunteerID))
-                conn.commit()
-                msg ="Survey Data successfully recorded"
-                conn.close()
-            except:
-                conn.rollback()
-                msg ="Error in appending data "
-            finally:
-                return msg + regEmail
-                conn.close()
+        conn = sqlite3.connect(DATABASE)
+        cur = conn.cursor()
+        x = cur.execute("SELECT * FROM accounts WHERE 'email_addr' = ?",[regEmail])
+        conn.commit()
+        msg ="Survey Data successfully recorded"
+        conn.close()
+
+        if x in [regEmail]:
+            return "Email already exists"
         else:
-            return "didnt match"
+            if regPass1 == regPass2:
+                userAccess = "User"
+                volunteerID = "9925"
+                print (regEmail)
+                print (regPass1)
+                try:
+                    conn = sqlite3.connect(DATABASE)
+                    cur = conn.cursor()
+                    cur.execute(("INSERT INTO accounts('email_addr', 'name', 'password', 'access', 'volunteerID') VALUES (?,?,?,?,?);"),(regEmail, regName, regPass1, userAccess, volunteerID))
+                    conn.commit()
+                    msg ="Survey Data successfully recorded"
+                    conn.close()
+                except:
+                    conn.rollback()
+                    msg ="Error in appending data"
+                finally:
+                    return msg + regEmail
+                    conn.close()
+                    render_template('00_homepage.html')
+            else:
+                return "didnt match"
 
 
 
