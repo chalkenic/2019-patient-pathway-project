@@ -211,19 +211,15 @@ def section():
     if request.method == 'GET':
         username = request.cookies.get('username')
         Access = "empty"
-        #TBC content:
-        # if 'Access' in session:
-        #     Access = escape(session['Access'])
 
-        #Temp:
         Access = request.cookies.get('Access')
 
         if Access == "Admin":
             if username is not None:
 
-                return render_template('01-2-patientSearch.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+                return render_template('01-3-patientSearch.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
-                return render_template('01-2-patientSearch.html', username = "", section_name = str(""))
+                return render_template('01-3-patientSearch.html', username = "", section_name = str(""))
 
         elif Access == "User":
             if username is not None:
@@ -245,6 +241,14 @@ def allAccounts():
 
         username = request.cookies.get('username')
         return all_user_data(username)
+
+@serv.route("/allComments", methods = ['GET', 'POST'])
+def allComments():
+
+    if request.method == 'GET':
+
+        username = request.cookies.get('username')
+        return all_user_comments(username)
 
 @serv.route("/survey", methods = ['POST','GET'])
 def survey():
@@ -344,7 +348,7 @@ def contact_us_users_link():
 @serv.route("/admin_contact", methods = ['POST', 'GET'])
 def admin_contact_link():
     if request.method == 'GET':
-        return render_template('admin_contact.html')
+        return render_template('01-6-adminContact.html')
 
     if request.method == 'POST':
 
@@ -365,7 +369,7 @@ def admin_contact_link():
     #     msg = "error in insert operation"
     # # finally:
     #     conn.close()
-        return render_template('admin_contact.html', msg=msg)
+        return render_template('01-6-adminContact.html', msg=msg)
 
 @serv.route("/contact", methods = ['POST','GET'])
 def contactUs():
@@ -445,7 +449,7 @@ def user_login():
         response = make_response(render_template('00_homepage.html', login_message ='Incorrect login, please try again', username=""))
     else:
 
-        if user == "Nick":
+        if user == "Nick" or user == "Admin":
 
             response = make_response(render_template('00-2-admin_homepage.html',
             username = user,
@@ -471,9 +475,67 @@ def user_login():
 
     return response
 
+@serv.route("/deleteUser", methods =['DELETE'])
+def delete_user():
+    username = request.cookies.get('username')
+    # if request.method == 'DELETE':
+    user_id = request.form['id']
+    try:
+        print(user_id)
+        db = sqlite3.connect(DATABASE)
+        cursor = db.cursor()
+        cursor.execute("DELETE from accounts where userID =?;", [user_id])
+        message = f"{user_id} deleted from server."
+        print(message)
+        db.commit()
+    except:
+        db.rollback()
+        message = "Error - please try again."
+    finally:
+        db.close()
+        print("Hello Theo!")
+        return message
+
+@serv.route("/deleteMsg", methods =['DELETE'])
+def delete_message():
+    username = request.cookies.get('username')
+    # if request.method == 'DELETE':
+    messageID = request.form['id']
+    try:
+        print(messageID)
+        db = sqlite3.connect(DATABASE)
+        cursor = db.cursor()
+        cursor.execute("DELETE from contactFormUsers where messageID =?;", [messageID])
+        message = f"{messageID} deleted from server."
+        print(message)
+        db.commit()
+    except:
+        db.rollback()
+        message = "Error - please try again."
+    finally:
+        db.close()
+        print("Hello Theo!")
+        return message
+
 # FUNCTIONS
 # FUNCTIONS
 # FUNCTIONS
+
+def all_user_comments(username):
+
+    db = sqlite3.connect(DATABASE)
+
+    cursor = db.cursor()
+    cursor.execute('''SELECT messageID, email_addr, date, query FROM contactFormUsers\
+    INNER JOIN accounts\
+    ON contactFormUsers.accountID=accounts.userID WHERE access == "User";''')
+
+    message_list = cursor.fetchall()
+
+    db.commit()
+    db.close()
+
+    return render_template('01-5-allMessages.html', data = message_list, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
 
 def all_user_data(username):
 
@@ -510,30 +572,6 @@ def all_user_data(username):
 
     return render_template('01-2-allAccounts.html', data = tabledata, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), graph_data = json.loads(admin_graph_data))
 
-@serv.route("/delete", methods =['DELETE'])
-def delete_user():
-    username = request.cookies.get('username')
-    # if request.method == 'DELETE':
-    user_id = request.form['id']
-    try:
-        print(user_id)
-        db = sqlite3.connect(DATABASE)
-        cursor = db.cursor()
-        cursor.execute("DELETE from accounts where userID =?;", [user_id])
-        message = f"{user_id} deleted from server."
-        print(message)
-        db.commit()
-    except:
-        db.rollback()
-        message = "Error - please try again."
-    finally:
-        db.close()
-        print("Hello Theo!")
-        return message
-    # else:
-    #     return "Hello this should never be called everrrr"
-
-        # query = "(DELETE * from accounts where userID =?, [user_id];)"
 
 
 def get_all_users():
@@ -603,30 +641,34 @@ def target_patient_data(username, email):
 
         print(volunteer_ID)
 
-        print("hello1")
+
         cursor.execute('''SELECT surveyID, email_addr, happiness_q,contact_q, date, volunteerID , name FROM surveyData\
         INNER JOIN accounts\
         ON surveyData.accountID=accounts.userID\
         WHERE volunteerID =?;''', [volunteer_ID])
-        print("hello2")
+
 
         graph_data = cursor.fetchall()
-        print(graph_data)
+        # print(graph_data)
 
         js_data = json.dumps(graph_data)
-        print(js_data)
+        # print(js_data)
 
+        print("hello1")
+        cursor.execute("SELECT * FROM contactFormUsers WHERE volunteer=?;", [volunteer_ID])
+        print("hello2")
+
+        message_data = cursor.fetchall()
+        print(message_data)
     except:
-        print("Unfortunately an error has occurred", table_data)
+        print("Unfortunately an error has occurred", message_data)
         db.close()
 
     finally:
         db.close()
 
         username = request.cookies.get('username')
-        return render_template('01-2-patientSearchResult.html', data = table_data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), lineg_data = json.loads(js_data))
-
-
+        return render_template('01-4-patientSearchResult.html', data = table_data, username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), lineg_data = json.loads(js_data), message_data = message_data)
 
 if __name__ == "__main__":
     serv.run(debug=True)
