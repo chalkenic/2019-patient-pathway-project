@@ -3,7 +3,7 @@ function deleteUser(userID){
   confirm = confirm("Really delete?");
 
   if (confirm == true){
-    $.ajax('/deleteUser', {
+    $.ajax('/delete', {
       type: 'DELETE',
       data: {
         id: userID
@@ -21,7 +21,6 @@ function deleteUser(userID){
 };
 
 $(document).ready(function() {
-
 
 
   // console.log(linegraph_data)
@@ -160,7 +159,6 @@ $(document).ready(function() {
   for (var user = 0; user < user_total; user++){
 
     for(var data_item = 0; data_item < data_total; data_item++){
-      console.log("Checking user " + user + ": " + all_users_experiences[user])
 
       if(isNaN(all_users_experiences[user][2])){
         aggregate_total -- ;
