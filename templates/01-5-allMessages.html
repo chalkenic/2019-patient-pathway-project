@@ -1,0 +1,51 @@
+{% extends "chc_admin_template.html" %}
+
+{%block title %}<title> {{username}}'s section </title>{%endblock %}
+
+{% block link %}
+    <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-graph.css') }}" />
+
+{% endblock %}
+
+{%block content%}
+  <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
+
+<form method = "post">
+  <table class = "table table-hover " id = "rowClick">
+     <thead>
+        <th>Message ID</th>
+        <th>User</th>
+        <th>Date</th>
+        <th>Query</th>
+        <th></th>
+        <th></th>
+     </thead>
+
+     {% for row in data %}
+
+        <tr>
+          <td>{{row[0]}}</td>
+          <td>{{row[1]}}</td>
+          <td>{{row[2]}}</td>
+          <td>{{row[3]}}</td>
+          <td class = "reply_user_td">
+            <!-- <input type = 'hidden' name = "user_id" value = '{{row[0]}}'> -->
+            <a href = "mailto:{{row[1]}}">respond to {{row[1]}}</a>
+          </td>
+          <td class = "delete_button_td">
+            <!-- <input type = 'hidden' name = "user_id" value = '{{row[0]}}'> -->
+            <button onclick = "return deleteMessage({{ row[0] }})">&nbsp; Delete Message &nbsp; </button>
+          </td>
+
+
+        </tr>
+     {% endfor %}
+  </table>
+</form>
+
+
+<script src = "../static/js-admin-messages.js"></script>
+
+
+
+{% endblock %}

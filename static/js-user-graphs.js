@@ -106,6 +106,11 @@ $(document).ready(function() {
     }
   });
 
+  // var canvas = document.getElementById('message_list');
+  // var ctx = canvas.getContext('2d');
+  //
+  // var date
+
   var volunteer_name = linegraph_data[0][6];
   console.log(volunteer_name)
 
@@ -124,7 +129,7 @@ $(document).ready(function() {
 
     var lineGraphCanvas = lineGraph.toDataURL("image/png", 1.0);
     var barChartCanvas = barChart.toDataURL("image/png", 1.0);
-    var messageBoxCanvas = messages.toDataURL("image/png", 1.0);
+    // var messageBoxCanvas = messages.toDataURL("image/png", 1.0);
 
     var doc = new jsPDF('p','mm', 'a4');
 
@@ -155,7 +160,19 @@ $(document).ready(function() {
     'elementHandlers': elementHandlers
     });
 
-    doc.addImage(messageBoxCanvas, 'PNG', 10, 155, 190);
+    margins = {
+      top: 20,
+      bottom: 20,
+      left: 30,
+      width: 190,
+    };
+
+    doc.fromHTML($('#message_list')[0], margins.left, margins.top, {
+      'width': margins.width,
+      'elementHandlers': elementHandlers
+    });
+
+    // doc.addImage(messageBoxCanvas, 'PNG', 10, 155, 190);
 
     doc.save("Volunteer " + user_data + " data.pdf");
 
