@@ -201,13 +201,13 @@ def frontPage():
         if access == "Admin":
 
             if username is not None:
-                return render_template('00-2-admin_homepage.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+                return render_template('01-1-admin_homepage.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
             else:
                 return render_template('00-1-empty_homepage.html', username = "", section_name = str(""))
 
         elif access == "User":
                 if username is not None:
-                    return render_template('00-3-user_homepage.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
+                    return render_template('02-1-user_homepage.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'))
                 else:
                     return render_template('00-1-empty_homepage.html', username = "", section_name = str(""))
         else:
@@ -266,7 +266,7 @@ def section():
                 return solo_graph_data(username)
 
             else:
-                return render_template('02-1-user_section.html', username = "", section_name = str(""))
+                return render_template('02-2-user_section.html', username = "", section_name = str(""))
 
     if request.method == 'POST':
 
@@ -463,7 +463,7 @@ def user_login():
 
         if user == "Nick" or user == "Admin":
 
-            response = make_response(render_template('00-2-admin_homepage.html',
+            response = make_response(render_template('01-1-admin_homepage.html',
             username = user,
             welcome = 'Welcome ' + user + "!",
             email = email_addr,
@@ -474,7 +474,7 @@ def user_login():
             response.set_cookie('Access', 'Admin')
 
         elif user != "Nick":
-            response = make_response(render_template('00-3-user_homepage.html',
+            response = make_response(render_template('02-1-user_homepage.html',
             username = user,
             welcome = 'Welcome ' + user + "!",
             email = email_addr,
@@ -649,7 +649,7 @@ def solo_graph_data(username):
         db.close()
         username = request.cookies.get('username')
 
-        return render_template('02-1-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), lineg_data = json.loads(js_data), message_data = message_data)
+        return render_template('02-2-user_section.html', username = username, section_name = str(f'{username}\'s '), welcome = str(f'Welcome {username}!'), lineg_data = json.loads(js_data), message_data = message_data)
 
 def target_patient_data(username, email):
 

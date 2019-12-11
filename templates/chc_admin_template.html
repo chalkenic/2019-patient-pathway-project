@@ -9,20 +9,25 @@
 
     {% block title %}<title>Cancer Patient Pathways - Home</title> {% endblock %}
 
+    <!-- Bootstrap file for login box & burger dropdown -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+    <!-- Main stylesheet, identical to all other stylesheet calls on other templates. -->
     <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
 
+    <!-- Cascaded stylesheet called to override styling of mainsheet - specific only for admin sections. -->
     <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-admin.css') }}" />
 
+    <!-- JSCharts link used for producing all graphs for users. -->
     <script src = 'https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js'></script>
 
+    <!-- Jquuery that ensures JavaScript code is run only after page fully loaded. -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
 
+    <!-- Jinja block for specific page script calls -->
+    {% block script %}
 
-
-    {% block script %} {% endblock %}
+    {% endblock %}
 
   </head>
 
@@ -108,23 +113,16 @@
   </article>
 
 
+  <footer>
+    <hr>
+    <address>
+      <u>©2019: 	Cancer Pathway Project </u>| Contact: <a href="mailto:SouthGlam.chiefofficer@waleschc.org.uk"> SouthGlam.chiefofficer@waleschc.org.uk</a>
+      | Address:</span> <a href="https://goo.gl/maps/myvQPrUKsuXv9QmD8"> South Glamorgan Community Health Council
+      Parc Tŷ Glas
+      Cardiff
+      CF14 5DU</a>
+      | Telephone: 02920 750112
+    </address>
+  </footer>
+
 </body>
-
-    </div>
-    <footer>
-      <hr>
-      <address>
-        <u>©2019: 	Cancer Pathway Project </u>| Contact: <a href="mailto:cancer-pathway@outlook.com"> cancer-pathway@outlook.com</a>
-        <u>Address</u></span>
-      </address>
-    </footer>
-    <!-- Latest compiled and minified JavaScript -->
-
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script> -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-
-
-
-  </body>

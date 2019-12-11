@@ -12,9 +12,15 @@
 
 {%block content%}
 
+<!-- scripts parsed early on page load to  ensure data is ready for implementation at bottom of page. -->
 <script>
   var table_data = {{ message_data|safe}}
 </script>
+
+<script>
+  var linegraph_data = {{ lineg_data|safe }}
+</script
+
 <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
 
 <div class="wrapper">
@@ -40,6 +46,7 @@
       <th>Date of entry</th>
       <th>Your message</th>
 
+      <!-- All user's messages are parsed into the table  -->
    </thead>
       {% for message in message_data %}
       <tr>
@@ -55,14 +62,9 @@
   <br>
   <br>
 
-
+<!-- Graph JavaScript called for iteration on page. Trendline plugin used for creating additional linegraph data  -->
 <script src = "../static/js-user-graphs.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline@0.1.3/src/chartjs-plugin-trendline.min.js"></script>
-<script>
-  var linegraph_data = {{ lineg_data|safe }}
 
-
-
-</script
 
 {% endblock %}
