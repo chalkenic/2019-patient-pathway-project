@@ -3,6 +3,7 @@ from flask import Flask, redirect, request,render_template, make_response, escap
 import sys
 import sqlite3
 import json
+import random as rand
 
 # Login Imports
 import sqlite3 as sql
@@ -125,30 +126,40 @@ def newUser():
         x = cur.execute("SELECT * FROM accounts WHERE 'email_addr' = ?",[regEmail])
         conn.commit()
         msg ="Survey Data successfully recorded"
+        print(msg)
         conn.close()
 
         if x in [regEmail]:
             return "Email already exists"
         else:
+            print(x)
             if regPass1 == regPass2:
                 userAccess = "User"
-                volunteerID = "9925"
+                volunteerID = rand.randint(100000,999999)
                 print (regEmail)
                 print (regPass1)
                 try:
                     conn = sqlite3.connect(DATABASE)
                     cur = conn.cursor()
-                    cur.execute(("INSERT INTO accounts('email_addr', 'name', 'password', 'access', 'volunteerID') VALUES (?,?,?,?,?);"),(regEmail, regName, regPass1, userAccess, volunteerID))
+                    print("Working 1")
+                    print(type(regEmail))
+                    print(type(regName))
+                    print(type(regPass1))
+                    print(type(userAccess))
+                    print(type(volunteerID))
+
+                    cur.execute("INSERT INTO accounts('email_addr', 'name', 'password', 'access', 'volunteerID') VALUES (?,?,?,?,?);",(regEmail, regName, regPass1, userAccess, volunteerID))
+                    print("Working 2")
                     conn.commit()
                     msg ="Survey Data successfully recorded"
                     conn.close()
                 except:
                     conn.rollback()
-                    msg ="Error in appending data"
+                    msg ="Error in appending data: "
                 finally:
                     return msg + regEmail
                     conn.close()
-                    render_template('00-1-empty_homepage.html')
+                    render_template('00-1-empty_homepage.html', username = "", section_name = str(""))
             else:
                 return "Didn't match"
 
