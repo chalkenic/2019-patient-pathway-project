@@ -318,17 +318,19 @@ tr:nth-child(even) {
   display: inline; */
 }
 
+.form-container {
+  padding: 5%;
+  background: #ffffff;
+  border: 9px solid #f2f2f2;
+  max-width: 520px;
+  margin: auto;
+  width: 50%;
+  margin-left : 25%
+}
+
 .form_design {
 
-    .form-container {
-      padding: 5%;
-      background: #ffffff;
-      border: 9px solid #f2f2f2;            
-      max-width: 520px;
-      margin: auto;
-      width: 50%;
-      margin-left : 25%
-    }
+
 
   input[type="text"], select {
     width: 30%;
@@ -370,4 +372,3 @@ tr:nth-child(even) {
     box-sizing: border-box;
   }
 }
-
