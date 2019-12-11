@@ -148,7 +148,7 @@ def newUser():
                 finally:
                     return msg + regEmail
                     conn.close()
-                    render_template('00_homepage.html')
+                    render_template('00-1-empty_homepage.html')
             else:
                 return "Didn't match"
 
@@ -211,7 +211,7 @@ def frontPage():
             username = ''
             if 'username' in session:
                 username = escape(session['username'])
-            return render_template('00_homepage.html', login_message ='', username = '')
+            return render_template('00-1-empty_homepage.html', login_message ='', username = '')
 
 
 # @serv.route("/register", methods = ['POST','GET'])
@@ -394,7 +394,7 @@ def contactUs():
         username = ''
         if 'username' in session:
             username = escape(session['username'])
-        return render_template('00_homepage.html', login_message ='', username = '')
+        return render_template('00-1-empty_homepage.html', login_message ='', username = '')
 
 # Adapted from stackoverflow "ThiefMaster" question Flask: How to remove cookies?. Available at: https://stackoverflow.com/questions/14386304/flask-how-to-remove-cookies
 
@@ -447,7 +447,7 @@ def user_login():
     # if login_credentials(username, password) == True:
 
     if username == "" or password == "" :
-        response = make_response(render_template('00_homepage.html', login_message ='Incorrect login, please try again', username=""))
+        response = make_response(render_template('00-1-empty_homepage.html', login_message ='Incorrect login, please try again', username=""))
     else:
 
         if user == "Nick" or user == "Admin":
