@@ -150,25 +150,7 @@ def newUser():
                     conn.close()
                     render_template('00_homepage.html')
             else:
-                return "didnt match"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                return "Didn't match"
 
     #
     #
@@ -416,6 +398,8 @@ def contactUs():
 
 # Adapted from stackoverflow "ThiefMaster" question Flask: How to remove cookies?. Available at: https://stackoverflow.com/questions/14386304/flask-how-to-remove-cookies
 
+
+#STANDARD CONTACT FORM
 @serv.route("/contact_us", methods = ['POST', 'GET'])
 def contactFormdata():
     if request.method =='GET':
@@ -435,26 +419,12 @@ def contactFormdata():
         add_query = request.form.get('query', default="Error")
         print("inserting contact result "+ add_firstName)
         print(add_lastName)
-        # try:
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
-        # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
-		# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
         cur.execute("INSERT INTO contactForm ('firstName', 'lastName', 'email', 'query') VALUES (?,?,?,?)", (add_firstName, add_lastName, add_email, add_query))
-        # cur.fetchall()
         conn.commit()
         msg = "Thanks, we'll respond as soon as possible."
-    # # except:
-    #     conn.rollback()
-    #     msg = "error in insert operation"
-    # # finally:
-    #     conn.close()
         return render_template('02-contact_us.html', msg = msg)
-
-
-    # session['user_email'] = request.form['user_email']
-    # session['Password'] = request.form['user_password']
-    # print("Password checks out, hello " + user + "!")
 
 @serv.route("/logout", methods = ['GET', 'POST'])
 def logout():
