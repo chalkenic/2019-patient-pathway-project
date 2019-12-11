@@ -374,21 +374,14 @@ def contact_us_users_link():
     if request.method =='POST':
 
         add_query_users = request.form.get('query', default="Error")
+        add_date_users = request.form.get('date', default="Error")
         print(add_query_users)
-        # try:
+        print(add_date_users)
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
-        # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
-		# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
-        cur.execute("INSERT INTO contactFormUsers ('query') VALUES (?)", (add_query_users,))
-        # cur.fetchall()
+        cur.execute("INSERT INTO contactFormUsers ('query', 'date') VALUES (?,?)", (add_query_users, add_date_users))
         conn.commit()
         msg = "Thanks, we'll respond as soon as possible."
-    # # except:
-    #     conn.rollback()
-    #     msg = "error in insert operation"
-    # # finally:
-    #     conn.close()
         return render_template('02-contact_us_users.html', msg = msg)
 
 # ADMIN CONTACT US LINK
@@ -401,21 +394,12 @@ def admin_contact_link():
 
         add_admin_query = request.form.get('query', default="Error")
         print(add_admin_query)
-        # try:
         conn = sqlite3.connect(DATABASE)
         cur = conn.cursor()
-        # cur.execute("INSERT INTO contactForm ('firstName', 'surname', 'email', 'query')\
-	# 		VALUES (?,?,?,?)",(add_firstName, add_lastName, add_email, add_query) )
         cur.execute(
             "INSERT INTO adminContact ('query') VALUES (?)", (add_admin_query,))
-        # cur.fetchall()
         conn.commit()
         msg = "Thanks, we'll respond as soon as possible."
-    # # except:
-    #     conn.rollback()
-    #     msg = "error in insert operation"
-    # # finally:
-    #     conn.close()
         return render_template('01-6-adminContact.html', msg=msg)
 
 @serv.route("/contact", methods = ['POST','GET'])
