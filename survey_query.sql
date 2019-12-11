@@ -1,1 +1,0 @@
-SELECT SurveyID, AccountID  FROM surveyData ORDER BY AccountID
