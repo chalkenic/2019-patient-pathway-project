@@ -389,7 +389,7 @@ tr:nth-child(even) {
     background-color: rgb(109, 76, 180);
   }
 
-  input[type="email"] {
+  input[type="email"], input[type="password"] {
     width: 30%;
     padding: 12px 20px;
     margin: 8px 0;
