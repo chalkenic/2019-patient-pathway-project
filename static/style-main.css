@@ -328,11 +328,8 @@ tr:nth-child(even) {
   margin-left : 25%
 }
 
-.form_design {
 
-
-
-  input[type="text"], select {
+  #firstName {
     width: 30%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -343,11 +340,41 @@ tr:nth-child(even) {
     resize: none;
   }
 
-    input[type="text"]:hover {
-      background-color: #7B64AB;
-    }
+  #lastName {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
+  }
 
-  input[type="submit"] {
+  #email {
+    width: 30%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: none;
+  }
+
+.form_design {
+  width: 90%;
+  text-align: center;
+}
+
+
+
+  #firstName:hover, #lastName:hover, #email:hover, #query:hover {
+    background-color: #7B64AB;
+    color: white;
+  }
+
+#submit {
     width: 30%;
     background-color: #7B64AB;
     color: white;
@@ -358,7 +385,7 @@ tr:nth-child(even) {
     cursor: pointer;
   }
 
-  input[type="submit"]:hover {
+  #submit:hover {
     background-color: rgb(109, 76, 180);
   }
 
@@ -371,4 +398,3 @@ tr:nth-child(even) {
     border-radius: 4px;
     box-sizing: border-box;
   }
-}

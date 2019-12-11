@@ -1,9 +1,7 @@
 <!-- These references extend the skeleton of the homepage-->
 {% extends "chc_template.html" %}
 <!-- Style sheet reference -->
-<link rel="stylesheet" type="text/css" href="../static/style-main.css" />
 <!--Script Reference-->
-<script type="text/javascript" src="../script/myscript.js"></script>
 
 {%block title %}
 
@@ -19,17 +17,17 @@
     <label>First name:</label><br>
     <input id="firstName" type="text" name="firstName" required>
     <br>
-    <label>Last name:</label><br> 
+    <label>Last name:</label><br>
     <input id="lastName" type="text" name="lastName" required>
     <br>
-    <label>Email:</label><br> 
+    <label>Email:</label><br>
     <input id="email" type="email" name="email" required>
     <br>
     <label>Query:</label><br>
     <textarea id="query" rows="5" cols="50" name="query" placeholder="Type your query here..." required></textarea>
     <br>
     <br>
-    <input type="submit" name ='form_submission_guest'>
+    <input id = "submit" type="submit" name ='form_submission_guest'>
     </form>
     <span id='txt'>{{msg}}</span>
     <p> We aim to respond to queries as soon as possible however during peak times responses may take longer to recieve.

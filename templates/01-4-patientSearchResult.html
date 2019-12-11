@@ -18,6 +18,8 @@
 {%endblock %}
 
 {%block content%}
+
+<!-- For loop for unique iteration of page data depending on user, along with further JavaScript implementation depending on user name & volunteer ID -->
 {% for row in data %}
 
 <script>
@@ -26,6 +28,7 @@
 
 <h1 id = "result_header">Data for volunteer: #{{row[5]}} - {{row[2]}}</h1>
 
+Shows all user generic data unqi
 <table>
    <thead>
       <th>Database ID</th>
@@ -34,8 +37,6 @@
       <th>Password</th>
       <th>Website Access Level</th>
    </thead>
-
-
 
       <tr>
         <td>{{row[0]}}</td>
@@ -47,6 +48,7 @@
 
 </table>
 
+<!-- Expresses all data submitted by user in graphical format. -->
 <section class="flex_container">
   <div class = 'fullsize_box'>
     <h2 id = "graph_header_1" class = "data_header"> #{{row[5]}}'s Experiences</h2>
@@ -58,8 +60,6 @@
     <canvas id="bar_chart" class="data_2"width="800" height="450"></canvas>
   </div>
 
-
-
 </section>
 
 <div class = 'fullsize_box'>
@@ -67,7 +67,7 @@
 </div>
 
 
-<!-- <table id="message_list"> -->
+<!-- Table for storing specific user's messages made on the website -->
 <table id = "message_list">
 
    <thead>
@@ -121,6 +121,8 @@
 
 
 {% endfor %}
+
+<!-- Marks table data as safe for JavaScript iteration -->
 <script> var table_data = {{ data|safe}}</script>
 
 

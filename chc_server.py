@@ -375,7 +375,7 @@ def contact_us_users_link():
         cur.execute("INSERT INTO contactFormUsers ('query', 'date') VALUES (?,?)", (add_query_users, add_date_users))
         conn.commit()
         msg = "Thanks, we'll respond as soon as possible."
-        return render_template('02-contact_us_users.html', msg = msg)
+        return render_template('02-contact_us_users.html', msg = msg, username = username, section_name = str(f'{username}\'s '))
 
 # ADMIN CONTACT US LINK
 @serv.route("/admin_contact", methods = ['POST', 'GET'])

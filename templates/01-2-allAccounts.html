@@ -10,6 +10,7 @@
 {%block content%}
   <link rel = "stylesheet" type = "text/css"href = "{{ url_for('static', filename='style-main.css') }}" />
 
+<!-- Form that stores all user accounts from database. Includes post method for deleting user accounts from the database -->
 <form method = "post">
   <table>
      <thead>
@@ -37,8 +38,8 @@
   </table>
 </form>
 
+<!-- Section contains all graphical images - data pulled from admin-graph JavaScript file. -->
 <section class="aggregate_container">
-
 
   <div class = 'fullsize_box'>
     <h1 class = "data_header">Project experiences</h1>
@@ -57,6 +58,7 @@
 
 <script src = "../static/js-admin-graphs.js"></script>
 
+<!-- Pulls all graphical data from server into the HTML & marks as safe so admin-graph can safely iterate & manipulate the data. -->
 <script>
   var linegraph_data = {{ graph_data|safe }}
 </script>
