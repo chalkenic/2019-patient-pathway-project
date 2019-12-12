@@ -9,16 +9,21 @@
 {%endblock %}
 
 {%block content%}
+<div class="form_design">
 
 <form method="post" name="myForm" onsubmit="return datatransfer()">
 <!--action and method from WH3Schools https://www.w3schools.com/js/js_validation.asp accessed 24/11/2019-->
+
+Date : <input type="Date" name="completion date" required>
+<br> <br>
+
 <label>Diary Entry:</label><br>
 <textarea id="diaryentry" rows="5" cols="50" name="query" placeholder="Type your Diary entry here..." required></textarea>
 <br>
 
-<input type="submit">
+<button class = "survey_button" name="diary_submit" type="submit"> Submit </button>
 <h4> <i> This is strictly confidential, whatever you write here is for your eyes only :) <br>
-Express yourself in whatever way you see fit :) </i> </h4> 
+Express yourself in whatever way you see fit :) </i> </h4>
 </form>
 
 {%endblock%}

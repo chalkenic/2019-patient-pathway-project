@@ -398,3 +398,37 @@ tr:nth-child(even) {
     border-radius: 4px;
     box-sizing: border-box;
   }
+  .survey_button {
+    padding: 15px 25px;
+  font-size: 24px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  color: black;
+  background-color: #7B64AB;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+  }
+  .survey_button:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.contact_button {
+  padding: 15px 25px;
+font-size: 24px;
+text-align: center;
+cursor: pointer;
+outline: none;
+color: black;
+background-color: #7B64AB;
+border: none;
+border-radius: 15px;
+box-shadow: 0 9px #999;
+}
+
+.contact_button:hover {
+background-color: #ddd;
+color: black;
+}

@@ -11,10 +11,13 @@
 
       <tr>
         <div class="flex-container-home">
+          <div class="homepage_body">
+
           <div style="flex-grow: 4">
             <h3> The following is a survey which enables us to understand how your
                     interactions with the NHS have been going so far. </h3>
 
+</div>
 
                     <h4 class=<strong>Please answer these questions effectively and honestly!</strong>
                       <br><br>
@@ -26,7 +29,7 @@
                         <br>
                         </div>
                         </div>
-
+                        </div>
 
                             <th style = "width:20%">Health </th>
                             <th style = "width:20%">SocialCare </th>
@@ -59,7 +62,7 @@
 
         <label>
           <input type="radio" name="Veryhappy" value="veryhappy" >
-          <img src="static/assets/Very_Good_Smiley_Face.png">
+          <img src="static/assets/Very_Good_Smiley_Face.png" width="65%">
         </label>
         <br> <br>
 </div>
@@ -67,7 +70,7 @@
 
        <label>
            <input type="radio" name="Happy" value="happy" >
-       <img src="static/assets/Good_Smiley_Face.jpeg"  height="75%", width="65%"/>
+       <img src="static/assets/Good_Smiley_Face.jpeg"  height="75%", width="55%"/>
        </label>
        </div>
 
@@ -76,31 +79,35 @@
 <div class="column">
        <label>
            <input type="radio" name="Ok" value="ok" >
-         <img src="static/assets/Yellow_ok_face.jpeg", width="65%" alt="okmood"/>
+         <img src="static/assets/Yellow_ok_face.jpeg", width="65%" alt="okmood" />
        </label>
        <br><br>
 </div>
 <div class="column">
        <label>
            <input type="radio" name="Upset" value="upset" >
-        <img src="static/assets/Orange_upset_Face.jpeg",  alt="badmood">
+        <img src="static/assets/Orange_upset_Face.jpeg", width="75%"  alt="badmood">
       </label>
       </div>
       <br> <br>
 <div class="column">
   <label>
     <input type="radio" name="angry" value="angry">
-    <img src="static/assets/Red_Angry_Face.jpeg" width="55%", height="75%">
+    <img src="static/assets/Red_Angry_Face.jpeg" width="55%">
     </label>
 </div>
 </div>
 
 </form>
-      <input type="submit" name="survey">
-      <br>
+<div class="form_design">
+
+<button class = "survey_button" name = 'survey' type = "submit" align="center"> Submit </button>
+
+      <br> <br>
 
 
-<a href ="static/assets/Client_Survey.pdf"> <b> Click here for a downloadable version of this survey. <b>
+  <a href ="static/assets/Client_Survey.pdf">
+   <b> Click here for a downloadable version of this survey. <b>
 </div>
 
 {% endblock %}
