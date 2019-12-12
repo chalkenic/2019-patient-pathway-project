@@ -370,7 +370,6 @@ tr:nth-child(even) {
 
 
   #firstName:hover, #lastName:hover, #email:hover, #query:hover {
-    background-color: #7B64AB;
     color: white;
   }
 
